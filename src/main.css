@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --text: #121212;
+    --background: #f9f9fa;
+    --primary: #6260af;
+    --secondary: #9492d9;
+    --accent: #6a68de;
+  }
+  .dark {
+    --text: #ededed;
+    --background: #050506;
+    --primary: #53509f;
+    --secondary: #29266d;
+    --accent: #232197;
+  }
+}
+
+body {
+  font-family: "Inter";
+  font-weight: 400;
+  color: var(--text);
+  background: var(--background);
+}

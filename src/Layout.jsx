@@ -33,10 +33,10 @@ export default function Layout() {
 const HeroHeader = () => {
   return (
     <>
-      <h1 className="text-3xl mt-10 max-sm:mt-15 font-bold">
-        Grow With Every Page
+      <h1 className="text-3xl mt-10 max-sm:mt-10 font-bold">
+        Grow With Every Page.
       </h1>
-      <p className="text-justify mt-4 mb-5">
+      <p className="text-justify mt-4 mb-20">
         Explore books that fuel self-mastery, sharpen your mindset, and keep you
         moving forward.
       </p>

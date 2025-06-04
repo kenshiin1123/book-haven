@@ -1,4 +1,10 @@
-import React from "react";
+import {
+  calculateAverageRating,
+  displayStar,
+  getDiscountedPrice,
+} from "../utils/reviewCalculation";
+
+import { ButtonOutlined } from "./Button";
 
 export default function BookCards({ books }) {
   return (
@@ -10,15 +16,14 @@ export default function BookCards({ books }) {
   );
 }
 
-const BookCard = ({
-  title,
-  author,
-  ratings,
-  price,
-  addedToCart,
-  year,
-  image,
-}) => {
+const BookCard = ({ ...props }) => {
+  const { image, title, reviews, discount, price } = { ...props };
+
+  const averageReview = calculateAverageRating(reviews);
+  const stars = displayStar(averageReview);
+  const totalReviews = reviews.length;
+
+  const discountedPrice = getDiscountedPrice(price, discount);
   return (
     <div className="flex flex-col border w-80 p-3 h-fit">
       <img
@@ -26,11 +31,24 @@ const BookCard = ({
         src={image}
         alt={title + " image"}
       />
-      <p className="font-semibold mt-10">{title}</p>
-      <p className="text-sm">Ratings: {ratings}</p>
+      <p className="font-semibold mt-10 text-xl">{title}</p>
+      <div className="text-sm flex gap-1 mt-1">
+        <span className="font-bold">{averageReview}</span> {stars}{" "}
+        <span className="text-sm">({totalReviews})</span>
+      </div>
       <section className="flex justify-between mt-5">
-        <p className="text-2xl font-bold">${price}</p>{" "}
-        <button className="border px-5">View Book</button>
+        <div className="text-2xl flex gap-1 items-center">
+          {!discount ? (
+            <span className="font-bold">${price}</span>
+          ) : (
+            <>
+              <span className="font-bold">${discountedPrice}</span>
+              <span className="text-sm line-through">${price}</span>
+            </>
+          )}
+          {/* Original Price */}
+        </div>
+        <ButtonOutlined>View Book</ButtonOutlined>
       </section>
     </div>
   );

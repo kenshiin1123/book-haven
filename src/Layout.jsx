@@ -22,7 +22,7 @@ export default function Layout() {
       >
         <FaFilter />
       </button>
-      <main className="px-5">
+      <main className="px-5 pb-10">
         <HeroHeader />
         <Outlet />
       </main>

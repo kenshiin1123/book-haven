@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 export default function TopBar() {
   return (
     <header className="flex items-center w-full h-16 p-2 max-sm:p-7 sm:p-10 border-b border-b-gray-500">
-      <h1 className="font-semibold text-2xl">Book Haven</h1>
+      <h1 className="font-semibold text-xl">Book Haven</h1>
       <ul className="flex ml-auto gap-4">
         <ButtonIcon icon={<IoSearchOutline />} />
         <ButtonIcon icon={<HiOutlineShoppingCart />} />

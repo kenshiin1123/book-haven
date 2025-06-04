@@ -17,7 +17,7 @@ export default function BookCards({ books }) {
 }
 
 const BookCard = ({ ...props }) => {
-  const { image, title, reviews, discount, price } = { ...props };
+  const { image, title, reviews, discount, price, author, year } = { ...props };
 
   const averageReview = calculateAverageRating(reviews);
   const stars = displayStar(averageReview);
@@ -27,7 +27,7 @@ const BookCard = ({ ...props }) => {
   return (
     <div className="flex flex-col border w-80 p-3 h-fit ">
       <img
-        className="w-40 mx-auto mt-5 shadow-md shadow-gray-600 "
+        className="max-sm:w-[60%] min-sm:h-50  mx-auto mt-5 shadow-md shadow-gray-600 "
         src={image}
         alt={title + " image"}
       />
@@ -36,6 +36,14 @@ const BookCard = ({ ...props }) => {
         <span className="font-bold">{averageReview}</span> {stars}{" "}
         <span className="text-sm">({totalReviews})</span>
       </div>
+      <section className="mt-3 font-medium text-xs">
+        <p className="font-medium">
+          Author: <b>{author}</b>
+        </p>
+        <p className="">
+          Publication Year: <b>{year}</b>
+        </p>
+      </section>
       <section className="flex justify-between mt-5">
         <div className="text-2xl flex gap-1 items-center">
           {!discount ? (

@@ -138,6 +138,142 @@ const books = [
       },
     ],
   },
+  {
+    title: "Sapiens: A Brief History of Humankind",
+    author: "Yuval Noah Harari",
+    price: 20.5,
+    discount: null,
+    addedToCart: false,
+    year: 2014,
+    image:
+      "https://books.google.com.ph/books/publisher/content?id=FmyBAwAAQBAJ&pg=PP1&img=1&zoom=3&hl=en&bul=1&sig=ACfU3U3Psi7BRzn8bu-pJunoC24u0Py-Ng&w=1280",
+    reviews: [
+      {
+        stars: 10,
+        description:
+          "A truly mind-blowing journey through human history. Essential reading!",
+        username: "historyBuff",
+        datetime: "2025-05-29T10:00:00Z",
+        pictures: [],
+      },
+      {
+        stars: 9,
+        description:
+          "Fascinating and thought-provoking, though some parts are quite dense.",
+        username: "deepThinker",
+        datetime: "2025-05-27T16:00:00Z",
+        pictures: ["https://example.com/review-pics/sapiens-chart.jpg"],
+      },
+    ],
+  },
+  {
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    price: 9.99,
+    discount: 15,
+    addedToCart: true,
+    year: 1988,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg",
+    reviews: [
+      {
+        stars: 8,
+        description: "A beautiful and inspiring fable. Simple yet profound.",
+        username: "dreamChaser",
+        datetime: "2025-05-22T08:30:00Z",
+        pictures: [],
+      },
+      {
+        stars: 7,
+        description:
+          "Good for a quick, uplifting read. A bit too allegorical for my taste.",
+        username: "pragmaticReader",
+        datetime: "2025-05-20T12:45:00Z",
+        pictures: [],
+      },
+    ],
+  },
+  {
+    title: "Becoming",
+    author: "Michelle Obama",
+    price: 17.99,
+    discount: null,
+    addedToCart: false,
+    year: 2018,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1528206996i/38746485.jpg",
+    reviews: [
+      {
+        stars: 9,
+        description:
+          "An incredibly honest and inspiring memoir. Highly recommend the audiobook!",
+        username: "biographyFan",
+        datetime: "2025-05-15T18:00:00Z",
+        pictures: [],
+      },
+      {
+        stars: 8,
+        description:
+          "Well-written and engaging. A powerful story of resilience.",
+        username: "empowermentSeeker",
+        datetime: "2025-05-13T09:15:00Z",
+        pictures: ["https://example.com/review-pics/becoming-cover.jpg"],
+      },
+    ],
+  },
+  {
+    title: "The Silent Patient",
+    author: "Alex Michaelides",
+    price: 11.5,
+    discount: null,
+    addedToCart: true,
+    year: 2019,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1668782119i/40097951.jpg",
+    reviews: [
+      {
+        stars: 9,
+        description: "A gripping psychological thriller with an amazing twist!",
+        username: "thrillerAddict",
+        datetime: "2025-05-09T21:00:00Z",
+        pictures: [],
+      },
+      {
+        stars: 7,
+        description: "Kept me guessing, but the ending felt a bit rushed.",
+        username: "mysteryLover",
+        datetime: "2025-05-07T14:00:00Z",
+        pictures: [],
+      },
+    ],
+  },
+  {
+    title: "Educated",
+    author: "Tara Westover",
+    price: 15.0,
+    discount: 5,
+    addedToCart: false,
+    year: 2018,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
+    reviews: [
+      {
+        stars: 10,
+        description:
+          "An incredible true story of resilience and self-discovery. Truly inspiring.",
+        username: "bookwormExtra",
+        datetime: "2025-05-02T11:00:00Z",
+        pictures: ["https://example.com/review-pics/educated-excerpt.jpg"],
+      },
+      {
+        stars: 9,
+        description: "Heartbreaking and triumphant. A must-read memoir.",
+        username: "nonfictionFan",
+        datetime: "2025-04-30T17:30:00Z",
+        pictures: [],
+      },
+    ],
+  },
 ];
 
 export default books;

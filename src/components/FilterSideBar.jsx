@@ -9,16 +9,25 @@ export default function FilterSideBar({ active, togglerFunc }) {
         {active && (
           <motion.aside
             initial={active ? { opacity: 0, width: "0rem" } : {}}
-            animate={active ? { opacity: 1, width: "15rem" } : {}}
+            animate={
+              active
+                ? {
+                    opacity: 1,
+                    width: window.innerWidth > 640 ? "15rem" : "100%",
+                  }
+                : {}
+            }
             exit={active ? { opacity: 0, width: "0rem" } : {}}
             className="h-full fixed top-0 border-r border-r-gray-500 bg-white transition overflow-hidden"
           >
-            <button
-              onClick={togglerFunc}
-              className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl text-gray-600 hover:scale-95`}
-            >
-              <IoCloseCircleOutline />
-            </button>
+            {window.innerWidth < 640 && (
+              <button
+                onClick={togglerFunc}
+                className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl text-gray-600 hover:scale-95`}
+              >
+                <IoCloseCircleOutline />
+              </button>
+            )}
             Hello World
           </motion.aside>
         )}

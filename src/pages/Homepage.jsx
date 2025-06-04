@@ -1,11 +1,13 @@
 export default function Homepage() {
   return (
     <>
-      <main className="space-y-10 p-10 min-sm:w-[37rem] md:w-[50rem] mx-auto">
+      <main className="space-y-10 p-10 min-sm:w-[37rem] md:w-[35rem] lg:w-[45rem] mx-auto">
         <h1 className="text-3xl font-bold">Homepage</h1>
         <HeroHeader />
         <AboutThisSite />
         <PurposeOfThisWebsite />
+        <BuildWith />
+        <AboutDeveloper />
       </main>
     </>
   );
@@ -43,7 +45,7 @@ const PurposeOfThisWebsite = () => {
   return (
     <section id="purpose-of-this-website">
       <H2>Purpose of This Website</H2>
-      <ol className="list-decimal ml-10 space-y-5 mt-5">
+      <ol className="list-decimal ml-10 space-y-5">
         <li>
           <H3>Highlight My Skills</H3>
           <P>This site is a hands-on demonstration of my abilities in:</P>
@@ -73,8 +75,51 @@ const PurposeOfThisWebsite = () => {
   );
 };
 
+const BuildWith = () => {
+  return (
+    <section>
+      <H2>Built With</H2>
+      <ul className="ml-10 list-disc">
+        <li>
+          <b>Frontend:</b> React + Tailwind CSS
+        </li>
+        <li>
+          <b>Backend:</b> Node.js + Express
+        </li>
+        <li>
+          <b>Database:</b> MongoDB
+        </li>
+        <li>
+          <b>Other Features:</b> Book search, category filters, cart management,
+          and mock checkout flow
+        </li>
+      </ul>
+    </section>
+  );
+};
+
+const AboutDeveloper = () => {
+  return (
+    <section>
+      <H2>About the Developer</H2>
+      <div className="space-y-3">
+        <P>
+          Hi! I’m Lance, a passionate and motivated self learner student with a
+          love for web development and continuous learning. This website is one
+          of many stepping stones on my journey to becoming a professional
+          full-stack developer.
+        </P>
+        <P>
+          Whether you're browsing the site or reviewing the codebase, I hope
+          this project gives you a clear glimpse into what I can build.
+        </P>
+      </div>
+    </section>
+  );
+};
+
 const H2 = ({ children }) => {
-  return <h2 className="text-xl font-semibold">{children}</h2>;
+  return <h2 className="text-xl font-semibold mb-3">{children}</h2>;
 };
 
 const H3 = ({ children }) => {

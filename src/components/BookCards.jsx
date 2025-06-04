@@ -25,7 +25,7 @@ const BookCard = ({ ...props }) => {
 
   const discountedPrice = getDiscountedPrice(price, discount);
   return (
-    <div className="flex flex-col border w-80 p-3 h-fit">
+    <div className="flex flex-col border w-80 p-3 h-fit ">
       <img
         className="w-40 mx-auto mt-5 shadow-md shadow-gray-600 "
         src={image}

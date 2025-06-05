@@ -31,16 +31,18 @@ const BookCard = ({ ...props }) => {
         src={image}
         alt={title + " image"}
       />
-      <p className="font-semibold mt-10 text-xl truncate">{title}</p>
+      <p className="font-semibold mt-10 text-xl truncate" title={title}>
+        {title}
+      </p>
       <div className="text-sm flex gap-1 mt-1">
         <span className="font-bold">{averageReview}</span> {stars}{" "}
         <span className="text-sm">({totalReviews})</span>
       </div>
       <section className="mt-3 font-medium text-xs">
-        <p className="font-medium">
+        <p className="font-medium" title={author}>
           Author: <b>{author}</b>
         </p>
-        <p className="">
+        <p className="" title={year}>
           Publication Year: <b>{year}</b>
         </p>
       </section>

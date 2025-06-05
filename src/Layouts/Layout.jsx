@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 
-import TopBar from "./components/TopBar";
-import MainFooter from "./components/MainFooter";
+import TopBar from "../components/TopBar";
+import MainFooter from "../components/MainFooter";
 
 export default function Layout() {
   return (

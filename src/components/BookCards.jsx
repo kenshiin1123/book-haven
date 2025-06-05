@@ -8,7 +8,7 @@ import { ButtonOutlined } from "./Button";
 
 export default function BookCards({ books }) {
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
+    <div className="flex flex-wrap max-md:gap-5 min-md:gap-2 w-fit mx-auto justify-center min-sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {books.map((b, i) => {
         return <BookCard {...b} key={i} />;
       })}
@@ -25,13 +25,13 @@ const BookCard = ({ ...props }) => {
 
   const discountedPrice = getDiscountedPrice(price, discount);
   return (
-    <div className="flex flex-col border w-80 p-3 h-fit ">
+    <div className="flex flex-col w-80 p-3 h-fit border border-gray-400">
       <img
-        className="max-sm:w-[60%] min-sm:h-50  mx-auto mt-5 shadow-md shadow-gray-600 "
+        className="h-70 md:h-60 lg:h-40 mx-auto mt-2 shadow-md shadow-gray-600 "
         src={image}
         alt={title + " image"}
       />
-      <p className="font-semibold mt-10 text-xl">{title}</p>
+      <p className="font-semibold mt-10 text-xl truncate">{title}</p>
       <div className="text-sm flex gap-1 mt-1">
         <span className="font-bold">{averageReview}</span> {stars}{" "}
         <span className="text-sm">({totalReviews})</span>

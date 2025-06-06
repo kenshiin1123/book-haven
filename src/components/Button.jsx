@@ -16,12 +16,13 @@ export const ButtonOutlined = ({
   children,
   type = "button",
   onClick = () => {},
+  classExtension,
 }) => {
   return (
     <button
       onClick={onClick}
       type={type}
-      className="border px-5 active:scale-97 select-none"
+      className={`border px-5 active:scale-97 select-none ${classExtension}`}
     >
       {children}
     </button>

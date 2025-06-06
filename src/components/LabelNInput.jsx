@@ -5,6 +5,7 @@ export default function idNInput({
   name,
   classNameExtension,
   id,
+  ref = null,
 }) {
   const capitalizedFirstLetter = name.charAt(0).toUpperCase() + name.slice(1);
   return (
@@ -13,9 +14,10 @@ export default function idNInput({
         {capitalizedFirstLetter}
       </label>
       {type === "password" ? (
-        <PasswordInput name={name} id={id} />
+        <PasswordInput name={name} id={id} ref={ref} />
       ) : (
         <input
+          ref={ref}
           type={type}
           id={id || name}
           className="border w-full py-1 px-1"

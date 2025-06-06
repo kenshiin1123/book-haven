@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 // Layout
 import Layout from "./Layouts/Layout";
-import LoginAndRegisterLayout from "./Layouts/LoginAndRegisterLayout";
 
 // Pages
 import Homepage from "./pages/Homepage";
@@ -23,13 +22,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Homepage /> },
       { path: "/books", element: <BooksPage /> },
-    ],
-  },
-  {
-    path: "/",
-    element: <LoginAndRegisterLayout />,
-    errorElement: <ErrorPage />,
-    children: [
       { path: "/register", element: <RegisterPage /> },
       { path: "/login", element: <LoginPage /> },
     ],

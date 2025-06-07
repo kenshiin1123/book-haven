@@ -5,6 +5,8 @@ import Map from "../components/Map";
 import { useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 
+import Form from "../components/Form";
+
 export default function RegisterPage() {
   const firstname = useRef();
   const lastname = useRef();
@@ -47,15 +49,8 @@ export default function RegisterPage() {
 
   return (
     <main className="p-3 min-sm:p-10">
-      <form
-        action=""
-        className="mx-auto w-full p-6 mt-5 sm:border sm:w-[33rem] md:w-[40rem]"
-        onSubmit={handleSubmit}
-      >
+      <Form handleSubmit={handleSubmit} legend={"Registeration"}>
         <fieldset className="flex flex-col gap-5">
-          <legend className="text-xl text-center font-semibold mb-5">
-            Please input your information
-          </legend>
           <div className="flex gap-4 justify-between">
             <LabelNInput name={"firstname"} ref={firstname} />
             <LabelNInput name={"lastname"} ref={lastname} />
@@ -96,7 +91,7 @@ export default function RegisterPage() {
           </ButtonOutlined>
           <Button type={"Submit"}>Register</Button>
         </div>
-      </form>
+      </Form>
     </main>
   );
 }

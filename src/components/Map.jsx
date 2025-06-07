@@ -49,7 +49,7 @@ export default function Map({ handleMapClick }) {
 
   return (
     <>
-      <div className="border" style={{ height: "300px", width: "100%" }}>
+      <div className="border z-0" style={{ height: "300px", width: "100%" }}>
         {currentPosition && (
           <MapContainer
             center={currentPosition}

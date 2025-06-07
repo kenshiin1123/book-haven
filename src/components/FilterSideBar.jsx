@@ -18,7 +18,7 @@ export default function FilterSideBar({ active, togglerFunc }) {
                 : {}
             }
             exit={active ? { opacity: 0, width: "0rem" } : {}}
-            className="h-full fixed top-0 border-r border-r-gray-500 bg-white transition overflow-hidden"
+            className="h-full fixed top-0 border-r border-r-gray-500 bg-white transition overflow-hidden z-30"
           >
             {window.innerWidth < 640 && (
               <button

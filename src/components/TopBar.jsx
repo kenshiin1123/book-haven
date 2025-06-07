@@ -9,7 +9,7 @@ import { RiBookShelfLine } from "react-icons/ri";
 
 export default function TopBar() {
   return (
-    <header className="flex flex-col w-full pt-5 px-5 pb-2 border-b border-b-gray-500">
+    <header className="z-30 sticky top-0 bg-white flex flex-col w-full pt-5 px-5 pb-2 border-b border-b-gray-500">
       <section className="flex">
         <h1 className="font-semibold text-xl">Book Haven</h1>
         <ul className="flex ml-auto gap-4">
@@ -22,7 +22,7 @@ export default function TopBar() {
         <ul className="flex gap-4 [&>li>a]:font-semibold [&>li>a]:flex [&>li>a]:items-center [&>li>a]:gap-2 [&>li>a]:hover:underline [&>li>a>svg]:text-xl">
           <li>
             <Link to={"/"}>
-              <TiHome /> {window.innerWidth > 640 && "Home"}
+              <TiHome /> Home
             </Link>
           </li>
           <li>

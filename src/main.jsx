@@ -10,6 +10,7 @@ import Layout from "./Layouts/Layout";
 // Pages
 import Homepage from "./pages/Homepage";
 import BooksPage from "./pages/BooksPage";
+import BookDetailsPage from "./pages/BookDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Homepage /> },
       { path: "/books", element: <BooksPage /> },
+      { path: "/books/:bookId", element: <BookDetailsPage /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/login", element: <LoginPage /> },
     ],

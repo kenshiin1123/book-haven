@@ -26,3 +26,10 @@ body {
   color: var(--text);
   background: var(--background);
 }
+
+input[type="number"] {
+  /* Remove spinner arrows in Chrome, Safari, Edge */
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

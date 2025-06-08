@@ -1,12 +1,19 @@
 import React from "react";
 
+const initialClass = "px-5 active:scale-97 select-none";
+
 export default function Button({
   children,
   type = "button",
   onClick = () => {},
+  classExtension,
 }) {
   return (
-    <button onClick={onClick} type={type} className="px-5 bg-black text-white">
+    <button
+      onClick={onClick}
+      type={type}
+      className={`bg-black text-white ${initialClass} ${classExtension}`}
+    >
       {children}
     </button>
   );
@@ -22,7 +29,7 @@ export const ButtonOutlined = ({
     <button
       onClick={onClick}
       type={type}
-      className={`border px-5 active:scale-97 select-none ${classExtension}`}
+      className={`${initialClass} inset-ring ${classExtension}`}
     >
       {children}
     </button>

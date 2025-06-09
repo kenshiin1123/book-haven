@@ -13,7 +13,7 @@ export default function BookDetailsPage() {
   const book = books.find((book) => String(book._id) === String(bookId));
   const [quantity, setQuantity] = useState(1);
 
-  const buttonsAdditionalClass = "sm:h-9 md:w-40 md:h-12";
+  const buttonsAdditionalClass = "h-10 md:w-40 md:h-12";
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -42,7 +42,7 @@ export default function BookDetailsPage() {
           </p>
           <AuthorNPubYearDisplay author={book.author} year={book.year} />
           <RatingStarDisplay reviews={book.reviews} />
-          <section className="mt-3 flex justify-between sm:flex-col-reverse sm:gap-3">
+          <section className="mt-3 flex justify-between max-[390px]:gap-3 max-[390px]:flex-col sm:flex-col-reverse sm:gap-3">
             <PriceDisplay discount={book.discount} price={book.price} />
             <QuantityInput
               quantity={quantity}
@@ -51,7 +51,7 @@ export default function BookDetailsPage() {
               handleIncrement={handleIncrement}
             />
           </section>
-          <section className="space-x-5 max-sm:mx-auto w-fit mt-10">
+          <section className="space-x-3 max-sm:mx-auto w-fit mt-10 max-[390px]:flex max-[390px]:gap-2 max-[390px]:flex-col max-[390px]:[&>button]:w-full max-[390px]:w-full">
             <ButtonOutlined classExtension={buttonsAdditionalClass}>
               Add To Cart
             </ButtonOutlined>
@@ -62,6 +62,7 @@ export default function BookDetailsPage() {
       <hr className="mb-5 mt-5 border-t-gray-400" />
       <Container classExtension={"w-[90%] mx-auto"}>
         <h2 className="font-semibold text-xl">Book Description</h2>
+        <p className="text-justify mt-5">{book.description}</p>
       </Container>
     </main>
   );

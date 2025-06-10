@@ -4,7 +4,8 @@ const books = [
     title: "Atomic Habits",
     author: "James Clear",
     category: ["Self-Help"],
-    description: "A practical guide to building better habits and breaking bad ones through tiny, consistent changes. Clear emphasizes systems over goals, making self-improvement attainable and sustainable.",
+    description:
+      "A practical guide to building better habits and breaking bad ones through tiny, consistent changes. Clear emphasizes systems over goals, making self-improvement attainable and sustainable.",
     price: 16.99,
     discount: null,
     addedToCart: false,
@@ -16,10 +17,7 @@ const books = [
         description: "Transformed the way I approach habits. Super practical!",
         username: "habitMaster23",
         datetime: "2025-05-30T15:12:00Z",
-        pictures: [
-          "https://example.com/review-pics/atomic-habits-1.jpg",
-          "https://example.com/review-pics/atomic-habits-2.jpg",
-        ],
+        pictures: [],
       },
       {
         stars: 10,
@@ -35,7 +33,8 @@ const books = [
     title: "Deep Work",
     author: "Cal Newport",
     category: ["Productivity"],
-    description: "Explores the power of focused, undistracted work in a world of constant digital noise. Newport offers actionable strategies to cultivate deep concentration for greater productivity and creativity.",
+    description:
+      "Explores the power of focused, undistracted work in a world of constant digital noise. Newport offers actionable strategies to cultivate deep concentration for greater productivity and creativity.",
     price: 14.99,
     discount: null,
     addedToCart: true,
@@ -48,7 +47,7 @@ const books = [
         description: "Great ideas but a bit dense in parts. Worth it overall.",
         username: "focusedMind",
         datetime: "2025-05-25T17:30:00Z",
-        pictures: ["https://example.com/review-pics/deep-work.jpg"],
+        pictures: [],
       },
       {
         stars: 9,
@@ -71,7 +70,8 @@ const books = [
     title: "Mindset",
     author: "Carol S. Dweck",
     category: ["Psychology"],
-    description: "Reveals how our beliefs about ability—fixed vs. growth mindset—shape success in school, work, and life. Dweck shows how adopting a growth mindset can transform learning and resilience.",
+    description:
+      "Reveals how our beliefs about ability—fixed vs. growth mindset—shape success in school, work, and life. Dweck shows how adopting a growth mindset can transform learning and resilience.",
     price: 13.5,
     discount: 10, // This book has a discount
     addedToCart: false,
@@ -90,7 +90,7 @@ const books = [
         description: "Valuable concepts but slightly repetitive.",
         username: "criticalThinker",
         datetime: "2025-05-15T13:50:00Z",
-        pictures: ["https://example.com/review-pics/mindset-page.jpg"],
+        pictures: [],
       },
     ],
   },
@@ -99,7 +99,8 @@ const books = [
     title: "The Power of Now",
     author: "Eckhart Tolle",
     category: ["Spirituality"],
-    description: "A spiritual classic that urges readers to let go of past regrets and future anxieties to find peace in the present moment. Tolle combines philosophy and mindfulness to deepen self-awareness.",
+    description:
+      "A spiritual classic that urges readers to let go of past regrets and future anxieties to find peace in the present moment. Tolle combines philosophy and mindfulness to deepen self-awareness.",
     price: 12.99,
     discount: 10,
     addedToCart: false,
@@ -129,7 +130,8 @@ const books = [
     title: "Can't Hurt Me",
     author: "David Goggins",
     category: ["Memoir"],
-    description: "A raw and intense memoir by a former Navy SEAL who turned pain and adversity into mental toughness. Goggins challenges readers to push beyond perceived limits through self-discipline.",
+    description:
+      "A raw and intense memoir by a former Navy SEAL who turned pain and adversity into mental toughness. Goggins challenges readers to push beyond perceived limits through self-discipline.",
     price: 18.99,
     discount: null,
     addedToCart: true,
@@ -142,7 +144,7 @@ const books = [
         description: "The most motivating book I’ve ever read. Life-changing.",
         username: "neverQuit",
         datetime: "2025-05-05T19:22:00Z",
-        pictures: ["https://example.com/review-pics/cant-hurt-me-1.jpg"],
+        pictures: [],
       },
       {
         stars: 9,
@@ -158,7 +160,8 @@ const books = [
     title: "Sapiens: A Brief History of Humankind",
     author: "Yuval Noah Harari",
     category: ["History"],
-    description: "A sweeping history of the human species, from the emergence of Homo sapiens to modern society. Harari examines how shared myths, culture, and technology have shaped humanity’s path.",
+    description:
+      "A sweeping history of the human species, from the emergence of Homo sapiens to modern society. Harari examines how shared myths, culture, and technology have shaped humanity’s path.",
     price: 20.5,
     discount: null,
     addedToCart: false,
@@ -180,7 +183,7 @@ const books = [
           "Fascinating and thought-provoking, though some parts are quite dense.",
         username: "deepThinker",
         datetime: "2025-05-27T16:00:00Z",
-        pictures: ["https://example.com/review-pics/sapiens-chart.jpg"],
+        pictures: [],
       },
     ],
   },
@@ -189,7 +192,8 @@ const books = [
     title: "The Alchemist",
     author: "Paulo Coelho",
     category: ["Fiction"],
-    description: "A poetic allegorical novel about a young shepherd's quest for his personal legend. Rich with symbolism, it teaches readers to follow their dreams and trust the journey of life.",
+    description:
+      "A poetic allegorical novel about a young shepherd's quest for his personal legend. Rich with symbolism, it teaches readers to follow their dreams and trust the journey of life.",
     price: 9.99,
     discount: 15,
     addedToCart: true,
@@ -219,7 +223,8 @@ const books = [
     title: "Becoming",
     author: "Michelle Obama",
     category: ["Biography"],
-    description: "An intimate memoir tracing Michelle Obama’s journey from the South Side of Chicago to the White House. It reflects on identity, resilience, and using one’s voice for impact and change.",
+    description:
+      "An intimate memoir tracing Michelle Obama’s journey from the South Side of Chicago to the White House. It reflects on identity, resilience, and using one’s voice for impact and change.",
     price: 17.99,
     discount: null,
     addedToCart: false,
@@ -241,7 +246,7 @@ const books = [
           "Well-written and engaging. A powerful story of resilience.",
         username: "empowermentSeeker",
         datetime: "2025-05-13T09:15:00Z",
-        pictures: ["https://example.com/review-pics/becoming-cover.jpg"],
+        pictures: [],
       },
     ],
   },
@@ -250,7 +255,8 @@ const books = [
     title: "The Silent Patient",
     author: "Alex Michaelides",
     category: ["Thriller"],
-    description: "A psychological thriller about a woman who shoots her husband and then stops speaking—and the therapist obsessed with uncovering her motive. Twists and suspense drive the narrative.",
+    description:
+      "A psychological thriller about a woman who shoots her husband and then stops speaking—and the therapist obsessed with uncovering her motive. Twists and suspense drive the narrative.",
     price: 11.5,
     discount: null,
     addedToCart: true,
@@ -279,7 +285,8 @@ const books = [
     title: "Educated",
     author: "Tara Westover",
     category: ["Memoir"],
-    description: "A gripping memoir of a woman who grew up in a strict, survivalist family with no formal education, yet eventually earned a PhD from Cambridge. It's a story of transformation and self-liberation.",
+    description:
+      "A gripping memoir of a woman who grew up in a strict, survivalist family with no formal education, yet eventually earned a PhD from Cambridge. It's a story of transformation and self-liberation.",
     price: 15.0,
     discount: 5,
     addedToCart: false,
@@ -293,7 +300,7 @@ const books = [
           "An incredible true story of resilience and self-discovery. Truly inspiring.",
         username: "bookwormExtra",
         datetime: "2025-05-02T11:00:00Z",
-        pictures: ["https://example.com/review-pics/educated-excerpt.jpg"],
+        pictures: [],
       },
       {
         stars: 9,
@@ -309,7 +316,8 @@ const books = [
     title: "The Subtle Art of Not Giving a F*ck",
     author: "Mark Manson",
     category: ["Self-Help"],
-    description: "A blunt and honest self-help book that flips positivity on its head. Manson argues that life’s struggles give it meaning, and we should be selective about what we truly care about.",
+    description:
+      "A blunt and honest self-help book that flips positivity on its head. Manson argues that life’s struggles give it meaning, and we should be selective about what we truly care about.",
     price: 13.99,
     discount: 10,
     addedToCart: false,
@@ -328,7 +336,7 @@ const books = [
         description: "Interesting take, but repetitive in parts.",
         username: "minimalThinker",
         datetime: "2025-05-26T09:00:00Z",
-        pictures: ["https://example.com/review-pics/subtle-art-quote.jpg"],
+        pictures: [],
       },
     ],
   },
@@ -350,7 +358,7 @@ const books = [
           "Reframed how I lead and communicate. Clear and compelling.",
         username: "visionDriven",
         datetime: "2025-05-30T13:05:00Z",
-        pictures: ["https://example.com/review-pics/startwithwhy-diagram.jpg"],
+        pictures: [],
       },
       {
         stars: 7,
@@ -366,7 +374,8 @@ const books = [
     title: "Rich Dad Poor Dad",
     author: "Robert T. Kiyosaki",
     category: ["Finance"],
-    description: "A foundational personal finance book contrasting two father figures: one focused on traditional education, the other on financial literacy and investing. It challenges conventional views on money.",
+    description:
+      "A foundational personal finance book contrasting two father figures: one focused on traditional education, the other on financial literacy and investing. It challenges conventional views on money.",
     price: 10.99,
     discount: 20,
     addedToCart: true,
@@ -378,7 +387,7 @@ const books = [
         description: "Completely changed how I see money and investing.",
         username: "financeGuru",
         datetime: "2025-05-21T10:15:00Z",
-        pictures: ["https://example.com/review-pics/richdad-cashflow.jpg"],
+        pictures: [],
       },
       {
         stars: 7,
@@ -395,7 +404,8 @@ const books = [
     title: "The Midnight Library",
     author: "Matt Haig",
     category: ["Fiction", "Fantasy", "Contemporary Literature"],
-    description: "A thought-provoking novel about a woman who discovers a library between life and death, where she can try out different versions of her life. A poetic take on regret, choices, and self-worth.",
+    description:
+      "A thought-provoking novel about a woman who discovers a library between life and death, where she can try out different versions of her life. A poetic take on regret, choices, and self-worth.",
     price: 13.25,
     discount: null,
     addedToCart: false,
@@ -416,9 +426,7 @@ const books = [
         description: "Unique premise with a satisfying resolution.",
         username: "alternateRealist",
         datetime: "2025-05-16T14:40:00Z",
-        pictures: [
-          "https://example.com/review-pics/midnight-library-quotes.jpg",
-        ],
+        pictures: [],
       },
     ],
   },
@@ -427,7 +435,8 @@ const books = [
     title: "12 Rules for Life: An Antidote to Chaos",
     author: "Jordan B. Peterson",
     category: ["Self-Help", "Psychology", "Philosophy", "Personal Development"],
-    description: "A blend of psychology, philosophy, and practical advice that offers life principles like “stand up straight” and “tell the truth.” Peterson explores how order and responsibility lead to meaning.",
+    description:
+      "A blend of psychology, philosophy, and practical advice that offers life principles like “stand up straight” and “tell the truth.” Peterson explores how order and responsibility lead to meaning.",
     price: 19.0,
     discount: 5,
     addedToCart: false,
@@ -448,10 +457,27 @@ const books = [
         description: "Helped me bring order and discipline into my life.",
         username: "structuredMind",
         datetime: "2025-05-10T09:00:00Z",
-        pictures: ["https://example.com/review-pics/12rules-highlight.jpg"],
+        pictures: [],
       },
     ],
   },
 ];
+
+const getRandomNum = () => Math.floor(Math.random() * 200) + 1;
+
+books.forEach((b) => {
+  b.reviews.forEach((review) => {
+    // const randomArr = [getRandomNum(), getRandomNum(), getRandomNum()];
+    const randomArr = Array.from(
+      { length: Math.floor(Math.random() * 5) + 1 },
+      () => getRandomNum()
+    );
+    for (let i = 0; i < randomArr.length; i++) {
+      review.pictures.push(
+        `https://picsum.photos/seed/${randomArr[i]}/400/300`
+      );
+    }
+  });
+});
 
 export default books;

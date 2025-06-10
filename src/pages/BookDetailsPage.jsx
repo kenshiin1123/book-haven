@@ -6,11 +6,29 @@ import AuthorNPubYearDisplay from "../components/AuthorNPubYearDisplay";
 import RatingStarDisplay from "../components/RatingStarDisplay";
 import PriceDisplay from "../components/PriceDisplay";
 import { QuantityInput } from "../components/LabelNInput";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button, { ButtonOutlined } from "../components/Button";
+import BookReview from "../components/BookReview";
+
 export default function BookDetailsPage() {
+  const bookDetailsRef = useRef();
   const { bookId } = useParams();
   const book = books.find((book) => String(book._id) === String(bookId));
+
+  useEffect(() => {
+    const root = document.querySelector("#root");
+    root.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <main className="mb-10 space-y-5 flex flex-col" ref={bookDetailsRef}>
+      <BookDetails book={book} />
+      <BookReviews reviews={book.reviews} />
+    </main>
+  );
+}
+
+const BookDetails = ({ book }) => {
   const [quantity, setQuantity] = useState(1);
 
   const buttonsAdditionalClass = "h-10 md:w-40 md:h-12";
@@ -25,7 +43,7 @@ export default function BookDetailsPage() {
   };
 
   return (
-    <main className="mb-10 space-y-5 flex flex-col">
+    <>
       <div className="mt-10 flex flex-col sm:flex-row w-[90%] mx-auto">
         <Container classExtension={" sm:w-[18rem] md:w-[20rem]"}>
           <img
@@ -61,13 +79,35 @@ export default function BookDetailsPage() {
       </div>
       <hr className="mb-5 mt-5 border-t-gray-400" />
       <Container classExtension={"w-[90%] mx-auto"}>
-        <h2 className="font-semibold text-xl">Book Description</h2>
-        <p className="text-justify mt-5">{book.description}</p>
+        <H2>Book Description</H2>
+        <p className="text-justify mt-5 sm:w-[90%] md:w-[70%]">
+          {book.description}
+        </p>
       </Container>
-    </main>
+    </>
   );
-}
+};
+
+const BookReviews = ({ reviews }) => {
+  return (
+    <>
+      <hr className=" mb-5 mt-10 border-t-gray-400" />
+      <Container classExtension={"w-[90%] mx-auto"}>
+        <H2>Book Reviews</H2>
+        <div className="flex flex-col gap-5 mt-10">
+          {reviews.map((r, i) => {
+            return <BookReview review={r} key={i} />;
+          })}
+        </div>
+      </Container>
+    </>
+  );
+};
 
 const Container = ({ children, classExtension }) => {
   return <div className={`mx-5 ${classExtension}`}>{children}</div>;
+};
+
+const H2 = ({ children }) => {
+  return <h2 className="font-bold text-xl">{children}</h2>;
 };

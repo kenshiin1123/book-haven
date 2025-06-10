@@ -1,10 +1,4 @@
 import { useNavigate } from "react-router";
-import {
-  calculateAverageRating,
-  displayStar,
-  getDiscountedPrice,
-} from "../utils/reviewCalculation";
-
 import { ButtonOutlined } from "./Button";
 import Image from "./Image";
 import PriceDisplay from "./PriceDisplay";

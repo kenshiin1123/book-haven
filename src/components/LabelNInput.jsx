@@ -1,12 +1,15 @@
-import { useRef } from "react";
+import { useState } from "react";
 import PasswordInput from "./PasswordInput";
+import { LuPencil, LuPencilOff } from "react-icons/lu";
+import Button from "./Button";
 
-export default function idNInput({
+export default function LabelNInput({
   type = "text",
   name,
   classNameExtension,
   id,
   ref = null,
+  disabled = false,
 }) {
   const capitalizedFirstLetter = name.charAt(0).toUpperCase() + name.slice(1);
   return (
@@ -21,12 +24,76 @@ export default function idNInput({
           ref={ref}
           type={type}
           id={id || name}
-          className="border w-full py-1 px-1"
+          className="border w-full py-1 px-1 disabled:border-0 disabled:border-b"
+          disabled={disabled}
         />
       )}
     </div>
   );
 }
+
+export const EditableLabelNInput = ({
+  type = "text",
+  name,
+  classNameExtension,
+  id,
+  ref = null,
+  disabled = false,
+}) => {
+  const [disabledState, setDisabledState] = useState(disabled);
+  const capitalizedFirstLetter = name.charAt(0).toUpperCase() + name.slice(1);
+
+  const handleEdit = () => {
+    setDisabledState((prev) => {
+      if (prev) {
+        // Was disabled, now enabling (editing)
+        setTimeout(() => {
+          if (ref && ref.current) {
+            ref.current.focus();
+          }
+        }, 0);
+      }
+      return false;
+    });
+  };
+
+  const handleSave = () => {
+    setDisabledState(true);
+  };
+
+  return (
+    <div className={`flex flex-col w-full ${classNameExtension} relative`}>
+      {disabledState ? (
+        <button onClick={handleEdit}>
+          <LuPencil className="absolute right-4 top-4" />
+        </button>
+      ) : (
+        <Button
+          onClick={handleSave}
+          classExtension={"absolute right-2 top-1 py-2"}
+        >
+          Save
+        </Button>
+      )}
+      <label htmlFor={name} className="font-semibold indent-3">
+        {capitalizedFirstLetter}
+      </label>
+      {type === "password" ? (
+        <PasswordInput name={name} id={id} ref={ref} />
+      ) : (
+        <input
+          ref={ref}
+          type={type}
+          id={id || name}
+          className={`w-full py-1 px-1 focus:outline-0 border-b indent-3 pr-24 truncate ${
+            !disabledState && "border-b-4 border-b-red-400"
+          }`}
+          disabled={disabledState}
+        />
+      )}
+    </div>
+  );
+};
 
 export const QuantityInput = ({
   quantity,

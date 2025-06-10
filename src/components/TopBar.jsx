@@ -13,9 +13,9 @@ export default function TopBar() {
       <section className="flex">
         <h1 className="font-semibold text-xl">Book Haven</h1>
         <ul className="flex ml-auto gap-4">
-          <ButtonIcon icon={<IoSearchOutline />} />
-          <ButtonIcon icon={<HiOutlineShoppingCart />} />
-          <ButtonIcon icon={<FaRegUserCircle />} />
+          <IconLink icon={<IoSearchOutline />} />
+          <IconLink icon={<HiOutlineShoppingCart />} />
+          <IconLink icon={<FaRegUserCircle />} to={"account"} />
         </ul>
       </section>
       <section className="mt-4">
@@ -42,14 +42,15 @@ export default function TopBar() {
   );
 }
 
-const ButtonIcon = ({ icon }) => {
+const IconLink = ({ icon, to }) => {
   return (
     <li>
-      <button
+      <Link
         className={`text-4xl focus:outline-none focus:scale-105 active:scale-95`}
+        to={to}
       >
         {icon}
-      </button>
+      </Link>
     </li>
   );
 };

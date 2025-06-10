@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 // Layout
 import Layout from "./Layouts/Layout";
+import ProfileLayout from "./Layouts/ProfileLayout";
 
 // Pages
 import Homepage from "./pages/Homepage";
@@ -14,6 +15,10 @@ import BookDetailsPage from "./pages/BookDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import AccountPage from "./pages/Account Page/AccountPage";
+import ProfilePage from "./pages/Account Page/ProfilePage";
+import PurchasesPage from "./pages/Account Page/PurchasesPage";
+import SettingsPage from "./pages/Account Page/SettingsPage";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +27,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Homepage /> },
-      { path: "/books", element: <BooksPage /> },
-      { path: "/books/:bookId", element: <BookDetailsPage /> },
-      { path: "/register", element: <RegisterPage /> },
-      { path: "/login", element: <LoginPage /> },
+      { path: "books", element: <BooksPage /> },
+      { path: "books/:bookId", element: <BookDetailsPage /> },
+      { path: "register", element: <RegisterPage /> },
+      { path: "login", element: <LoginPage /> },
+      {
+        path: "account",
+        element: <ProfileLayout />,
+        children: [
+          { index: true, element: <AccountPage /> },
+          { path: "profile", element: <ProfilePage /> },
+          { path: "purchases", element: <PurchasesPage /> },
+          { path: "settings", element: <SettingsPage /> },
+        ],
+      },
     ],
   },
 ]);

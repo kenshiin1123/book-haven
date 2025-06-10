@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import FilterSideBar from "../components/FilterSideBar";
 
-import BookCards from "../components/BookCards";
+import BookCard from "../components/BookCard";
 
 export default function BooksPage() {
   const [showFilterSideBar, setShowFilterSideBar] = useState(false);
@@ -18,7 +18,11 @@ export default function BooksPage() {
       />
 
       <main className="my-5">
-        <BookCards books={books} />
+        <div className="flex flex-wrap max-md:gap-5 min-md:gap-2 w-fit mx-auto justify-center min-sm:grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {books.map((b) => {
+            return <BookCard {...b} key={b._id} />;
+          })}
+        </div>
       </main>
     </>
   );

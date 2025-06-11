@@ -1,4 +1,5 @@
-import React from "react";
+import { motion } from "motion/react";
+import React, { useState } from "react";
 
 const initialClass = "px-5 active:scale-97 select-none";
 
@@ -32,6 +33,23 @@ export const ButtonOutlined = ({
       className={`${initialClass} inset-ring ${classExtension}`}
     >
       {children}
+    </button>
+  );
+};
+
+export const ButtonToggle = ({ active = false, onClick }) => {
+  return (
+    <button
+      className="h-9 w-20 border rounded-full flex items-center p-1"
+      onClick={onClick}
+      type="button"
+    >
+      <motion.div
+        initial={false}
+        animate={{ marginLeft: active ? 42 : 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="size-7 bg-black rounded-full"
+      ></motion.div>
     </button>
   );
 };

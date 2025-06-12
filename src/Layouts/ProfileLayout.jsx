@@ -5,9 +5,9 @@ export default function ProfileLayout() {
   let headerName = "Account";
 
   if (location === "/account/profile") {
-    headerName = "My Profile";
+    headerName = "Profile";
   } else if (location === "/account/purchases") {
-    headerName = "Your Purchases";
+    headerName = "Purchases";
   } else if (location === "/account/settings") {
     headerName = "Settings";
   }

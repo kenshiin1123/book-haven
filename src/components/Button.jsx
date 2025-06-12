@@ -53,3 +53,20 @@ export const ButtonToggle = ({ active = false, onClick }) => {
     </button>
   );
 };
+
+export const ButtonWarning = ({
+  children,
+  type = "button",
+  onClick = () => {},
+  classExtension,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      type={type}
+      className={`${initialClass} inset-ring-1 inset-ring-red-600 text-red-600 ${classExtension}`}
+    >
+      {children}
+    </button>
+  );
+};

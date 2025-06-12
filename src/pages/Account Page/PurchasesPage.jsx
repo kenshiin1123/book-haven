@@ -1,6 +1,8 @@
 import userData from "../../data/userData";
 import books from "../../data/books";
 import { getDiscountedPrice } from "../../utils/reviewCalculation";
+import { Link } from "react-router";
+
 export default function PurchasesPage() {
   return (
     <div className="flex flex-col gap-5 px-5.5 mb-10">
@@ -39,19 +41,19 @@ const Status = ({ status }) => {
 
   let statusColor = "text-black";
 
-  if (status === "pending") {
-    statusColor = "text-orange-700";
-  } else if (status === "delivered") {
-    statusColor = "text-green-700";
-  } else if (status === "cancelled") {
-    statusColor = "text-red-700";
-  } else if (status === "shipped") {
-    statusColor = "text-blue-700";
-  } else if (status === "processing") {
-    statusColor = "text-yellow-700";
-  } else if (status === "returned") {
-    statusColor = "text-purple-700";
-  }
+  // if (status === "pending") {
+  //   statusColor = "text-orange-700";
+  // } else if (status === "delivered") {
+  //   statusColor = "text-green-700";
+  // } else if (status === "cancelled") {
+  //   statusColor = "text-red-700";
+  // } else if (status === "shipped") {
+  //   statusColor = "text-blue-700";
+  // } else if (status === "processing") {
+  //   statusColor = "text-yellow-700";
+  // } else if (status === "returned") {
+  //   statusColor = "text-purple-700";
+  // }
 
   return (
     <div className={`p-2 border-b border-gray-700 ${statusColor} font-bold`}>
@@ -71,7 +73,9 @@ const ImageSection = ({ book }) => {
 const PurchasedDetails = ({ book, p, discountedPrice }) => {
   return (
     <section className="font-semibold flex flex-col grow">
-      <h2 className="text-md sm:text-xl">{book.title}</h2>
+      <Link to={`/books/${book._id}`} className="text-md sm:text-xl">
+        {book.title}
+      </Link>
       <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
       <div className="text-xs  flex justify-end mt-auto">
         <span

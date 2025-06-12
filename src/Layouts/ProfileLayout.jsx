@@ -13,7 +13,7 @@ export default function ProfileLayout() {
   }
 
   const links = [
-    { to: "/account/profile", title: "Personal Detiails" },
+    { to: "/account/profile", title: "Personal Details" },
     { to: "/account/purchases", title: "Purchases" },
     { to: "/account/settings", title: "Settings" },
   ];

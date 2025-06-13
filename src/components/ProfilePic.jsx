@@ -18,7 +18,7 @@ const ProfilePic = () => {
 
   return (
     <div className="mx-auto flex flex-col gap-2 items-center">
-      <img src={file} className="size-50 border p-5" />
+      <img src={file} className="size-50 border border-gray-400 shadow" />
       <input
         type="file"
         accept="image/*"

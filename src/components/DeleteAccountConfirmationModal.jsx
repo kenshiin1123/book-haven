@@ -22,7 +22,7 @@ const DeleteAccountConfirmationModal = ({ ref, onDelete = () => {} }) => {
   return (
     <dialog
       ref={ref}
-      className="min-h-70 sm:w-90 bg-white mx-auto my-auto p-5 space-y-5"
+      className="min-h-70 sm:w-90 mx-auto my-auto p-5 space-y-5 bg-white"
     >
       <h1 className="text-sm mx-auto text-center mb-7 sm:w-60 text-red-600">
         Please confirm your password to permanently delete your account.

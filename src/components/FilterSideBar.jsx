@@ -39,7 +39,7 @@ export default function FilterSideBar({ active, togglerFunc }) {
               active
                 ? {
                     opacity: 1,
-                    width: window.innerWidth > 640 ? "15rem" : "100%",
+                    width: window.innerWidth > 640 ? "19rem" : "100%",
                   }
                 : {}
             }
@@ -54,10 +54,9 @@ export default function FilterSideBar({ active, togglerFunc }) {
                 <IoCloseCircleOutline />
               </button>
             )}
-            <div className="flex justify-center items-center h-25 text-xl font-bold">
-              Book Haven
-            </div>
-            <h1 className="text-3xl font-bold mb-5 text-center">Filters</h1>
+            <h1 className="text-3xl font-bold mb-5 text-center mt-5">
+              Filters
+            </h1>
             <FilterSection arr={ratings} title={"Rating"} />
             <FilterSection arr={genres} title={"Genre"} />
             <FilterSection arr={authors} title={"Authors"} />
@@ -76,7 +75,7 @@ export default function FilterSideBar({ active, togglerFunc }) {
 
 const FilterSection = ({ arr, title }) => {
   return (
-    <section className="mx-auto mb-10 pl-20 min-sm:pl-10">
+    <section className="mx-auto mb-10 pl-20 min-sm:pl-17">
       <h2 className="text-xl font-semibold indent-5 mb-1">{title}</h2>
       <ul className="[&>li]:flex [&>li]:gap-1 space-y-3 pt-3">
         {arr.map((genre, i) => {
@@ -86,8 +85,10 @@ const FilterSection = ({ arr, title }) => {
                 type="radio"
                 name={title.toLowerCase()}
                 id={`${genre}+${i}`}
-              />{" "}
-              <label htmlFor={`${genre}+${i}`}>{genre}</label>
+              />
+              <label htmlFor={`${genre}+${i}`} className="text-lg">
+                {genre}
+              </label>
             </li>
           );
         })}

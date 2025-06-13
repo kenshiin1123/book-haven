@@ -55,7 +55,7 @@ const BookDetails = ({ book }) => {
         <hr className="sm:hidden mb-5 mt-10 border-t-gray-400" />
         <Container classExtension={"mt-auto sm:w-96"}>
           <BookCategoriesDisplay categories={book.category} truncate={false} />
-          <p className="font-semibold text-xl" title={book.title}>
+          <p className="font-semibold text-xl sm:text-3xl" title={book.title}>
             {book.title}
           </p>
           <AuthorNPubYearDisplay author={book.author} year={book.year} />

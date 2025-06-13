@@ -44,7 +44,7 @@ const CustomNavLink = ({ link }) => {
 
   let activeClass = "border border-white";
   if (link.to === location) {
-    activeClass = "border";
+    activeClass = "border border-gray-500";
   }
 
   return (

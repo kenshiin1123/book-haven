@@ -1,7 +1,7 @@
 export default function Form({ children, handleSubmit, legend }) {
   return (
     <form
-      className="mx-auto w-full p-6 mt-5 sm:border sm:w-[33rem] md:w-[40rem]"
+      className="mx-auto w-full p-6 mt-5 sm:border sm:w-[33rem]"
       onSubmit={handleSubmit}
     >
       <fieldset className="flex flex-col gap-5">

@@ -23,7 +23,6 @@ export default function BookReview({ review }) {
           return (
             <img
               src={p}
-              alt={`image-${i}`}
               key={i}
               className="h-60 w-max shadow shadow-gray-600"
             />

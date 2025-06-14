@@ -46,10 +46,10 @@ export const ButtonToggle = ({ active = false, onClick }) => {
     >
       <motion.div
         initial={false}
-        animate={{ marginLeft: active ? 42 : 0 }}
+        animate={{ marginLeft: active ? "60%" : 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className="size-7 bg-black rounded-full"
-      ></motion.div>
+      />
     </button>
   );
 };

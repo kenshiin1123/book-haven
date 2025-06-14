@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { ButtonOutlined } from "./Button";
 
 import { TiHome } from "react-icons/ti";
@@ -8,8 +8,13 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { RiBookShelfLine } from "react-icons/ri";
 
 export default function TopBar() {
+  const location = useLocation().pathname;
   return (
-    <header className="z-30 sticky top-0 bg-white flex flex-col w-full pt-5 px-5 pb-2 border-b border-b-gray-500">
+    <header
+      className={`z-30 sticky top-0 bg-white flex flex-col w-full pt-5 px-5 pb-2 ${
+        location !== "/cart" && "border-b border-b-gray-500"
+      }`}
+    >
       <section className="flex">
         <h1 className="font-semibold text-xl">Book Haven</h1>
         <ul className="flex ml-auto gap-4">

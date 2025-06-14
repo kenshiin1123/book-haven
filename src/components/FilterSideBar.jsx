@@ -46,14 +46,12 @@ export default function FilterSideBar({ active, togglerFunc }) {
             exit={active ? { opacity: 0, width: "0rem" } : {}}
             className="h-full fixed top-0 border-r border-r-gray-500 bg-white transition overflow-hidden z-30 overflow-y-scroll"
           >
-            {window.innerWidth < 640 && (
-              <button
-                onClick={togglerFunc}
-                className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl text-gray-600 hover:scale-95`}
-              >
-                <IoCloseCircleOutline />
-              </button>
-            )}
+            <button
+              onClick={togglerFunc}
+              className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl text-gray-600 hover:scale-95`}
+            >
+              <IoCloseCircleOutline />
+            </button>
             <h1 className="text-3xl font-bold mb-5 text-center mt-5">
               Filters
             </h1>
@@ -65,6 +63,7 @@ export default function FilterSideBar({ active, togglerFunc }) {
       </AnimatePresence>
       <button
         onClick={togglerFunc}
+        title="Book Filter"
         className={`ml-auto mt-5 mr-5 flex justify-center items-center size-10  border text-2xl p-2 rounded bg-white sticky top-30 right-0 z-20`}
       >
         <FaFilter />

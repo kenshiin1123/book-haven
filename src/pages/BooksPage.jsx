@@ -1,5 +1,5 @@
 import books from "../data/books";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FilterSideBar from "../components/FilterSideBar";
 
@@ -10,6 +10,11 @@ export default function BooksPage() {
   const toggleFilterSideBar = () => {
     setShowFilterSideBar((prev) => !prev);
   };
+
+  useEffect(() => {
+    document.title = "Browse All Books - Book Haven";
+  }, []);
+
   return (
     <>
       <FilterSideBar

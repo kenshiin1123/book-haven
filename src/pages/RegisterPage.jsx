@@ -2,7 +2,7 @@ import LabelNInput from "../components/LabelNInput";
 import Button, { ButtonOutlined } from "../components/Button";
 import { useNavigate } from "react-router";
 import Map from "../components/Map";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 
 import Form from "../components/Form";
@@ -28,6 +28,10 @@ export default function RegisterPage() {
   const handleMapClick = (address, latlng) => {
     homeAddress.current.value = address;
   };
+
+  useEffect(() => {
+    document.title = "Register - Book Haven";
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();

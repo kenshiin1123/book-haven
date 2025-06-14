@@ -25,6 +25,8 @@ export default function ProfilePage() {
 
     birthday.current.value = "2004-11-23";
     birthday.current.title = "2004-11-23";
+
+    document.title = "Profile - Book Haven";
   }, []);
 
   const handleDeleteConfirmation = () => {

@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+
 export default function Homepage() {
+  useEffect(() => {
+    document.title = "Book Haven";
+  });
+
   return (
     <>
       <main className="space-y-10 p-10 min-sm:w-[37rem] md:w-[35rem] lg:w-[45rem] mx-auto">

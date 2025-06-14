@@ -2,8 +2,13 @@ import userData from "../../data/userData";
 import books from "../../data/books";
 import { getDiscountedPrice } from "../../utils/reviewCalculation";
 import { Link } from "react-router";
+import { useEffect } from "react";
 
 export default function PurchasesPage() {
+  useEffect(() => {
+    document.title = "Purchases - Book Haven";
+  });
+
   return (
     <div className="flex flex-col gap-5 px-5.5 mb-10">
       {userData.purchases.map((p, i) => {

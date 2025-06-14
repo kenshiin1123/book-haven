@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import books from "../data/books";
-import Image from "../components/Image";
 import BookCategoriesDisplay from "../components/BookCategoriesDisplay";
 import AuthorNPubYearDisplay from "../components/AuthorNPubYearDisplay";
 import RatingStarDisplay from "../components/RatingStarDisplay";
@@ -16,9 +15,10 @@ export default function BookDetailsPage() {
   const book = books.find((book) => String(book._id) === String(bookId));
 
   useEffect(() => {
+    document.title = `Book Haven - ${book.title}`;
     const root = document.querySelector("#root");
     root.scrollTo(0, 0);
-  }, []);
+  }, [book]);
 
   return (
     <main className="mb-10 space-y-5 flex flex-col" ref={bookDetailsRef}>

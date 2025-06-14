@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 // Layout
 import Layout from "./Layouts/Layout";
-import ProfileLayout from "./Layouts/ProfileLayout";
+import AccountLayout from "./Layouts/AccountLayout";
 
 // Pages
 import Homepage from "./pages/Homepage";
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       { path: "login", element: <LoginPage /> },
       {
         path: "account",
-        element: <ProfileLayout />,
+        element: <AccountLayout />,
         children: [
           { index: true, element: <AccountPage /> },
           { path: "profile", element: <ProfilePage /> },

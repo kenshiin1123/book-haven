@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Form from "../components/Form";
 import LabelNInput from "../components/LabelNInput";
 import Button, { ButtonOutlined } from "../components/Button";
@@ -23,6 +23,10 @@ export default function LoginPage() {
   const handleLoginButtonClick = () => {
     navigate("/register");
   };
+
+  useEffect(() => {
+    document.title = "Login - Book Haven";
+  }, []);
 
   return (
     <main className="p-3 min-sm:p-10">

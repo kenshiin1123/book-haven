@@ -1,7 +1,7 @@
 import { FaMoon } from "react-icons/fa6";
 import { ButtonToggle } from "../../components/Button";
 import { IoIosNotifications } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function SettingsPage() {
   const [darkTheme, setDarkTheme] = useState();
   const [notification, setNotification] = useState();
@@ -30,6 +30,10 @@ export default function SettingsPage() {
       description: "Receive updates and alerts for important activity.",
     },
   ];
+
+  useEffect(() => {
+    document.title = "Settings - Book Haven";
+  });
 
   return (
     <Container>

@@ -19,6 +19,7 @@ import AccountPage from "./pages/Account Page/AccountPage";
 import ProfilePage from "./pages/Account Page/ProfilePage";
 import PurchasesPage from "./pages/Account Page/PurchasesPage";
 import SettingsPage from "./pages/Account Page/SettingsPage";
+import ShoppingCart from "./pages/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
           { path: "settings", element: <SettingsPage /> },
         ],
       },
+      { path: "/cart", element: <ShoppingCart /> },
     ],
   },
 ]);

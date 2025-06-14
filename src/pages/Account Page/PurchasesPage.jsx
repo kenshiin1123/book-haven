@@ -46,20 +46,6 @@ const Status = ({ status }) => {
 
   let statusColor = "text-black";
 
-  // if (status === "pending") {
-  //   statusColor = "text-orange-700";
-  // } else if (status === "delivered") {
-  //   statusColor = "text-green-700";
-  // } else if (status === "cancelled") {
-  //   statusColor = "text-red-700";
-  // } else if (status === "shipped") {
-  //   statusColor = "text-blue-700";
-  // } else if (status === "processing") {
-  //   statusColor = "text-yellow-700";
-  // } else if (status === "returned") {
-  //   statusColor = "text-purple-700";
-  // }
-
   return (
     <div className={`p-2 border-b border-gray-700 ${statusColor} font-bold`}>
       {modifiedStatus}

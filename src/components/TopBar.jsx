@@ -14,7 +14,7 @@ export default function TopBar() {
         <h1 className="font-semibold text-xl">Book Haven</h1>
         <ul className="flex ml-auto gap-4">
           <IconLink icon={<IoSearchOutline />} />
-          <IconLink icon={<HiOutlineShoppingCart />} />
+          <IconLink icon={<HiOutlineShoppingCart />} to={"cart"} />
           <IconLink icon={<FaRegUserCircle />} to={"account"} />
         </ul>
       </section>

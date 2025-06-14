@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import PasswordInput from "./PasswordInput";
 import Button, { ButtonOutlined } from "./Button";
+import Dialog from "./Dialog";
 const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
   const handleClose = () => {
     ref.current.close();
@@ -40,10 +41,7 @@ const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
   });
 
   return (
-    <dialog
-      ref={ref}
-      className="min-h-70 sm:w-90 mx-auto my-auto p-5 space-y-5 bg-white"
-    >
+    <Dialog ref={ref}>
       <h1 className="text-sm mx-auto text-center mb-7 sm:w-60 text-red-600">
         Change Password.
       </h1>
@@ -63,7 +61,7 @@ const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
         <Button onClick={handleChangePass}>Confirm</Button>
         <ButtonOutlined onClick={handleClose}>Cancel</ButtonOutlined>
       </section>
-    </dialog>
+    </Dialog>
   );
 };
 

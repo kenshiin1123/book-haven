@@ -11,11 +11,28 @@ const userInformation = {
   email: "fernandezlanceivangil@gmail.com",
   birthday: "11-23-2004",
   accountType: "Buyer",
+  checkout: [
+    {
+      _id: 1, // Book Id
+      quantity: 1,
+    },
+    {
+      _id: 2,
+      quantity: 2,
+    },
+    {
+      _id: 3,
+      quantity: 1,
+    },
+    {
+      _id: 4,
+      quantity: 3,
+    },
+  ],
   cart: [
     {
       _id: 1, // Book Id
       quantity: 1,
-      datetime: getRandomDateTime(),
     },
     {
       _id: 2,

@@ -53,7 +53,7 @@ export default function RegisterPage() {
 
   return (
     <main className="p-3 min-sm:p-10">
-      <Form handleSubmit={handleSubmit} legend={"Registeration"}>
+      <Form handleSubmit={handleSubmit} legend={"Registration"}>
         <fieldset className="flex flex-col gap-5">
           <div className="flex gap-4 justify-between">
             <LabelNInput name={"firstname"} ref={firstname} />

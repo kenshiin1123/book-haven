@@ -3,8 +3,9 @@ import { Link } from "react-router";
 import { QuantityInput } from "../LabelNInput";
 import { MdDelete } from "react-icons/md";
 
-const CartDetails = ({ book, item, discountedPrice }) => {
+const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {
   const [quantity, setQuantity] = useState(item.quantity);
+
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity((q) => parseInt(q) - 1);
@@ -20,7 +21,10 @@ const CartDetails = ({ book, item, discountedPrice }) => {
         <Link to={`/books/${book._id}`} className="text-md sm:text-xl">
           {book.title}
         </Link>
-        <button className="size-6 my-auto ml-3 absolute right-3 top-3 text-2xl active:scale-85">
+        <button
+          className="size-6 my-auto ml-3 absolute right-3 top-3 text-2xl active:scale-85"
+          onClick={() => deleteFunc(item._id)}
+        >
           <MdDelete />
         </button>
       </div>

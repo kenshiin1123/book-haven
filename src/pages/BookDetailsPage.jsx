@@ -15,7 +15,7 @@ export default function BookDetailsPage() {
   const book = books.find((book) => String(book._id) === String(bookId));
 
   useEffect(() => {
-    document.title = `Book Haven - ${book.title}`;
+    document.title = `${book.title} - Book Haven`;
     const root = document.querySelector("#root");
     root.scrollTo(0, 0);
   }, [book]);

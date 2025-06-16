@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import userData from "../data/userData";
 import Cart from "../components/Shopping Cart/Cart";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function ShoppingCart() {
+  const userData = useSelector((state) => state.user);
   const navigate = useNavigate();
   useEffect(() => {
     document.title = "Shopping Cart - Book Haven";

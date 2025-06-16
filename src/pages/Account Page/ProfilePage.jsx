@@ -4,30 +4,41 @@ import ProfilePic from "../../components/ProfilePic";
 import { ButtonWarning } from "../../components/Button";
 import DeleteAccountConfirmationModal from "../../components/DeleteAccountConfirmationModal";
 import ChangePasswordModal from "../../components/ChangePasswordModal";
+
+import { useSelector } from "react-redux";
 export default function ProfilePage() {
+  const user = useSelector((state) => state.user);
   const firstname = useRef();
   const lastname = useRef();
   const email = useRef();
   const birthday = useRef();
+  const phone = useRef();
+  const address = useRef();
 
   const deleteModal = useRef();
   const changePasswordModal = useRef();
 
   useEffect(() => {
-    firstname.current.value = "examplefirstname";
-    firstname.current.title = "examplefirstname";
+    firstname.current.value = user.firstname;
+    firstname.current.title = user.firstname;
 
-    lastname.current.value = "examplelastname";
-    lastname.current.title = "examplelastname";
+    lastname.current.value = user.lastname;
+    lastname.current.title = user.lastname;
 
-    email.current.value = "example@gmail.com";
-    email.current.title = "example@gmail.com";
+    email.current.value = user.email;
+    email.current.title = user.email;
 
-    birthday.current.value = "2004-11-23";
-    birthday.current.title = "2004-11-23";
+    phone.current.value = user.phone;
+    phone.current.title = user.phone;
+
+    birthday.current.value = user.birthday;
+    birthday.current.title = user.birthday;
+
+    address.current.value = user.address;
+    address.current.title = user.address;
 
     document.title = "Profile - Book Haven";
-  }, []);
+  }, [user]);
 
   const handleDeleteConfirmation = () => {
     deleteModal.current.showModal();
@@ -54,9 +65,21 @@ export default function ProfilePage() {
         />
         <EditableLabelNInput
           disabled={true}
+          ref={phone}
+          name={"phone"}
+          type="text"
+        />
+        <EditableLabelNInput
+          disabled={true}
           ref={birthday}
           name={"birthday"}
           type="date"
+        />
+        <EditableLabelNInput
+          disabled={true}
+          ref={address}
+          name={"address"}
+          type="text"
         />
       </div>
       <div className="flex flex-col mx-auto gap-2 my-5">

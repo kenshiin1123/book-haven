@@ -1,16 +1,23 @@
 import { FaMoon } from "react-icons/fa6";
 import { ButtonToggle } from "../../components/Button";
 import { IoIosNotifications } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/userReducer";
+
 export default function SettingsPage() {
-  const [darkTheme, setDarkTheme] = useState();
-  const [notification, setNotification] = useState();
+  const dispatch = useDispatch();
+  const darkTheme = useSelector((state) => state.user.preferences.darkTheme);
+  const notification = useSelector(
+    (state) => state.user.preferences.notification
+  );
 
   const handleDarkThemeClick = () => {
-    setDarkTheme((prev) => !prev);
+    dispatch(userActions.toggleTheme());
   };
   const handleNotificationClick = () => {
-    setNotification((prev) => !prev);
+    dispatch(userActions.toggleNotification());
   };
 
   const settings = [

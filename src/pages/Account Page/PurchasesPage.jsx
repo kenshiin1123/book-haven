@@ -1,10 +1,11 @@
-import userData from "../../data/userData";
-import books from "../../data/books";
 import { getDiscountedPrice } from "../../utils/reviewCalculation";
 import { Link } from "react-router";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function PurchasesPage() {
+  const userData = useSelector((state) => state.user);
+
   useEffect(() => {
     document.title = "Purchases - Book Haven";
   });
@@ -19,6 +20,7 @@ export default function PurchasesPage() {
 }
 
 const PurchasedBook = ({ p }) => {
+  const books = useSelector((state) => state.book.books);
   const book = books.find((book) => book._id === p._id);
   const discountedPrice = getDiscountedPrice(book.price, book.discount);
   return (

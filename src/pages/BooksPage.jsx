@@ -1,11 +1,13 @@
-import books from "../data/books";
 import { useEffect, useState } from "react";
 
 import FilterSideBar from "../components/FilterSideBar";
 
 import BookCard from "../components/BookCard";
+import { useSelector } from "react-redux";
 
 export default function BooksPage() {
+  const books = useSelector((state) => state.book.books);
+
   const [showFilterSideBar, setShowFilterSideBar] = useState(false);
   const toggleFilterSideBar = () => {
     setShowFilterSideBar((prev) => !prev);

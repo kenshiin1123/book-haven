@@ -14,7 +14,7 @@ export default function ShoppingCart() {
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
       <h1 className="text-3xl mx-auto mt-10 font-bold">Shopping Cart</h1>
-      {userData.cart.length > 1 && (
+      {userData.cart.length > 0 && (
         <div className="flex h-25 p-5 w-full justify-end sticky top-26 text-white bg-white z-30 border border-gray-500">
           <Button
             onClick={() => navigate("/checkout")}

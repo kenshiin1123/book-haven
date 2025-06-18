@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import userData from "../data/userData";
+import { useEffect } from "react";
 import InnerContainer from "../components/Shopping Cart/InnerContainer";
 import ImageSection from "../components/Shopping Cart/ImageSection";
 import books from "../data/books";
@@ -9,7 +8,10 @@ import Button from "../components/Button";
 import { useSelector } from "react-redux";
 
 export default function CheckoutPage() {
-  const checkoutItems = useSelector((state) => state.user.checkout);
+  const user = useSelector((state) => state.user);
+  const address = user.address;
+  const checkoutItems = user.checkout;
+
   const navigate = useNavigate();
   useEffect(() => {
     document.title = "Checkout - Book Haven";
@@ -24,73 +26,12 @@ export default function CheckoutPage() {
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
       <h1 className="text-3xl mx-auto mt-10 font-bold">Checkout</h1>
-      <div className="flex p-5 flex-col w-full justify-end  bg-white border border-gray-500">
-        <h2 className="text-xl font-semibold">Delivery Address</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam eos,
-          sed officiis laboriosam maxime fugiat? Illum pariatur laborum
-        </p>
-        <button className="border px-2 text-blue-500 ml-auto mt-4 active:scale-95">
-          Change
-        </button>
-      </div>
+      <DeliverySelectionDisplay address={address} />
       <h2 className="text-xl font-semibold ml-5">Books Ordered</h2>
-      {checkoutItems.map((item, i) => {
-        const book = books.find((book) => book._id === item._id);
-        const discountedPrice = getDiscountedPrice(book.price, book.discount);
-        const price = (discountedPrice * item.quantity).toFixed(2);
-        return (
-          <div className="border border-gray-500 flex gap-2 bg-white" key={i}>
-            <InnerContainer>
-              <ImageSection book={book} />
-              <section className="font-semibold flex flex-col grow">
-                <div className="flex justify-between relative">
-                  <Link
-                    to={`/books/${book._id}`}
-                    className="text-md sm:text-xl"
-                  >
-                    {book.title}
-                  </Link>
-                </div>
-                <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
-                <div className="flex mt-auto justify-between">
-                  <section className="space-x-5">
-                    <span className=" text-xs sm:text-sm">Quantity</span>
-                    <span className="text-lg sm:text-xl">{item.quantity}</span>
-                  </section>
-                  <section className="">
-                    <span className="text-lg sm:text-xl">${price}</span>
-                  </section>
-                </div>
-              </section>
-            </InnerContainer>
-          </div>
-        );
-      })}
+      <CheckoutItems checkoutItems={checkoutItems} />
       <div className="flex flex-col w-full justify-end  bg-white border border-gray-500">
-        <div className="flex justify-between border-b p-5">
-          <h2 className="text-lg font-semibold">Payment Method</h2>
-          <select name="" id="" className="border px-1 sm:px-3 py-1">
-            <option value="cod">Cash On Delivery</option>
-            <option value="credit">Credit Card</option>
-            <option value="paypal">PayPal</option>
-            <option value="gcash">GCash</option>
-          </select>
-        </div>
-        <div className="ml-auto my-5 p-5">
-          <section className="space-x-5 flex items-center justify-between min-w-43">
-            <span className=" text-xs sm:text-sm">Book Total</span>
-            <span className="text-lg">${bookTotal}</span>
-          </section>
-          <section className="space-x-5 flex items-center justify-between min-w-43">
-            <span className=" text-xs sm:text-sm">Shipping Fee</span>
-            <span className="text-lg">$500</span>
-          </section>
-          <section className="space-x-5 flex items-center justify-between min-w-43">
-            <span className=" text-xs sm:text-sm">Total Payment</span>
-            <span className="text-lg">$500</span>
-          </section>
-        </div>
+        <PaymentMethodSection />
+        <AmountSection bookTotal={bookTotal} />
         <Button classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}>
           Place Order
         </Button>
@@ -98,3 +39,91 @@ export default function CheckoutPage() {
     </main>
   );
 }
+
+const DeliverySelectionDisplay = ({ address }) => {
+  return (
+    <div className="flex p-5 flex-col w-full justify-end  bg-white border border-gray-500">
+      <h2 className="text-xl font-semibold">Delivery Address</h2>
+      <p>{address}</p>
+      <button className="border px-2 text-blue-500 ml-auto mt-4 active:scale-95">
+        Change
+      </button>
+    </div>
+  );
+};
+
+const CheckoutItems = ({ checkoutItems }) => {
+  return checkoutItems.map((item, i) => {
+    const book = books.find((book) => book._id === item._id);
+    const discountedPrice = getDiscountedPrice(book.price, book.discount);
+    const price = (discountedPrice * item.quantity).toFixed(2);
+    return (
+      <div className="border border-gray-500 flex gap-2 bg-white" key={i}>
+        <InnerContainer>
+          <ImageSection book={book} />
+          <section className="font-semibold flex flex-col grow">
+            <div className="flex justify-between relative">
+              <Link to={`/books/${book._id}`} className="text-md sm:text-xl">
+                {book.title}
+              </Link>
+            </div>
+            <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
+            <div className="flex mt-auto justify-between">
+              <section className="space-x-5">
+                <span className=" text-xs sm:text-sm">Quantity</span>
+                <span className="text-lg sm:text-xl">{item.quantity}</span>
+              </section>
+              <section className="">
+                <span className="text-lg sm:text-xl">${price}</span>
+              </section>
+            </div>
+          </section>
+        </InnerContainer>
+      </div>
+    );
+  });
+};
+
+const PaymentMethodSection = () => {
+  const paymentMethods = [
+    { value: "cod", label: "Cash On Delivery" },
+    { value: "credit", label: "Credit Card" },
+    { value: "paypal", label: "PayPal" },
+    { value: "gcash", label: "GCash" },
+  ];
+
+  return (
+    <section className="flex justify-between border-b p-5">
+      <h2 className="text-lg font-semibold">Payment Method</h2>
+      <select name="" id="" className="border px-1 sm:px-3 py-1">
+        {paymentMethods.map((method) => (
+          <option key={method.value} value={method.value}>
+            {method.label}
+          </option>
+        ))}
+      </select>
+    </section>
+  );
+};
+
+const AmountSection = ({ bookTotal }) => {
+  const amounts = [
+    { label: "Book Total", value: `$${bookTotal}` },
+    { label: "Shipping Fee", value: "$500" },
+    { label: "Total Payment", value: "$500" },
+  ];
+
+  return (
+    <section className="ml-auto my-5 p-5">
+      {amounts.map((item, idx) => (
+        <div
+          className="space-x-5 flex items-center justify-between min-w-43"
+          key={idx}
+        >
+          <span className=" text-xs sm:text-sm">{item.label}</span>
+          <span className="text-lg">{item.value}</span>
+        </div>
+      ))}
+    </section>
+  );
+};

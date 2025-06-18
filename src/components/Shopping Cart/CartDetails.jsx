@@ -1,34 +1,10 @@
-import { useState } from "react";
 import { Link } from "react-router";
 import { QuantityInput } from "../LabelNInput";
 import { MdDelete } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../store/userReducer";
-
+import useItemQuantity from "../../hooks/useItemQuantity.hook";
 const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
-  const dispatch = useDispatch();
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      dispatch(
-        userActions.setItemQuantity({
-          _id: book._id,
-          quantity: parseInt(quantity) - 1,
-        })
-      );
-      setQuantity((q) => parseInt(q) - 1);
-    }
-  };
-  const handleIncrement = () => {
-    dispatch(
-      userActions.setItemQuantity({
-        _id: book._id,
-        quantity: parseInt(quantity) + 1,
-      })
-    );
-    setQuantity((q) => parseInt(q) + 1);
-  };
+  const { quantity, handleDecrement, handleIncrement, setQuantity } =
+    useItemQuantity(book, item.quantity);
 
   return (
     <section className="font-semibold flex flex-col grow">

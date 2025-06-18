@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-
 import { FaFacebook, FaLinkedin, FaGithubSquare } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { TiHome } from "react-icons/ti";

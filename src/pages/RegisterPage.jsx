@@ -51,6 +51,42 @@ export default function RegisterPage() {
     setShowMap(true);
   };
 
+  const labelNInputs = [
+    {
+      ref: email,
+      name: "email",
+      type: "email",
+    },
+    {
+      ref: birthday,
+      name: "birthday",
+      type: "date",
+    },
+    {
+      ref: password,
+      name: "password",
+      type: "password",
+    },
+    {
+      ref: confirmPassword,
+      name: "Confirm Password",
+      type: "password",
+      id: "confirm_password",
+    },
+    {
+      ref: phoneNumber,
+      name: "Phone Number",
+      type: "number",
+      id: "phone_number",
+    },
+    {
+      ref: homeAddress,
+      name: "Home Address",
+      type: "text",
+      id: "address",
+    },
+  ];
+
   return (
     <main className="p-3 min-sm:p-10">
       <Form handleSubmit={handleSubmit} legend={"Registration"}>
@@ -59,27 +95,9 @@ export default function RegisterPage() {
             <LabelNInput name={"firstname"} ref={firstname} />
             <LabelNInput name={"lastname"} ref={lastname} />
           </div>
-          <LabelNInput name={"email"} type="email" ref={email} />
-          <LabelNInput name={"birthday"} type="date" ref={birthday} />
-          <LabelNInput name={"password"} type="password" ref={password} />
-          <LabelNInput
-            ref={confirmPassword}
-            name={"Confirm Password"}
-            type="password"
-            id={"confirm_password"}
-          />
-          <LabelNInput
-            ref={phoneNumber}
-            name={"Phone Number"}
-            type="number"
-            id={"phone_number"}
-          />
-          <LabelNInput
-            ref={homeAddress}
-            name={"Home Address"}
-            type="text"
-            id={"address"}
-          />
+          {labelNInputs.map((item, i) => (
+            <LabelNInput {...item} key={i} />
+          ))}
           <ButtonOutlined
             classExtension={"flex items-center gap-3 w-fit py-1"}
             onClick={handleShowMap}

@@ -10,6 +10,7 @@ import Button, { ButtonOutlined } from "../components/Button";
 import BookReview from "../components/BookReview";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userReducer";
+import useItemQuantity from "../hooks/useItemQuantity.hook";
 
 export default function BookDetailsPage() {
   const bookDetailsRef = useRef();
@@ -41,7 +42,8 @@ const BookDetails = ({ book }) => {
     initialQuantity = addedToCart.quantity;
   }
 
-  const [quantity, setQuantity] = useState(initialQuantity);
+  const { quantity, handleDecrement, handleIncrement, setQuantity } =
+    useItemQuantity(book, initialQuantity);
   const [addToCart, setAddToCart] = useState(addedToCart);
 
   const handleCartClick = () => {
@@ -54,27 +56,6 @@ const BookDetails = ({ book }) => {
   };
 
   const buttonsAdditionalClass = "h-10 md:w-fit md:h-12";
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      dispatch(
-        userActions.setItemQuantity({
-          _id: book._id,
-          quantity: parseInt(quantity) - 1,
-        })
-      );
-      setQuantity((q) => parseInt(q) - 1);
-    }
-  };
-  const handleIncrement = () => {
-    dispatch(
-      userActions.setItemQuantity({
-        _id: book._id,
-        quantity: parseInt(quantity) + 1,
-      })
-    );
-    setQuantity((q) => parseInt(q) + 1);
-  };
 
   return (
     <>

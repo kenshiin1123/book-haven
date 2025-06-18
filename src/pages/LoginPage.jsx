@@ -28,17 +28,23 @@ export default function LoginPage() {
     document.title = "Login - Book Haven";
   }, []);
 
+  const labelNInputs = [
+    { name: "email", type: "email", ref: email },
+    { name: "password", type: "password", ref: password },
+    {
+      name: "Confirm Password",
+      type: "password",
+      ref: confirmPassword,
+      id: "confirm_password",
+    },
+  ];
+
   return (
     <main className="p-3 min-sm:p-10">
       <Form legend={"Login to your account"} handleSubmit={handleSubmit}>
-        <LabelNInput name={"email"} type="email" ref={email} />
-        <LabelNInput name={"password"} type="password" ref={password} />
-        <LabelNInput
-          name={"Confirm Password"}
-          type="password"
-          ref={confirmPassword}
-          id={"confirm_password"}
-        />
+        {labelNInputs.map((item, i) => (
+          <LabelNInput {...item} key={i} />
+        ))}
         <div className="mt-5 flex justify-center gap-4 [&>button]:w-30 [&>button]:py-1">
           <ButtonOutlined type={"button"} onClick={handleLoginButtonClick}>
             Register

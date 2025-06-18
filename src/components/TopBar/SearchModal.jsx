@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bookActions } from "../../store/bookReducer";
 
-import BookSearchResult from "./SearchBookResult";
+import BookSearchResult from "./BookSearchResult";
 
 const SearchModal = ({ ref, handleSearchClose }) => {
   const searchedBooks = useSelector((state) => state.book.searchedBooks);
@@ -19,6 +19,12 @@ const SearchModal = ({ ref, handleSearchClose }) => {
     setSearchInput(newValue);
     dispatch(bookActions.filterBookBySearch(newValue));
   };
+
+  const clearSearchInput = () => {
+    setSearchInput("");
+    ref.current.close();
+  };
+
   return (
     <dialog ref={ref} className="mx-auto mt-30 bg-transparent">
       <div className="flex gap-5 justify-center">
@@ -39,6 +45,7 @@ const SearchModal = ({ ref, handleSearchClose }) => {
       <BookSearchResult
         searchedBooks={searchedBooks}
         searchInput={searchInput}
+        clearSearchInput={clearSearchInput}
       />
     </dialog>
   );

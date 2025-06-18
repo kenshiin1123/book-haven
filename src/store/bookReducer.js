@@ -20,7 +20,6 @@ const bookSlice = createSlice({
       };
       const fuse = new Fuse(state.books, options);
       const result = fuse.search(action.payload);
-      console.log(action.payload, result);
       state.searchedBooks = result;
     },
   },

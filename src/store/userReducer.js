@@ -5,22 +5,43 @@ const initialState = {
   ...userData,
 };
 
+const cartReducers = {
+  removeCart(state, action) {
+    const itemId = action.payload;
+    const filteredCart = state.cart.filter((item) => item._id !== itemId);
+    state.cart = filteredCart;
+  },
+  addToCart(state, action) {
+    const { _id, quantity } = action.payload;
+    state.cart.unshift({ _id, quantity });
+  },
+  checkoutCart(state) {
+    state.checkout = state.cart;
+  },
+  setItemQuantity(state, actions) {
+    const { _id, quantity } = actions.payload;
+    const item = state.cart.find((item) => item._id === _id);
+    if (item) {
+      item.quantity = quantity;
+    }
+  },
+};
+
+const preferencesReducers = {
+  toggleTheme(state) {
+    state.preferences.darkTheme = !state.preferences.darkTheme;
+  },
+  toggleNotification(state) {
+    state.preferences.notification = !state.preferences.notification;
+  },
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    toggleTheme(state) {
-      state.preferences.darkTheme = !state.preferences.darkTheme;
-    },
-    toggleNotification(state) {
-      state.preferences.notification = !state.preferences.notification;
-    },
-    removeCart(state, action) {
-      const itemId = action.payload;
-      const filteredCart = state.cart.filter((item) => item._id !== itemId);
-      console.log(filteredCart);
-      state.cart = filteredCart;
-    },
+    ...preferencesReducers,
+    ...cartReducers,
   },
 });
 

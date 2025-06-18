@@ -8,6 +8,8 @@ import { QuantityInput } from "../components/LabelNInput";
 import { useEffect, useRef, useState } from "react";
 import Button, { ButtonOutlined } from "../components/Button";
 import BookReview from "../components/BookReview";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../store/userReducer";
 
 export default function BookDetailsPage() {
   const bookDetailsRef = useRef();
@@ -29,16 +31,48 @@ export default function BookDetailsPage() {
 }
 
 const BookDetails = ({ book }) => {
-  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.user.cart) || [];
+  const addedToCart = cart.find((item) => item._id === book._id);
 
-  const buttonsAdditionalClass = "h-10 md:w-40 md:h-12";
+  let initialQuantity = 1;
+
+  if (addedToCart) {
+    initialQuantity = addedToCart.quantity;
+  }
+
+  const [quantity, setQuantity] = useState(initialQuantity);
+  const [addToCart, setAddToCart] = useState(addedToCart);
+
+  const handleCartClick = () => {
+    if (!addedToCart) {
+      dispatch(userActions.addToCart({ _id: book._id, quantity }));
+    } else if (addedToCart) {
+      dispatch(userActions.removeCart(book._id));
+    }
+    setAddToCart((prev) => !prev);
+  };
+
+  const buttonsAdditionalClass = "h-10 md:w-fit md:h-12";
 
   const handleDecrement = () => {
     if (quantity > 1) {
+      dispatch(
+        userActions.setItemQuantity({
+          _id: book._id,
+          quantity: parseInt(quantity) - 1,
+        })
+      );
       setQuantity((q) => parseInt(q) - 1);
     }
   };
   const handleIncrement = () => {
+    dispatch(
+      userActions.setItemQuantity({
+        _id: book._id,
+        quantity: parseInt(quantity) + 1,
+      })
+    );
     setQuantity((q) => parseInt(q) + 1);
   };
 
@@ -53,7 +87,7 @@ const BookDetails = ({ book }) => {
           />
         </Container>
         <hr className="sm:hidden mb-5 mt-10 border-t-gray-400" />
-        <Container classExtension={"mt-auto sm:w-96"}>
+        <Container classExtension={"mt-auto sm:w-110"}>
           <BookCategoriesDisplay categories={book.category} truncate={false} />
           <p className="font-semibold text-xl sm:text-3xl" title={book.title}>
             {book.title}
@@ -70,8 +104,11 @@ const BookDetails = ({ book }) => {
             />
           </section>
           <section className="space-x-3 max-sm:mx-auto w-fit mt-10 max-[390px]:flex max-[390px]:gap-2 max-[390px]:flex-col max-[390px]:[&>button]:w-full max-[390px]:w-full">
-            <ButtonOutlined classExtension={buttonsAdditionalClass}>
-              Add To Cart
+            <ButtonOutlined
+              classExtension={buttonsAdditionalClass}
+              onClick={handleCartClick}
+            >
+              {!addToCart ? "Add To Cart" : "Remove from Cart"}
             </ButtonOutlined>
             <Button classExtension={buttonsAdditionalClass}>Buy Book</Button>
           </section>

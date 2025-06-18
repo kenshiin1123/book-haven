@@ -2,14 +2,26 @@ import { useEffect } from "react";
 import Cart from "../components/Shopping Cart/Cart";
 import Button from "../components/Button";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../store/userReducer";
 
 export default function ShoppingCart() {
   const userData = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.title = "Shopping Cart - Book Haven";
   });
+
+  const handleCheckoutClick = () => {
+    if (userData.cart.length > 0) {
+      dispatch(userActions.checkoutCart());
+      navigate("/checkout");
+    } else {
+      alert("There must be an item to be checkout.");
+    }
+  };
 
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
@@ -17,7 +29,7 @@ export default function ShoppingCart() {
       {userData.cart.length > 0 && (
         <div className="flex h-25 p-5 w-full justify-end sticky top-26 text-white bg-white z-30 border border-gray-500">
           <Button
-            onClick={() => navigate("/checkout")}
+            onClick={handleCheckoutClick}
             classExtension={"text-md sm:text-xl"}
           >
             Checkout

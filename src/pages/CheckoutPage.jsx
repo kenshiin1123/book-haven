@@ -1,16 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import userData from "../data/userData";
 import InnerContainer from "../components/Shopping Cart/InnerContainer";
 import ImageSection from "../components/Shopping Cart/ImageSection";
 import books from "../data/books";
 import { getDiscountedPrice } from "../utils/reviewCalculation";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Button from "../components/Button";
+import { useSelector } from "react-redux";
 
 export default function CheckoutPage() {
+  const checkoutItems = useSelector((state) => state.user.checkout);
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Checkout - Book Haven";
+    if (checkoutItems.length < 1) {
+      alert("You must have an item to checkout!");
+      navigate("books");
+    }
   });
+
+  const bookTotal = 0;
+
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
       <h1 className="text-3xl mx-auto mt-10 font-bold">Checkout</h1>
@@ -25,9 +35,10 @@ export default function CheckoutPage() {
         </button>
       </div>
       <h2 className="text-xl font-semibold ml-5">Books Ordered</h2>
-      {userData.checkout.map((item, i) => {
+      {checkoutItems.map((item, i) => {
         const book = books.find((book) => book._id === item._id);
         const discountedPrice = getDiscountedPrice(book.price, book.discount);
+        const price = (discountedPrice * item.quantity).toFixed(2);
         return (
           <div className="border border-gray-500 flex gap-2 bg-white" key={i}>
             <InnerContainer>
@@ -48,9 +59,7 @@ export default function CheckoutPage() {
                     <span className="text-lg sm:text-xl">{item.quantity}</span>
                   </section>
                   <section className="">
-                    <span className="text-lg sm:text-xl">
-                      ${(discountedPrice * item.quantity).toFixed(2)}
-                    </span>
+                    <span className="text-lg sm:text-xl">${price}</span>
                   </section>
                 </div>
               </section>
@@ -71,7 +80,7 @@ export default function CheckoutPage() {
         <div className="ml-auto my-5 p-5">
           <section className="space-x-5 flex items-center justify-between min-w-43">
             <span className=" text-xs sm:text-sm">Book Total</span>
-            <span className="text-lg">$500</span>
+            <span className="text-lg">${bookTotal}</span>
           </section>
           <section className="space-x-5 flex items-center justify-between min-w-43">
             <span className=" text-xs sm:text-sm">Shipping Fee</span>

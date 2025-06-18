@@ -17,27 +17,10 @@ const userInformation = {
     darkTheme: false,
     notification: false, //Toaster
   },
-  checkout: [
-    {
-      _id: 1, // Book Id
-      quantity: 1,
-    },
-    {
-      _id: 2,
-      quantity: 2,
-    },
-    {
-      _id: 3,
-      quantity: 1,
-    },
-    {
-      _id: 4,
-      quantity: 3,
-    },
-  ],
+  checkout: [],
   cart: [
     {
-      _id: 1, // Book Id
+      _id: 5, // Book Id
       quantity: 1,
     },
     {

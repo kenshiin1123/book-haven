@@ -7,10 +7,12 @@ import LinksSection from "./LinksSection";
 import SearchButton from "./SearchButton";
 import SearchModal from "./SearchModal";
 import IconLink from "./IconLink";
+import { useSelector } from "react-redux";
 
 export default function TopBar() {
   const searchRef = useRef();
   const location = useLocation().pathname;
+  const cartLength = useSelector((state) => state.user.cart).length;
 
   const handleSearchClose = () => {
     searchRef.current.close();
@@ -26,7 +28,12 @@ export default function TopBar() {
         <h1 className="font-semibold text-xl">Book Haven</h1>
         <ul className="flex ml-auto gap-4 grow">
           <SearchButton searchRef={searchRef} />
-          <IconLink icon={<HiOutlineShoppingCart />} to={"cart"} />
+          <div className="flex relative">
+            <span className="absolute top-0 right-0 bg-white w-fit p-0.5 rounded-full flex justify-center items-center border text-xs text-[8px] p text-black border-black font-bold">
+              {cartLength > 99 ? "99+" : cartLength}
+            </span>
+            <IconLink icon={<HiOutlineShoppingCart />} to={"cart"} />
+          </div>
           <IconLink icon={<FaRegUserCircle />} to={"account"} />
         </ul>
       </section>

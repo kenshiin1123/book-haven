@@ -33,6 +33,17 @@ export default function ShoppingCart() {
       {userData.cart.map((item, i) => {
         return <Cart item={item} key={i} />;
       })}
+      {userData.cart.length < 1 && (
+        <div className="border w-80 mx-auto p-5 text-center text-xl mt-10">
+          <h1>Your Shopping Cart is Empty.</h1>
+          <Button
+            onClick={() => navigate("/books")}
+            classExtension={"mt-4 py-2 w-full"}
+          >
+            Add a book to cart
+          </Button>
+        </div>
+      )}
     </main>
   );
 }

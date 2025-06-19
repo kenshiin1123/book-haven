@@ -463,6 +463,14 @@ const books = [
   },
 ];
 
+const getRating = (reviews) => {
+  return (
+    reviews.reduce((total, review) => total + review.stars, 0) /
+    reviews.length /
+    2
+  );
+};
+
 const getRandomNum = () => Math.floor(Math.random() * 200) + 1;
 
 books.forEach((b) => {
@@ -478,6 +486,11 @@ books.forEach((b) => {
       );
     }
   });
+});
+
+// add rating to each book
+books.forEach((book) => {
+  book.rating = getRating(book.reviews);
 });
 
 export default books;

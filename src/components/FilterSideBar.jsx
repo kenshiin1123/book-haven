@@ -2,8 +2,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { FaFilter } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { displayStar } from "../utils/reviewCalculation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { bookActions } from "../store/bookReducer";
 export default function FilterSideBar({ active, togglerFunc }) {
   const ratings = [
+    "Default Rating",
     displayStar(5),
     displayStar(4),
     displayStar(3),
@@ -11,16 +15,18 @@ export default function FilterSideBar({ active, togglerFunc }) {
     displayStar(1),
   ];
 
-  const genres = [
-    "Self-help",
-    "Novel",
-    "Mystery",
-    "Historical Fiction",
+  const categories = [
+    "Default Category",
+    "Self help",
+    "Productivity",
+    "Psychology",
+    "Memoir",
     "Science Fiction",
     "Narrative",
   ];
 
   const authors = [
+    "Default Author",
     "Mark Manson",
     "Robert Greene",
     "James Clear",
@@ -28,6 +34,24 @@ export default function FilterSideBar({ active, togglerFunc }) {
     "Tony Robbins",
     "William Shakespeare",
   ];
+
+  const dispatch = useDispatch();
+
+  const [selectedFilters, setSelectedFilters] = useState({
+    rating: "Default Rating",
+    category: "Default Category",
+    author: "Default Author",
+  });
+
+  const handleChange = (event) => {
+    const inputVal = event.target.name;
+    const inputName = removeNumber(event.target.id);
+    setSelectedFilters((prev) => {
+      return { ...prev, [inputVal]: inputName };
+    });
+    const newSelectedFilters = { ...selectedFilters, [inputVal]: inputName };
+    dispatch(bookActions.filterBook(newSelectedFilters));
+  };
 
   return (
     <>
@@ -55,9 +79,21 @@ export default function FilterSideBar({ active, togglerFunc }) {
             <h1 className="text-3xl font-bold mb-5 text-center mt-5">
               Filters
             </h1>
-            <FilterSection arr={ratings} title={"Rating"} />
-            <FilterSection arr={genres} title={"Genre"} />
-            <FilterSection arr={authors} title={"Authors"} />
+            <FilterSection
+              handleChange={handleChange}
+              arr={ratings}
+              title={"Rating"}
+            />
+            <FilterSection
+              handleChange={handleChange}
+              arr={categories}
+              title={"Category"}
+            />
+            {/* <FilterSection
+              handleChange={handleChange}
+              arr={authors}
+              title={"Authors"}
+            /> */}
           </motion.aside>
         )}
       </AnimatePresence>
@@ -72,21 +108,49 @@ export default function FilterSideBar({ active, togglerFunc }) {
   );
 }
 
-const FilterSection = ({ arr, title }) => {
+const removeNumber = (str) => {
+  // dont remove number if the input name is rating
+  if (str.indexOf("rating") === 0) {
+    return str;
+  } else {
+    // remove index. for example:"-1" or "-2"
+    return str.slice(0, str.indexOf("-"));
+  }
+};
+
+const FilterSection = ({ arr, title, handleChange }) => {
   return (
     <section className="mx-auto mb-10 pl-20 min-sm:pl-17">
       <h2 className="text-xl font-semibold indent-5 mb-1">{title}</h2>
       <ul className="[&>li]:flex [&>li]:gap-1 space-y-3 pt-3">
-        {arr.map((genre, i) => {
+        {arr.map((filter, i) => {
+          let id = `${filter}-${i}`;
+
+          if (typeof filter === "object") {
+            id = `rating-${i}`;
+          }
+
           return (
-            <li key={i}>
+            <li
+              key={i}
+              className={`hover:font-bold transition ${
+                typeof filter === "object" && "hover:scale-105"
+              }`}
+            >
               <input
                 type="radio"
                 name={title.toLowerCase()}
-                id={`${genre}+${i}`}
+                id={id}
+                defaultChecked={filter === arr[0]}
+                onChange={handleChange}
               />
-              <label htmlFor={`${genre}+${i}`} className="text-lg">
-                {genre}
+              <label
+                htmlFor={id}
+                className={`${
+                  filter === arr[0] ? "text-sm" : "text-lg"
+                } truncate`}
+              >
+                {filter}
               </label>
             </li>
           );

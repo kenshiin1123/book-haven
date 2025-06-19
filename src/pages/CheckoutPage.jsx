@@ -1,41 +1,39 @@
-import { useEffect } from "react";
 import InnerContainer from "../components/Shopping Cart/InnerContainer";
 import ImageSection from "../components/Shopping Cart/ImageSection";
 import books from "../data/books";
 import { getDiscountedPrice } from "../utils/reviewCalculation";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import Button from "../components/Button";
 import { useSelector } from "react-redux";
-
+import InfoWButton from "../components/InfoWButton";
 export default function CheckoutPage() {
   const user = useSelector((state) => state.user);
   const address = user.address;
   const checkoutItems = user.checkout;
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    document.title = "Checkout - Book Haven";
-    if (checkoutItems.length < 1) {
-      alert("You must have an item to checkout!");
-      navigate("books");
-    }
-  });
-
-  const bookTotal = 0;
-
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
       <h1 className="text-3xl mx-auto mt-10 font-bold">Checkout</h1>
-      <DeliverySelectionDisplay address={address} />
-      <h2 className="text-xl font-semibold ml-5">Books Ordered</h2>
-      <CheckoutItems checkoutItems={checkoutItems} />
-      <div className="flex flex-col w-full justify-end  bg-white border border-gray-500">
-        <PaymentMethodSection />
-        <AmountSection bookTotal={bookTotal} />
-        <Button classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}>
-          Place Order
-        </Button>
-      </div>
+      {checkoutItems.length > 0 ? (
+        <>
+          <DeliverySelectionDisplay address={address} />
+          <h2 className="text-xl font-semibold ml-5">Books Ordered</h2>
+          <CheckoutItems checkoutItems={checkoutItems} />
+          <div className="flex flex-col w-full justify-end  bg-white border border-gray-500">
+            <PaymentMethodSection />
+            <AmountSection />
+            <Button classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}>
+              Place Order
+            </Button>
+          </div>
+        </>
+      ) : (
+        <InfoWButton
+          buttonName={"Browse Books"}
+          title={"No items to checkout yet."}
+          navigateTo={"/books"}
+        />
+      )}
     </main>
   );
 }
@@ -97,7 +95,11 @@ const PaymentMethodSection = () => {
       <h2 className="text-lg font-semibold">Payment Method</h2>
       <select name="" id="" className="border px-1 sm:px-3 py-1">
         {paymentMethods.map((method) => (
-          <option key={method.value} value={method.value}>
+          <option
+            key={method.value}
+            value={method.value}
+            disabled={method.value !== "cod"}
+          >
             {method.label}
           </option>
         ))}
@@ -106,11 +108,19 @@ const PaymentMethodSection = () => {
   );
 };
 
-const AmountSection = ({ bookTotal }) => {
+const AmountSection = () => {
+  const checkout = useSelector((state) => state.user.checkout);
+  const books = useSelector((state) => state.book.books);
+
+  const totalPrice = checkout.reduce((total, item) => {
+    const foundBook = books.find((b) => item._id === b._id);
+    return total + (foundBook?.price || 0);
+  }, 0);
+
   const amounts = [
-    { label: "Book Total", value: `$${bookTotal}` },
-    { label: "Shipping Fee", value: "$500" },
-    { label: "Total Payment", value: "$500" },
+    { label: "Book Total", value: `$${totalPrice.toFixed(2)}` },
+    { label: "Shipping Fee", value: `$2` },
+    { label: "Total Payment", value: `$${(totalPrice + 2).toFixed(2)}` },
   ];
 
   return (

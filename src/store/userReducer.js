@@ -18,6 +18,10 @@ const cartReducers = {
   checkoutCart(state) {
     state.checkout = state.cart;
   },
+  checkoutBook(state, action) {
+    const { _id, quantity } = action.payload;
+    state.checkout = [{ _id, quantity }];
+  },
   setItemQuantity(state, actions) {
     const { _id, quantity } = actions.payload;
     const item = state.cart.find((item) => item._id === _id);

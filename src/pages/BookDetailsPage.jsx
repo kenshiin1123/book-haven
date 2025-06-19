@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import books from "../data/books";
 import BookCategoriesDisplay from "../components/BookCategoriesDisplay";
 import AuthorNPubYearDisplay from "../components/AuthorNPubYearDisplay";
@@ -35,6 +35,7 @@ const BookDetails = ({ book }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.user.cart) || [];
   const addedToCart = cart.find((item) => item._id === book._id);
+  const navigate = useNavigate();
 
   let initialQuantity = 1;
 
@@ -56,6 +57,12 @@ const BookDetails = ({ book }) => {
   };
 
   const buttonsAdditionalClass = "h-10 md:w-fit md:h-12";
+
+  const handleBuyBook = (book) => {
+    const { _id } = book;
+    dispatch(userActions.checkoutBook({ _id, quantity }));
+    navigate("/checkout");
+  };
 
   return (
     <>
@@ -91,7 +98,12 @@ const BookDetails = ({ book }) => {
             >
               {!addToCart ? "Add To Cart" : "Remove from Cart"}
             </ButtonOutlined>
-            <Button classExtension={buttonsAdditionalClass}>Buy Book</Button>
+            <Button
+              classExtension={buttonsAdditionalClass}
+              onClick={() => handleBuyBook(book)}
+            >
+              Buy Book
+            </Button>
           </section>
         </Container>
       </div>

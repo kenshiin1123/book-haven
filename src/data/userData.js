@@ -18,24 +18,7 @@ const userInformation = {
     notification: false, //Toaster
   },
   checkout: [],
-  cart: [
-    {
-      _id: 5, // Book Id
-      quantity: 1,
-    },
-    {
-      _id: 2,
-      quantity: 2,
-    },
-    {
-      _id: 3,
-      quantity: 1,
-    },
-    {
-      _id: 4,
-      quantity: 3,
-    },
-  ],
+  cart: [],
   purchases: [
     {
       _id: 1,

@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userReducer";
+import InfoWButton from "../components/InfoWButton";
 
 export default function ShoppingCart() {
   const userData = useSelector((state) => state.user);
@@ -34,15 +35,11 @@ export default function ShoppingCart() {
         return <Cart item={item} key={i} />;
       })}
       {userData.cart.length < 1 && (
-        <div className="border w-80 mx-auto p-5 text-center text-xl mt-10">
-          <h1>Your Shopping Cart is Empty.</h1>
-          <Button
-            onClick={() => navigate("/books")}
-            classExtension={"mt-4 py-2 w-full"}
-          >
-            Add a book to cart
-          </Button>
-        </div>
+        <InfoWButton
+          title={"You haven’t added anything yet."}
+          buttonName={"Start Shopping"}
+          navigateTo={"/books"}
+        />
       )}
     </main>
   );

@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { EditableLabelNInput } from "../../components/LabelNInput";
 import ProfilePic from "../../components/ProfilePic";
@@ -7,6 +8,18 @@ import ChangePasswordModal from "../../components/ChangePasswordModal";
 import { userActions } from "../../store/userReducer";
 
 import { useDispatch, useSelector } from "react-redux";
+
+import {
+  Firstname,
+  Lastname,
+  Email,
+  Birthday,
+  Phone,
+  Address,
+  Password,
+  PicPath,
+} from "../../schema/user.schema";
+
 export default function ProfilePage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -47,8 +60,62 @@ export default function ProfilePage() {
     changePasswordModal.current.showModal();
   };
 
+  const toastError = (result) => {
+    toast.error(result.error.errors.map((err) => err.message));
+    return false;
+  };
+
   const handleEditProfile = (type, newInfo) => {
+    // validate
+    switch (type) {
+      case "firstname": {
+        const result = Firstname.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "lastname": {
+        const result = Lastname.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "email": {
+        const result = Email.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "birthday": {
+        const result = Birthday.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "phone": {
+        const result = Phone.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "address": {
+        const result = Address.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "password": {
+        const result = Password.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+      case "profile-pic": {
+        const result = PicPath.safeParse(newInfo);
+        if (!result.success) return toastError(result);
+        break;
+      }
+    }
+
+    // This runs if every validation goes well
     dispatch(userActions.updateInfo({ type, newInfo }));
+    toast.success(
+      `${type.charAt(0).toUpperCase() + type.slice(1)} Updated Successfully.`
+    );
+    return true;
   };
 
   const editableLabelNInputs = [

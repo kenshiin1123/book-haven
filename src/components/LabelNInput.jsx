@@ -59,8 +59,8 @@ export const EditableLabelNInput = ({
   };
 
   const handleSave = () => {
-    updateFunc(name, ref.current.value);
-    setDisabledState(true);
+    const result = updateFunc(name, ref.current.value); // if this returns false, the user cannot click the save button
+    setDisabledState(result);
   };
 
   return (

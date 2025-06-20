@@ -55,7 +55,9 @@ const BookCard = ({ ...props }) => {
           <MdAddShoppingCart />
         )}
       </button>
-      <Image title={title} src={image} />
+      <button onClick={handleViewBook}>
+        <Image title={title} src={image} />
+      </button>
       <p className="font-semibold mt-10 text-xl truncate" title={title}>
         <BookCategoriesDisplay categories={category} />
         {title}

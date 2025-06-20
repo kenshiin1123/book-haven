@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
-import defaultProfile from "../assets/pictures/default-profile.png";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../store/userReducer";
 const ProfilePic = () => {
+  const dispatch = useDispatch();
+  const profilePic = useSelector((state) => state.user.profilePic);
   const inputRef = useRef();
-  const [file, setFile] = useState(defaultProfile);
+  const [file, setFile] = useState(profilePic);
 
   const handleInputClick = () => {
     inputRef.current.click();
@@ -13,6 +16,9 @@ const ProfilePic = () => {
     if (selectedFile) {
       const imageUrl = URL.createObjectURL(selectedFile);
       setFile(imageUrl);
+      dispatch(
+        userActions.updateInfo({ type: "profilePic", newInfo: imageUrl })
+      );
     }
   };
 

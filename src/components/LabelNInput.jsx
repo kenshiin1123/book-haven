@@ -39,14 +39,15 @@ export const EditableLabelNInput = ({
   id,
   ref = null,
   disabled = false,
+  updateFunc,
 }) => {
   const [disabledState, setDisabledState] = useState(disabled);
   const capitalizedFirstLetter = name.charAt(0).toUpperCase() + name.slice(1);
 
   const handleEdit = () => {
     setDisabledState((prev) => {
+      // this is used to focus on the input when the edit button is clicked
       if (prev) {
-        // Was disabled, now enabling (editing)
         setTimeout(() => {
           if (ref && ref.current) {
             ref.current.focus();
@@ -58,6 +59,7 @@ export const EditableLabelNInput = ({
   };
 
   const handleSave = () => {
+    updateFunc(name, ref.current.value);
     setDisabledState(true);
   };
 

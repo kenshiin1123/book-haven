@@ -6,6 +6,7 @@ function getRandomDateTime() {
 }
 
 const userInformation = {
+  profilePic: "/pictures/default-profile.png",
   firstname: "lance",
   lastname: "fernandez",
   email: "fernandezlanceivangil@gmail.com",
@@ -13,6 +14,7 @@ const userInformation = {
   accountType: "Buyer",
   phone: "0912 312 3123",
   address: "4827 Maplewood Drive, Brookhaven, IL 60510, USA",
+  password: "123",
   preferences: {
     darkTheme: false,
     notification: false, //Toaster

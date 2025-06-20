@@ -40,12 +40,22 @@ const preferencesReducers = {
   },
 };
 
+const profileReducers = {
+  updateInfo(state, action) {
+    // the payload must have a type
+    const { type, newInfo } = action.payload;
+    console.log(newInfo, type);
+    state[type] = newInfo;
+  },
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     ...preferencesReducers,
     ...cartReducers,
+    ...profileReducers,
   },
 });
 

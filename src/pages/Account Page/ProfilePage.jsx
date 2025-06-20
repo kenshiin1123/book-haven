@@ -4,9 +4,11 @@ import ProfilePic from "../../components/ProfilePic";
 import { ButtonWarning } from "../../components/Button";
 import DeleteAccountConfirmationModal from "../../components/DeleteAccountConfirmationModal";
 import ChangePasswordModal from "../../components/ChangePasswordModal";
+import { userActions } from "../../store/userReducer";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 export default function ProfilePage() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const firstname = useRef();
   const lastname = useRef();
@@ -43,6 +45,10 @@ export default function ProfilePage() {
   };
   const handleChangePassword = () => {
     changePasswordModal.current.showModal();
+  };
+
+  const handleEditProfile = (type, newInfo) => {
+    dispatch(userActions.updateInfo({ type, newInfo }));
   };
 
   const editableLabelNInputs = [
@@ -100,12 +106,17 @@ export default function ProfilePage() {
       <ProfilePic />
       <div className="border border-b-0 mx-auto flex flex-col gap-2 pt-3 w-[90%] sm:w-[35rem] md:w-[40rem]">
         {editableLabelNInputs.map((item, i) => (
-          <EditableLabelNInput {...item} key={i} />
+          <EditableLabelNInput
+            {...item}
+            updateFunc={handleEditProfile}
+            key={i}
+          />
         ))}
       </div>
       <div className="flex flex-col mx-auto gap-2 my-5">
         {warningButtons.map((button, i) => (
           <ButtonWarning
+            key={i}
             classExtension={button.classExtension}
             onClick={button.onClick}
           >

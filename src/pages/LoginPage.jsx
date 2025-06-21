@@ -4,6 +4,9 @@ import LabelNInput from "../components/LabelNInput";
 import Button, { ButtonOutlined } from "../components/Button";
 import { useNavigate } from "react-router";
 
+import { Password, Email } from "../schema/user.schema";
+import { toast } from "sonner";
+
 export default function LoginPage() {
   const navigate = useNavigate();
 
@@ -11,13 +14,27 @@ export default function LoginPage() {
   const password = useRef();
   const confirmPassword = useRef();
 
+  const toastError = (result) => {
+    toast.error(result.error.errors.map((err) => err.message));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      `Email: ${email.current.value}\n` +
-        `Password: ${password.current.value}\n` +
-        `Confirm Password: ${confirmPassword.current.value}\n`
-    );
+
+    const emailValidate = Email.safeParse(email.current.value);
+    if (!emailValidate.success) return toastError(emailValidate);
+
+    const passwordValidate = Password.safeParse(password.current.value);
+    if (!passwordValidate.success) return toastError(passwordValidate);
+
+    if (passwordValidate.data !== confirmPassword.current.value) {
+      return toast.error(
+        "Passwords do not match. Please re-enter your password."
+      );
+    }
+
+    toast.success("Logged in successfully.");
+    navigate("/books");
   };
 
   const handleLoginButtonClick = () => {

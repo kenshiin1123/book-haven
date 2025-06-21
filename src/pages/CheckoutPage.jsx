@@ -114,7 +114,7 @@ const AmountSection = () => {
 
   const totalPrice = checkout.reduce((total, item) => {
     const foundBook = books.find((b) => item._id === b._id);
-    return total + (foundBook?.price || 0);
+    return total + (foundBook?.price * item.quantity || 0);
   }, 0);
 
   const amounts = [

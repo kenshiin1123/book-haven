@@ -29,7 +29,7 @@ export default function TopBar() {
         <ul className="flex ml-auto gap-4 grow">
           <SearchButton searchRef={searchRef} />
           <div className="flex relative">
-            <span className="absolute top-0 right-0 bg-white w-fit p-0.5 rounded-full flex justify-center items-center border text-xs text-[8px] p text-black border-black font-bold">
+            <span className="absolute top-0 right-0 bg-white w-fit p-0.5 rounded-full flex justify-center items-center border text-xs text-[8px] p text-red-600 border-red-600 font-bold size-5 aspect-square ">
               {cartLength > 99 ? "99+" : cartLength}
             </span>
             <IconLink icon={<HiOutlineShoppingCart />} to={"cart"} />

@@ -3,7 +3,8 @@ import Form from "../components/Form";
 import LabelNInput from "../components/LabelNInput";
 import Button, { ButtonOutlined } from "../components/Button";
 import { useNavigate } from "react-router";
-
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+import HorizontalRule from "../components/HorizontalRule";
 import { Password, Email } from "../schema/user.schema";
 import { toast } from "sonner";
 
@@ -59,14 +60,27 @@ export default function LoginPage() {
   return (
     <main className="p-3 min-sm:p-10">
       <Form legend={"Login to your account"} handleSubmit={handleSubmit}>
+        <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
+          <ButtonOutlined>
+            <FaGoogle />
+            Google
+          </ButtonOutlined>
+          <ButtonOutlined>
+            <FaFacebook />
+            Facebook
+          </ButtonOutlined>
+        </div>
+        <HorizontalRule>or</HorizontalRule>
         {labelNInputs.map((item, i) => (
           <LabelNInput {...item} key={i} />
         ))}
+
         <div className="mt-5 flex justify-center gap-4 [&>button]:w-30 [&>button]:py-1">
           <ButtonOutlined type={"button"} onClick={handleLoginButtonClick}>
             Register
           </ButtonOutlined>
           <Button type={"Submit"}>Login</Button>
+          <hr />
         </div>
       </Form>
     </main>

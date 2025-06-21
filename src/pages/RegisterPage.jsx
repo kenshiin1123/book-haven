@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 
 import Form from "../components/Form";
+import HorizontalRule from "../components/HorizontalRule";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 
 export default function RegisterPage() {
   const firstname = useRef();
@@ -88,8 +90,19 @@ export default function RegisterPage() {
   ];
 
   return (
-    <main className="p-3 min-sm:p-10">
+    <main className="p-3 min-sm:p-10 ">
       <Form handleSubmit={handleSubmit} legend={"Registration"}>
+        <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
+          <ButtonOutlined>
+            <FaGoogle />
+            Google
+          </ButtonOutlined>
+          <ButtonOutlined>
+            <FaFacebook />
+            Facebook
+          </ButtonOutlined>
+        </div>
+        <HorizontalRule>or</HorizontalRule>
         <fieldset className="flex flex-col gap-5">
           <div className="flex gap-4 justify-between">
             <LabelNInput name={"firstname"} ref={firstname} />
@@ -107,6 +120,7 @@ export default function RegisterPage() {
           </ButtonOutlined>
           {showMap && <Map handleMapClick={handleMapClick} />}
         </fieldset>
+
         <div className="mt-5 flex justify-center gap-4 [&>button]:w-30 [&>button]:py-1">
           <ButtonOutlined type={"button"} onClick={handleLoginButtonClick}>
             Login

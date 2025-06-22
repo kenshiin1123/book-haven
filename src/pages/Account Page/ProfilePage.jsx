@@ -171,7 +171,7 @@ export default function ProfilePage() {
   return (
     <>
       <ProfilePic />
-      <div className="border border-b-0 mx-auto flex flex-col gap-2 pt-3 w-[90%] sm:w-[35rem] md:w-[40rem]">
+      <div className="border border-b-0 mx-auto flex flex-col gap-2 pt-3 w-[90%] sm:w-[35rem] md:w-[40rem] color-3">
         {editableLabelNInputs.map((item, i) => (
           <EditableLabelNInput
             {...item}

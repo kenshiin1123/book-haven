@@ -4,7 +4,7 @@ import { displayStar } from "../utils/reviewCalculation";
 export default function BookReview({ review }) {
   const star = displayStar(review.stars / 2);
   return (
-    <div className="flex flex-col border min-h-60 p-3">
+    <div className="flex flex-col border min-h-60 p-3 color-3">
       <DateTime r={review} classExtension={"min-sm:hidden "} />
       <section className="flex items-center  gap-3">
         <span className="text-3xl">

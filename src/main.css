@@ -3,23 +3,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@layer base {
-  :root {
-    --text: #121212;
-    --background: #f9f9fa;
-    --primary: #6260af;
-    --secondary: #9492d9;
-    --accent: #6a68de;
-  }
-  .dark {
-    --text: #ededed;
-    --background: #050506;
-    --primary: #53509f;
-    --secondary: #29266d;
-    --accent: #232197;
-  }
-}
-
 body {
   font-family: "Inter";
   font-weight: 400;
@@ -37,4 +20,25 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Remove spinner arrows in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+@layer base {
+  * {
+    @apply border-[#28161c]/20;
+  }
+}
+
+@utility color-1 {
+  /* for background color */
+  @apply bg-[#f7f7f7] text-black;
+}
+
+@utility color-2 {
+  /* for header and footer */
+  @apply bg-[#1a1a1a] text-[#ffffff];
+}
+
+@utility color-3 {
+  /*  for card or item display */
+  @apply bg-[#ffffff] text-black;
 }

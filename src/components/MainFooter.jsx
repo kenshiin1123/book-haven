@@ -5,12 +5,12 @@ import { TiHome } from "react-icons/ti";
 import { RiBookShelfLine } from "react-icons/ri";
 export default function MainFooter() {
   return (
-    <footer className="mt-auto bg-gray-200/50 w-full h-max pb-2 border-t border-t-gray-600">
+    <footer className="mt-auto color-2 w-full h-max pb-2 border-t">
       <div className="flex justify-around p-3  [&>section>h2]:text-center [&>section>h2]:flex [&>section>h2]:items-center">
         <ExploreSection />
         <ConnectSection />
       </div>
-      <small className="block text-center text-gray-700">
+      <small className="block text-center">
         &copy;2025 Book Haven. All rights reserved.
       </small>
     </footer>

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import React, { useState } from "react";
+import React from "react";
 
 const initialClass = "px-5 active:scale-97 select-none";
 
@@ -30,7 +30,7 @@ export const ButtonOutlined = ({
     <button
       onClick={onClick}
       type={type}
-      className={`${initialClass} inset-ring ${classExtension}`}
+      className={`${initialClass} color-3 border ${classExtension}`}
     >
       {children}
     </button>
@@ -40,7 +40,7 @@ export const ButtonOutlined = ({
 export const ButtonToggle = ({ active = false, onClick }) => {
   return (
     <button
-      className="h-9 w-20 border rounded-full flex items-center p-1"
+      className="h-9 w-20 border rounded-full flex items-center p-1 "
       onClick={onClick}
       type="button"
     >
@@ -64,7 +64,7 @@ export const ButtonWarning = ({
     <button
       onClick={onClick}
       type={type}
-      className={`${initialClass} inset-ring-1 inset-ring-red-600 text-red-600 ${classExtension}`}
+      className={`${initialClass} inset-ring-1 inset-ring-red-600 text-red-600 color-3 ${classExtension}`}
     >
       {children}
     </button>

@@ -53,7 +53,7 @@ export default function SettingsPage() {
 
 const Setting = ({ icon, title, description, active, handleClick }) => {
   return (
-    <section className="flex flex-col p-3 border">
+    <section className="flex flex-col p-3 border color-3">
       <div className="flex items-center">
         <span className="text-2xl">{icon}</span>
         <label

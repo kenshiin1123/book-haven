@@ -3,7 +3,7 @@ import Button from "./Button";
 export default function InfoWButton({ title, buttonName, navigateTo }) {
   const navigate = useNavigate();
   return (
-    <div className="border w-fit mx-auto p-5 text-center text-xl mt-10">
+    <div className="color-3 border w-fit mx-auto p-5 text-center text-xl mt-10">
       <h1>{title}</h1>
       <Button
         onClick={() => navigate(navigateTo)}

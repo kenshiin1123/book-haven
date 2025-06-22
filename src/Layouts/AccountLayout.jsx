@@ -26,7 +26,7 @@ export default function ProfileLayout() {
             {headerName}
           </h1>
         </section>
-        <section className="border w-fit mx-auto p-1">
+        <section className="border w-fit mx-auto p-1 color-3">
           <ul className="flex gap-2.5 [&>li]:px-1">
             {links.map((link) => {
               return <CustomNavLink link={link} key={link.title} />;
@@ -44,11 +44,11 @@ const CustomNavLink = ({ link }) => {
 
   let activeClass = "border border-white";
   if (link.to === location) {
-    activeClass = "border border-gray-500";
+    activeClass = "border border-black";
   }
 
   return (
-    <li className={`${activeClass} text-sm sm:text-lg md:text-xl`}>
+    <li className={`${activeClass} text-sm sm:text-lg md:text-xl bg-white`}>
       <Link to={link.to}>{link.title}</Link>
     </li>
   );

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userReducer";
+import { ButtonOutlined } from "./Button";
 const ProfilePic = () => {
   const dispatch = useDispatch();
   const profilePic = useSelector((state) => state.user.profilePic);
@@ -24,7 +25,10 @@ const ProfilePic = () => {
 
   return (
     <div className="mx-auto flex flex-col gap-2 items-center">
-      <img src={file} className="size-50 border border-gray-400 shadow" />
+      <img
+        src={file}
+        className="size-50 border border-gray-400 shadow color-3"
+      />
       <input
         type="file"
         accept="image/*"
@@ -32,12 +36,7 @@ const ProfilePic = () => {
         hidden
         onChange={handleFileChange}
       />
-      <button
-        className="border px-2 py-1 active:scale-95"
-        onClick={handleInputClick}
-      >
-        Upload Picture
-      </button>
+      <ButtonOutlined onClick={handleInputClick}>Upload Picture</ButtonOutlined>
     </div>
   );
 };

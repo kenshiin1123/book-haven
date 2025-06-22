@@ -19,7 +19,7 @@ export default function CheckoutPage() {
           <DeliverySelectionDisplay address={address} />
           <h2 className="text-xl font-semibold ml-5">Books Ordered</h2>
           <CheckoutItems checkoutItems={checkoutItems} />
-          <div className="flex flex-col w-full justify-end  bg-white border border-gray-500">
+          <div className="flex flex-col w-full justify-end border color-3">
             <PaymentMethodSection />
             <AmountSection />
             <Button classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}>
@@ -40,12 +40,9 @@ export default function CheckoutPage() {
 
 const DeliverySelectionDisplay = ({ address }) => {
   return (
-    <div className="flex p-5 flex-col w-full justify-end  bg-white border border-gray-500">
+    <div className="flex p-5 flex-col w-full justify-end color-3 border">
       <h2 className="text-xl font-semibold">Delivery Address</h2>
       <p>{address}</p>
-      <button className="border px-2 text-blue-500 ml-auto mt-4 active:scale-95">
-        Change
-      </button>
     </div>
   );
 };
@@ -56,7 +53,7 @@ const CheckoutItems = ({ checkoutItems }) => {
     const discountedPrice = getDiscountedPrice(book.price, book.discount);
     const price = (discountedPrice * item.quantity).toFixed(2);
     return (
-      <div className="border border-gray-500 flex gap-2 bg-white" key={i}>
+      <div className="border color-3 flex gap-2 " key={i}>
         <InnerContainer>
           <ImageSection book={book} />
           <section className="font-semibold flex flex-col grow">

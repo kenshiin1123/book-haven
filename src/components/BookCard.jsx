@@ -44,7 +44,7 @@ const BookCard = ({ ...props }) => {
   };
 
   return (
-    <div className="flex flex-col w-80 p-3 h-fit border border-gray-400 relative">
+    <div className="flex flex-col w-80 p-3 h-fit border color-3 relative">
       <button
         className="text-3xl absolute right-5 top-5 active:scale-95"
         onClick={handleCartClick}

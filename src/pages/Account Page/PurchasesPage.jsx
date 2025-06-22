@@ -35,7 +35,7 @@ const PurchasedBook = ({ p }) => {
 };
 
 const MainContainer = ({ children }) => {
-  return <div className="border border-gray-500">{children}</div>;
+  return <div className="border color-3">{children}</div>;
 };
 const InnerContainer = ({ children }) => {
   return <div className="flex p-1 gap-3 sm:p-4">{children}</div>;
@@ -49,7 +49,7 @@ const Status = ({ status }) => {
   let statusColor = "text-black";
 
   return (
-    <div className={`p-2 border-b border-gray-700 ${statusColor} font-bold`}>
+    <div className={`p-2 border-b  ${statusColor} font-bold`}>
       {modifiedStatus}
     </div>
   );

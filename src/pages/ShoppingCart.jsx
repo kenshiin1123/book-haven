@@ -48,7 +48,7 @@ export default function ShoppingCart() {
 const CheckoutButton = ({ userData, handleCheckoutClick }) => {
   return (
     userData.cart.length > 0 && (
-      <div className="flex h-25 p-5 w-full justify-end sticky top-26 text-white bg-white z-30 border border-gray-500">
+      <div className="flex h-25 p-5 w-full justify-end sticky top-26  backdrop-blur-md z-30 border border-gray-500">
         <Button
           onClick={handleCheckoutClick}
           classExtension={"text-md sm:text-xl"}

@@ -4,7 +4,9 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 const PasswordInput = ({ name, id, classNameExtension, ref }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className={`border w-full  flex relative ${classNameExtension}`}>
+    <div
+      className={`border w-full  flex relative ${classNameExtension} bg-white`}
+    >
       <input
         ref={ref}
         type={showPassword ? "text" : "password"}

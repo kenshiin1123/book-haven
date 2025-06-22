@@ -100,7 +100,9 @@ export default function FilterSideBar({ active, togglerFunc }) {
       <button
         onClick={togglerFunc}
         title="Book Filter"
-        className={`ml-auto mt-5 mr-5 flex justify-center items-center size-10  border text-2xl p-2 rounded bg-white sticky top-30 right-0 z-20`}
+        className={`ml-auto mt-5 mr-5 flex justify-center items-center size-10  border text-2xl p-2 rounded bg-white sticky top-30 right-0 z-20 ${
+          active && "animate-bounce translate-y-2"
+        }`}
       >
         <FaFilter />
       </button>

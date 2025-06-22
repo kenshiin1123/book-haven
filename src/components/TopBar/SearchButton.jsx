@@ -32,7 +32,7 @@ const SearchButton = ({ searchRef }) => {
 
   return (
     <li className="ml-auto sm:grow sm:justify-center sm:items-center flex flex-col">
-      <div className="flex items-center gap-2 sm:outline-1">
+      <div className="flex items-center gap-2 sm:outline-1 sm:color-3 rounded-md">
         <input
           ref={input}
           onFocus={handleFocus}

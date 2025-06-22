@@ -45,14 +45,7 @@ const Status = ({ status }) => {
   // make first letter bigger
   const modifiedStatus =
     status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
-
-  let statusColor = "text-black";
-
-  return (
-    <div className={`p-2 border-b  ${statusColor} font-bold`}>
-      {modifiedStatus}
-    </div>
-  );
+  return <div className={`p-2 border-b font-bold `}>{modifiedStatus}</div>;
 };
 
 const ImageSection = ({ book }) => {
@@ -69,7 +62,7 @@ const PurchasedDetails = ({ book, p, discountedPrice }) => {
       <Link to={`/books/${book._id}`} className="text-md sm:text-xl">
         {book.title}
       </Link>
-      <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
+      <h3 className="text-sm mb-10">{book.author}</h3>
       <div className="text-xs  flex justify-end mt-auto">
         <span
           className="text-md sm:text-lg cursor-help"

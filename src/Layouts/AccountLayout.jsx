@@ -42,13 +42,13 @@ export default function ProfileLayout() {
 const CustomNavLink = ({ link }) => {
   const location = useLocation().pathname;
 
-  let activeClass = "border border-white";
+  let activeClass = "border border-white dark:border-transparent";
   if (link.to === location) {
-    activeClass = "border border-black";
+    activeClass = "border border-black dark:border-white";
   }
 
   return (
-    <li className={`${activeClass} text-sm sm:text-lg md:text-xl bg-white`}>
+    <li className={`${activeClass} text-sm sm:text-lg md:text-xl color-3`}>
       <Link to={link.to}>{link.title}</Link>
     </li>
   );

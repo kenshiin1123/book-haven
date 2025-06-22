@@ -115,7 +115,9 @@ export default function RegisterPage() {
             classExtension={"flex items-center gap-3 w-fit py-1"}
             onClick={handleShowMap}
           >
-            <small className="text-gray-600">(optional)</small>
+            <small className="text-gray-600 dark:text-white/50">
+              (optional)
+            </small>
             Select address <IoLocationSharp />
           </ButtonOutlined>
           {showMap && <Map handleMapClick={handleMapClick} />}

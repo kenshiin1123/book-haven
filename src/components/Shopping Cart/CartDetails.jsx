@@ -20,7 +20,7 @@ const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {
         </button>
       </div>
 
-      <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
+      <h3 className="text-sm  mb-10">{book.author}</h3>
 
       <div className="min-[740px]:h-10 flex flex-col [&>span]:my-auto justify-between  sm:gap-5 min-[740px]:justify-start mt-auto min-[740px]:flex-row">
         <QuantityInput

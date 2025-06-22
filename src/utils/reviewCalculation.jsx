@@ -19,7 +19,11 @@ const displayStar = (ratingOutOf5) => {
     stars.push(<MdOutlineStarOutline key={`empty-${stars.length}`} />);
   }
 
-  return <div className="flex items-center text-yellow-700">{stars}</div>;
+  return (
+    <div className="flex items-center text-yellow-700 dark:text-yellow-400">
+      {stars}
+    </div>
+  );
 };
 
 // 🧮 Calculate average from 0–10 then convert to 5-star

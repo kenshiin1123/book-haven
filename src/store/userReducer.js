@@ -33,6 +33,7 @@ const cartReducers = {
 
 const preferencesReducers = {
   toggleTheme(state) {
+    localStorage.setItem("darkTheme", !state.preferences.darkTheme);
     state.preferences.darkTheme = !state.preferences.darkTheme;
   },
   toggleNotification(state) {

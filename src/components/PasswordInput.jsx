@@ -5,7 +5,7 @@ const PasswordInput = ({ name, id, classNameExtension, ref }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div
-      className={`border w-full  flex relative ${classNameExtension} bg-white`}
+      className={`border w-full  flex relative ${classNameExtension} color-3`}
     >
       <input
         ref={ref}

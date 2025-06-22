@@ -7,8 +7,8 @@ export default function Homepage() {
 
   return (
     <>
-      <main className="space-y-10 p-10 min-sm:w-[37rem] md:w-[35rem] lg:w-[45rem] mx-auto color-3">
-        <h1 className="text-3xl font-bold border text-center p-3 text-red-700">
+      <main className="space-y-10 p-10 min-sm:w-[37rem] md:w-[35rem] lg:w-[45rem] mx-auto color-3 my-2">
+        <h1 className="text-3xl font-bold border border-white rounded text-center p-3 text-red-700 dark:text-red-500">
           This site is under construction.
         </h1>
         <HeroHeader />

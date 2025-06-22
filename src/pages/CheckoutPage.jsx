@@ -62,7 +62,7 @@ const CheckoutItems = ({ checkoutItems }) => {
                 {book.title}
               </Link>
             </div>
-            <h3 className="text-sm text-gray-600 mb-10">{book.author}</h3>
+            <h3 className="text-sm  mb-10">{book.author}</h3>
             <div className="flex mt-auto justify-between">
               <section className="space-x-5">
                 <span className=" text-xs sm:text-sm">Quantity</span>
@@ -88,9 +88,13 @@ const PaymentMethodSection = () => {
   ];
 
   return (
-    <section className="flex justify-between border-b p-5">
+    <section className="flex justify-between border-b p-5 dark:border-white">
       <h2 className="text-lg font-semibold">Payment Method</h2>
-      <select name="" id="" className="border px-1 sm:px-3 py-1">
+      <select
+        name=""
+        id=""
+        className="border px-1 sm:px-3 py-1 dark:border-white"
+      >
         {paymentMethods.map((method) => (
           <option
             key={method.value}

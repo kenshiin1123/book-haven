@@ -68,11 +68,11 @@ export default function FilterSideBar({ active, togglerFunc }) {
                 : {}
             }
             exit={active ? { opacity: 0, width: "0rem" } : {}}
-            className="h-full fixed top-0 border-r border-r-gray-500 bg-white transition overflow-hidden z-30 overflow-y-scroll"
+            className="h-full fixed top-0 border-r border-r-gray-500 color-3 transition overflow-hidden z-30 overflow-y-scroll"
           >
             <button
               onClick={togglerFunc}
-              className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl text-gray-600 hover:scale-95`}
+              className={`ml-auto mt-5 mr-5 flex justify-center items-center text-4xl hover:scale-95`}
             >
               <IoCloseCircleOutline />
             </button>
@@ -100,7 +100,7 @@ export default function FilterSideBar({ active, togglerFunc }) {
       <button
         onClick={togglerFunc}
         title="Book Filter"
-        className={`ml-auto mt-5 mr-5 flex justify-center items-center size-10  border text-2xl p-2 rounded bg-white sticky top-30 right-0 z-20 ${
+        className={`ml-auto mt-5 mr-5 flex justify-center items-center size-10  border text-2xl p-2 rounded color-3  sticky top-30 right-0 z-20 ${
           active && "animate-bounce translate-y-2"
         }`}
       >
@@ -145,6 +145,7 @@ const FilterSection = ({ arr, title, handleChange }) => {
                 id={id}
                 defaultChecked={filter === arr[0]}
                 onChange={handleChange}
+                className="dark:accent-black"
               />
               <label
                 htmlFor={id}

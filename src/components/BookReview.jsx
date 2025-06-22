@@ -36,7 +36,7 @@ export default function BookReview({ review }) {
 const DateTime = ({ r, classExtension }) => {
   return (
     <h3
-      className={`font-semibold text-xs min-[366px]:ml-auto max-[366px]:mb-5 text-gray-800 ${classExtension}`}
+      className={`font-semibold text-xs min-[366px]:ml-auto max-[366px]:mb-5 ${classExtension}`}
     >
       {format(r.datetime, "PPpp")}
     </h3>

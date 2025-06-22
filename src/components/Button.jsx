@@ -13,7 +13,7 @@ export default function Button({
     <button
       onClick={onClick}
       type={type}
-      className={`bg-black text-white ${initialClass} ${classExtension}`}
+      className={`bg-black text-white dark:bg-white dark:text-black rounded ${initialClass} ${classExtension}`}
     >
       {children}
     </button>
@@ -30,7 +30,7 @@ export const ButtonOutlined = ({
     <button
       onClick={onClick}
       type={type}
-      className={`${initialClass} color-3 border ${classExtension}`}
+      className={`${initialClass} color-3 border ${classExtension} dark:border-white`}
     >
       {children}
     </button>
@@ -40,7 +40,7 @@ export const ButtonOutlined = ({
 export const ButtonToggle = ({ active = false, onClick }) => {
   return (
     <button
-      className="h-9 w-20 border rounded-full flex items-center p-1 "
+      className="h-9 w-20 border rounded-full flex items-center p-1 dark:border-white"
       onClick={onClick}
       type="button"
     >
@@ -48,7 +48,7 @@ export const ButtonToggle = ({ active = false, onClick }) => {
         initial={false}
         animate={{ marginLeft: active ? "60%" : 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="size-7 bg-black rounded-full"
+        className="size-7 bg-black rounded-full dark:bg-white"
       />
     </button>
   );
@@ -64,7 +64,7 @@ export const ButtonWarning = ({
     <button
       onClick={onClick}
       type={type}
-      className={`${initialClass} inset-ring-1 inset-ring-red-600 text-red-600 color-3 ${classExtension}`}
+      className={`${initialClass} inset-ring-1 dark:inset-ring-white dark:inset-0 text-red-600  dark:text-red-500 color-3 ${classExtension}`}
     >
       {children}
     </button>

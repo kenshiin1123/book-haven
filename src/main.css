@@ -22,23 +22,31 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+::-webkit-scrollbar {
+  @apply bg-white w-2 h-2;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black/50;
+}
+
 @layer base {
   * {
-    @apply border-[#28161c]/20;
+    @apply border-[#28161c]/20 dark:border-white/10;
   }
 }
 
 @utility color-1 {
   /* for background color */
-  @apply bg-[#f7f7f7] text-black;
+  @apply bg-[#f7f7f7] text-black dark:bg-[#1a1a1a] dark:text-white;
 }
 
 @utility color-2 {
   /* for header and footer */
-  @apply bg-[#1a1a1a] text-[#ffffff];
+  @apply bg-[#303030] text-[#ffffff];
 }
 
 @utility color-3 {
   /*  for card or item display */
-  @apply bg-[#ffffff] text-black;
+  @apply bg-[#ffffff] text-black dark:bg-[#303030] dark:text-white rounded;
 }

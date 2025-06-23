@@ -11,13 +11,15 @@ export default function ShoppingCart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const checkedItems = userData.cart.filter((item) => item.checked === true);
+
   useEffect(() => {
     document.title = "Shopping Cart - Book Haven";
   });
 
   const handleCheckoutClick = () => {
     if (userData.cart.length > 0) {
-      dispatch(userActions.checkoutCart());
+      dispatch(userActions.checkoutCart(checkedItems));
       navigate("/checkout");
     } else {
       alert("There must be an item to be checkout.");
@@ -28,6 +30,7 @@ export default function ShoppingCart() {
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
       <h1 className="text-3xl mx-auto mt-10 font-bold">Shopping Cart</h1>
       <CheckoutButton
+        checkedItems={checkedItems}
         handleCheckoutClick={handleCheckoutClick}
         userData={userData}
       />
@@ -45,16 +48,21 @@ export default function ShoppingCart() {
   );
 }
 
-const CheckoutButton = ({ userData, handleCheckoutClick }) => {
+const CheckoutButton = ({ userData, handleCheckoutClick, checkedItems }) => {
   return (
     userData.cart.length > 0 && (
-      <div className="flex h-25 p-5 w-full justify-end sticky top-26  backdrop-blur-md z-30 border border-gray-500">
-        <Button
-          onClick={handleCheckoutClick}
-          classExtension={"text-md sm:text-xl"}
-        >
-          Checkout
-        </Button>
+      <div className="flex h-25 p-5 w-full justify-between items-center sticky top-26  backdrop-blur-md z-30 border border-gray-500">
+        <h1 className="text-2xl font-bold">
+          {checkedItems.length} Items in check
+        </h1>
+        {checkedItems.length > 0 && (
+          <Button
+            onClick={handleCheckoutClick}
+            classExtension={"text-md sm:text-xl h-full"}
+          >
+            Checkout
+          </Button>
+        )}
       </div>
     )
   );

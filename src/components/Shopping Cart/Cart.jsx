@@ -16,8 +16,12 @@ const Cart = ({ item }) => {
     dispatch(userActions.removeCart(itemId));
   };
 
+  const handleItemCheck = () => {
+    dispatch(userActions.checkItemInCart({ _id: item._id }));
+  };
+
   return (
-    <MainContainer>
+    <MainContainer handleItemCheck={handleItemCheck} isChecked={item.checked}>
       <InnerContainer>
         <ImageSection book={book} />
         <CartDetails

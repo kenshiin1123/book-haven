@@ -3,7 +3,7 @@ import { QuantityInput } from "../LabelNInput";
 import { MdDelete } from "react-icons/md";
 import useItemQuantity from "../../hooks/useItemQuantity.hook";
 const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {
-  const { quantity, handleDecrement, handleIncrement, setQuantity } =
+  const { quantity, handleDecrement, handleIncrement, handleChange } =
     useItemQuantity(book, item.quantity);
 
   return (
@@ -27,7 +27,7 @@ const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {
           handleDecrement={handleDecrement}
           handleIncrement={handleIncrement}
           quantity={quantity}
-          setQuantity={setQuantity}
+          handleChange={handleChange}
         />
         <div className="min-[740px]:ml-auto w-fit [&>section]:flex [&>section]:justify-between">
           <section className=" flex justify-start  mt-5 gap-5 sm:mt-0 sm:justify-start sm:ml-auto">

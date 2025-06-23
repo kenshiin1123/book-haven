@@ -101,7 +101,7 @@ export const QuantityInput = ({
   quantity,
   handleDecrement,
   handleIncrement,
-  setQuantity,
+  handleChange,
 }) => {
   const Button = ({ type, onClick }) => {
     return (
@@ -116,8 +116,12 @@ export const QuantityInput = ({
     );
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
-    <div className="flex w-fit gap-2 items-center">
+    <div className="flex w-fit gap-2 items-center" onClick={handleClick}>
       <label htmlFor="quantity" className="text-sm font-medium">
         Quantity
       </label>
@@ -129,7 +133,7 @@ export const QuantityInput = ({
           className="w-29 text-center focus:outline-0 px-7"
           min={1}
           value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={handleChange}
         />
         <Button type={"-"} onClick={handleDecrement} />
       </div>

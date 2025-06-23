@@ -43,8 +43,9 @@ const BookDetails = ({ book }) => {
     initialQuantity = addedToCart.quantity;
   }
 
-  const { quantity, handleDecrement, handleIncrement, setQuantity } =
-    useItemQuantity(book, initialQuantity);
+  const itemQuantity = useItemQuantity(book, initialQuantity);
+  const { quantity } = itemQuantity;
+
   const [addToCart, setAddToCart] = useState(addedToCart);
 
   const handleCartClick = () => {
@@ -84,12 +85,7 @@ const BookDetails = ({ book }) => {
           <RatingStarDisplay reviews={book.reviews} />
           <section className="mt-3 flex justify-between max-[390px]:gap-3 max-[390px]:flex-col sm:flex-col-reverse sm:gap-3">
             <PriceDisplay discount={book.discount} price={book.price} />
-            <QuantityInput
-              quantity={quantity}
-              setQuantity={setQuantity}
-              handleDecrement={handleDecrement}
-              handleIncrement={handleIncrement}
-            />
+            <QuantityInput {...itemQuantity} />
           </section>
           <section className="space-x-3 max-sm:mx-auto w-fit mt-10 max-[390px]:flex max-[390px]:gap-2 max-[390px]:flex-col max-[390px]:[&>button]:w-full max-[390px]:w-full">
             <ButtonOutlined

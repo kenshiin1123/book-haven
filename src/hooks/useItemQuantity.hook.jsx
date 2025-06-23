@@ -5,9 +5,11 @@ import { userActions } from "../store/userReducer";
 export default function useItemQuantity(book, initialQuantity) {
   const dispatch = useDispatch();
 
-  const [quantity, setQuantity] = useState(initialQuantity);
+  const [quantity, setQuantity] = useState(initialQuantity || 1);
 
-  const handleDecrement = () => {
+  const handleDecrement = (event) => {
+    event.stopPropagation();
+
     if (quantity > 1) {
       dispatch(
         userActions.setItemQuantity({
@@ -19,7 +21,9 @@ export default function useItemQuantity(book, initialQuantity) {
     }
   };
 
-  const handleIncrement = () => {
+  const handleIncrement = (event) => {
+    event.stopPropagation();
+
     dispatch(
       userActions.setItemQuantity({
         _id: book._id,
@@ -28,10 +32,21 @@ export default function useItemQuantity(book, initialQuantity) {
     );
     setQuantity((q) => parseInt(q) + 1);
   };
+
+  const handleChange = (event) => {
+    setQuantity(parseInt(event.target.value));
+    dispatch(
+      userActions.setItemQuantity({
+        _id: book._id,
+        quantity: parseInt(event.target.value),
+      })
+    );
+  };
+
   return {
     quantity,
     handleDecrement,
     handleIncrement,
-    setQuantity,
+    handleChange,
   };
 }

@@ -13,14 +13,21 @@ const cartReducers = {
   },
   addToCart(state, action) {
     const { _id, quantity } = action.payload;
-    state.cart.unshift({ _id, quantity });
+    state.cart.unshift({ _id, quantity, checked: false });
   },
-  checkoutCart(state) {
-    state.checkout = state.cart;
+  checkoutCart(state, action) {
+    state.checkout = action.payload;
   },
   checkoutBook(state, action) {
     const { _id, quantity } = action.payload;
     state.checkout = [{ _id, quantity }];
+  },
+  checkItemInCart(state, action) {
+    const { _id } = action.payload;
+    const existingItem = state.cart.find((item) => item._id === _id);
+    if (existingItem) {
+      existingItem.checked = !existingItem.checked;
+    }
   },
   setItemQuantity(state, actions) {
     const { _id, quantity } = actions.payload;

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import DateTime from "../../components/DateTime";
 export default function PurchasesPage() {
   const userData = useSelector((state) => state.user);
 
@@ -25,7 +26,7 @@ const PurchasedBook = ({ p }) => {
   const discountedPrice = getDiscountedPrice(book.price, book.discount);
   return (
     <MainContainer>
-      <Status status={p.status} />
+      <StatusAndDateTime status={p.status} datetime={p.datetime} />
       <InnerContainer>
         <ImageSection book={book} />
         <PurchasedDetails book={book} discountedPrice={discountedPrice} p={p} />
@@ -41,11 +42,16 @@ const InnerContainer = ({ children }) => {
   return <div className="flex p-1 gap-3 sm:p-4">{children}</div>;
 };
 
-const Status = ({ status }) => {
+const StatusAndDateTime = ({ status, datetime }) => {
   // make first letter bigger
   const modifiedStatus =
     status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
-  return <div className={`p-2 border-b font-bold `}>{modifiedStatus}</div>;
+  return (
+    <div className={`p-2 border-b font-bold sm:flex justify-between`}>
+      <span>{modifiedStatus}</span>
+      <DateTime datetime={datetime} noMargins />
+    </div>
+  );
 };
 
 const ImageSection = ({ book }) => {
@@ -74,7 +80,7 @@ const PurchasedDetails = ({ book, p, discountedPrice }) => {
       <div className="text-xs flex justify-between mt-2">
         <span className="mt-auto sm:text-lg">Quantity {p.quantity}</span>
         <span className="text-base sm:text-2xl cursor-help" title="Total price">
-          ${discountedPrice * p.quantity}
+          ${(discountedPrice * p.quantity).toFixed(2)}
         </span>
       </div>
     </section>

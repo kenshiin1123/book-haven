@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { ButtonOutlined } from "./Button";
 import Image from "./Image";
 import PriceDisplay from "./PriceDisplay";
 import RatingStarDisplay from "./RatingStarDisplay";
@@ -34,7 +33,8 @@ const BookCard = ({ ...props }) => {
     navigate(`/books/${_id}`);
   };
 
-  const handleCartClick = () => {
+  const handleCartClick = (event) => {
+    event.stopPropagation();
     if (!addedToCart) {
       dispatch(userActions.addToCart({ _id, quantity: 1 }));
     } else if (addedToCart) {
@@ -44,7 +44,10 @@ const BookCard = ({ ...props }) => {
   };
 
   return (
-    <div className="flex flex-col w-80 p-3 h-fit border color-3 relative">
+    <div
+      className="flex flex-col w-80 p-3 h-fit border color-3 relative transition overflow-hidden"
+      onClick={handleViewBook}
+    >
       <button
         className="text-3xl absolute right-5 top-5 active:scale-95"
         onClick={handleCartClick}
@@ -55,9 +58,7 @@ const BookCard = ({ ...props }) => {
           <MdAddShoppingCart />
         )}
       </button>
-      <button onClick={handleViewBook}>
-        <Image title={title} src={image} />
-      </button>
+      <Image title={title} src={image} />
       <p className="font-semibold mt-10 text-xl truncate" title={title}>
         <BookCategoriesDisplay categories={category} />
         {title}
@@ -66,7 +67,6 @@ const BookCard = ({ ...props }) => {
       <AuthorNPubYearDisplay author={author} year={year} />
       <section className="flex justify-between mt-5">
         <PriceDisplay discount={discount} price={price} />
-        <ButtonOutlined onClick={handleViewBook}>View Book</ButtonOutlined>
       </section>
     </div>
   );

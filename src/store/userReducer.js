@@ -36,6 +36,15 @@ const cartReducers = {
       item.quantity = quantity;
     }
   },
+  purchaseItem(state, action) {
+    action.payload.forEach((book) => {
+      state.purchases.unshift({
+        ...book,
+        status: "pending",
+        datetime: Date.now(),
+      });
+    });
+  },
 };
 
 const preferencesReducers = {

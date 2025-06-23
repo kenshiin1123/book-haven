@@ -51,9 +51,13 @@ export default function ShoppingCart() {
 const CheckoutButton = ({ userData, handleCheckoutClick, checkedItems }) => {
   return (
     userData.cart.length > 0 && (
-      <div className="flex h-25 p-5 w-full justify-between items-center sticky top-26  backdrop-blur-md z-30 border border-gray-500">
+      <div className="flex h-25 p-5 w-full justify-between items-center sticky top-29 color-3  bg-[#303030]/80 backdrop-blur-md z-30 border">
         <h1 className="text-2xl font-bold">
-          {checkedItems.length} Items in check
+          {checkedItems.length > 0
+            ? `${checkedItems.length} item${
+                checkedItems.length > 1 ? "s" : ""
+              } selected`
+            : "Select items to proceed to checkout"}
         </h1>
         {checkedItems.length > 0 && (
           <Button

@@ -2,14 +2,22 @@ import InnerContainer from "../components/Shopping Cart/InnerContainer";
 import ImageSection from "../components/Shopping Cart/ImageSection";
 import books from "../data/books";
 import { getDiscountedPrice } from "../utils/reviewCalculation";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Button from "../components/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InfoWButton from "../components/InfoWButton";
+import { userActions } from "../store/userReducer";
 export default function CheckoutPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const address = user.address;
   const checkoutItems = user.checkout;
+
+  const handlePlaceOrder = () => {
+    dispatch(userActions.purchaseItem(checkoutItems));
+    navigate("/books");
+  };
 
   return (
     <main className="flex flex-col gap-5 sm:px-5.5 mb-10">
@@ -22,7 +30,10 @@ export default function CheckoutPage() {
           <div className="flex flex-col w-full justify-end border color-3">
             <PaymentMethodSection />
             <AmountSection />
-            <Button classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}>
+            <Button
+              onClick={handlePlaceOrder}
+              classExtension={"w-40 h-15 text-xl ml-auto mr-5 mb-5"}
+            >
               Place Order
             </Button>
           </div>

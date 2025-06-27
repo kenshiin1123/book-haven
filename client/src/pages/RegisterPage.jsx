@@ -1,12 +1,12 @@
-import LabelNInput from "../components/LabelNInput";
-import Button, { ButtonOutlined } from "../components/Button";
+import LabelNInput from "../components/ui/LabelNInput";
+import Button, { ButtonOutlined } from "../components/ui/Button";
 import { useNavigate } from "react-router";
-import Map from "../components/Map";
+import Map from "../components/ui/Map";
 import { useEffect, useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 
-import Form from "../components/Form";
-import HorizontalRule from "../components/HorizontalRule";
+import Form from "../components/ui/Form";
+import HorizontalRule from "../components/ui/HorizontalRule";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 
 export default function RegisterPage() {

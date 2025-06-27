@@ -37,6 +37,11 @@ const cartReducers = {
     }
   },
   purchaseItem(state, action) {
+    // Remove Checked Item in Cart
+    const updatedCart = state.cart.filter((item) => !item.checked);
+    state.cart = updatedCart;
+
+    // Add the purchased item to purchased item list
     action.payload.forEach((book) => {
       state.purchases.unshift({
         ...book,

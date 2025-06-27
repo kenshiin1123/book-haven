@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import Form from "../components/Form";
-import LabelNInput from "../components/LabelNInput";
-import Button, { ButtonOutlined } from "../components/Button";
+import Form from "../components/ui/Form";
+import LabelNInput from "../components/ui/LabelNInput";
+import Button, { ButtonOutlined } from "../components/ui/Button";
 import { useNavigate } from "react-router";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import HorizontalRule from "../components/HorizontalRule";
+import HorizontalRule from "../components/ui/HorizontalRule";
 import { Password, Email } from "../schema/user.schema";
 import { toast } from "sonner";
 

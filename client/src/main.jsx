@@ -9,9 +9,9 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 const { VITE_ADMIN_ROUTE } = import.meta.env;
 
 // Layout
-import Layout from "./Layouts/Layout";
-import AccountLayout from "./Layouts/AccountLayout";
-import AdminLayout from "./Layouts/AdminLayout";
+import Layout from "./layouts/MainLayout";
+import AccountLayout from "./layouts/AccountLayout";
+import AdminLayout from "./layouts/AdminLayout";
 
 // Pages
 import Homepage from "./pages/Homepage";
@@ -24,7 +24,7 @@ import AccountPage from "./pages/Account Page/AccountPage";
 import ProfilePage from "./pages/Account Page/ProfilePage";
 import PurchasesPage from "./pages/Account Page/PurchasesPage";
 import SettingsPage from "./pages/Account Page/SettingsPage";
-import ShoppingCart from "./pages/ShoppingCart";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 
 // ADMIN PAGE
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "checkout", element: <CheckoutPage /> },
-      { path: "/cart", element: <ShoppingCart /> },
+      { path: "/cart", element: <ShoppingCartPage /> },
       {
         path: VITE_ADMIN_ROUTE,
         element: <AdminLayout />,

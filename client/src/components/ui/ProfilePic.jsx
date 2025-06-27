@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../store/userReducer";
-import { ButtonOutlined } from "./Button";
+import { userActions } from "../../store/userReducer";
+import { ButtonOutlined } from "../ui/Button";
 const ProfilePic = () => {
   const dispatch = useDispatch();
   const profilePic = useSelector((state) => state.user.profilePic);

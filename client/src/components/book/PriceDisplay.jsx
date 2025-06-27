@@ -1,4 +1,4 @@
-import { getDiscountedPrice } from "../utils/reviewCalculation";
+import { getDiscountedPrice } from "../../utils/reviewCalculation";
 
 export default function PriceDisplay({ discount, price }) {
   const discountedPrice = getDiscountedPrice(price, discount);

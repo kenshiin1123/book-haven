@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import FilterSideBar from "../components/FilterSideBar";
+import FilterSideBar from "../components/layout/FilterSideBar";
 
-import BookCard from "../components/BookCard";
+import BookCard from "../components/book/BookCard";
 import { useDispatch, useSelector } from "react-redux";
-import Button, { ButtonOutlined } from "../components/Button";
+import Button, { ButtonOutlined } from "../components/ui/Button";
 import { bookActions } from "../store/bookReducer";
 
 export default function BooksPage() {

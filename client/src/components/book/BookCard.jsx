@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Image from "./Image";
+import Image from "../ui/Image";
 import PriceDisplay from "./PriceDisplay";
 import RatingStarDisplay from "./RatingStarDisplay";
 import AuthorNPubYearDisplay from "./AuthorNPubYearDisplay";
@@ -7,7 +7,7 @@ import BookCategoriesDisplay from "./BookCategoriesDisplay";
 import { MdAddShoppingCart, MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../store/userReducer";
+import { userActions } from "../../store/userReducer";
 
 const BookCard = ({ ...props }) => {
   const {

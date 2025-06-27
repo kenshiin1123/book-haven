@@ -1,5 +1,5 @@
 import { FaMoon } from "react-icons/fa6";
-import { ButtonToggle } from "../../components/Button";
+import { ButtonToggle } from "../../components/ui/Button";
 import { IoIosNotifications } from "react-icons/io";
 import { useEffect } from "react";
 

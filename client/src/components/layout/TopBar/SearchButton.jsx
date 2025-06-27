@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdClear } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { bookActions } from "../../store/bookReducer";
+import { bookActions } from "../../../store/bookReducer";
 import BookSearchResult from "./BookSearchResult";
 
 const SearchButton = ({ searchRef }) => {

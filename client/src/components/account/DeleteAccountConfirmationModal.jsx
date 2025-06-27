@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import PasswordInput from "./PasswordInput";
-import Button, { ButtonOutlined } from "./Button";
-import Dialog from "./Dialog";
+import PasswordInput from "../ui/PasswordInput";
+import Button, { ButtonOutlined } from "../ui/Button";
+import Dialog from "../ui/Dialog";
 const DeleteAccountConfirmationModal = ({ ref, onDelete = () => {} }) => {
   const handleClose = () => {
     ref.current.close();

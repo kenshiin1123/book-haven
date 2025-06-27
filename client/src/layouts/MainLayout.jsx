@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 
-import TopBar from "../components/TopBar/TopBar";
-import MainFooter from "../components/MainFooter";
+import TopBar from "../components/layout/TopBar/TopBar";
+import MainFooter from "../components/layout/MainFooter";
 import { Toaster } from "sonner";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";

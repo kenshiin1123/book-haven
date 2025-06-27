@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from "motion/react";
 import { FaFilter } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { displayStar } from "../utils/reviewCalculation";
+import { displayStar } from "../../utils/reviewCalculation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { bookActions } from "../store/bookReducer";
+import { bookActions } from "../../store/bookReducer";
 export default function FilterSideBar({ active, togglerFunc }) {
   const ratings = [
     "Default Rating",

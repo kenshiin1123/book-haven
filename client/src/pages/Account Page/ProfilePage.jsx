@@ -1,10 +1,10 @@
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import { EditableLabelNInput } from "../../components/LabelNInput";
-import ProfilePic from "../../components/ProfilePic";
-import { ButtonWarning } from "../../components/Button";
-import DeleteAccountConfirmationModal from "../../components/DeleteAccountConfirmationModal";
-import ChangePasswordModal from "../../components/ChangePasswordModal";
+import { EditableLabelNInput } from "../../components/ui/LabelNInput";
+import ProfilePic from "../../components/ui/ProfilePic";
+import { ButtonWarning } from "../../components/ui/Button";
+import DeleteAccountConfirmationModal from "../../components/account/DeleteAccountConfirmationModal";
+import ChangePasswordModal from "../../components/account/ChangePasswordModal";
 import { userActions } from "../../store/userReducer";
 
 import { useDispatch, useSelector } from "react-redux";

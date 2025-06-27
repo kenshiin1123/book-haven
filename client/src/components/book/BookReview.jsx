@@ -1,6 +1,6 @@
 import { FaRegUserCircle } from "react-icons/fa";
-import { displayStar } from "../utils/reviewCalculation";
-import DateTime from "./DateTime";
+import { displayStar } from "../../utils/reviewCalculation";
+import DateTime from "../ui/DateTime";
 
 export default function BookReview({ review }) {
   const star = displayStar(review.stars / 2);

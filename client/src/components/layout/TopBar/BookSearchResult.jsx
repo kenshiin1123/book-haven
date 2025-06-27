@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useDispatch } from "react-redux";
-import { bookActions } from "../../store/bookReducer";
+import { bookActions } from "../../../store/bookReducer";
 const BookSearchResult = ({ searchedBooks, searchInput, clearSearchInput }) => {
   const dispatch = useDispatch();
   const clearBookResult = (event) => {

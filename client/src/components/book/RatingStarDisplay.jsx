@@ -1,7 +1,7 @@
 import {
   calculateAverageRating,
   displayStar,
-} from "../utils/reviewCalculation";
+} from "../../utils/reviewCalculation";
 
 export default function RatingStarDisplay({ reviews }) {
   const averageReview = calculateAverageRating(reviews);

@@ -22,7 +22,7 @@ export default function TopBar() {
   return (
     <header
       className={`z-30 sticky top-0 color-2 flex flex-col w-full pt-5 px-5 pb-2 ${
-        location !== "/cart" && "border-b border-b-gray-500"
+        location !== "/cart" && "border-b"
       }`}
     >
       <section className="flex">

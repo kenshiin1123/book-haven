@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { QuantityInput } from "../LabelNInput";
+import { QuantityInput } from "../ui/LabelNInput";
 import { MdDelete } from "react-icons/md";
 import useItemQuantity from "../../hooks/useItemQuantity.hook";
 const CartDetails = ({ book, item, discountedPrice, deleteFunc }) => {

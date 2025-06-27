@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Cart from "../components/Shopping Cart/Cart";
-import Button from "../components/Button";
+import Cart from "../components/shopping-cart/Cart";
+import Button from "../components/ui/Button";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userReducer";
-import InfoWButton from "../components/InfoWButton";
+import InfoWButton from "../components/ui/InfoWButton";
 
 export default function ShoppingCart() {
   const userData = useSelector((state) => state.user);

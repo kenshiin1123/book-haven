@@ -1,11 +1,11 @@
-import InnerContainer from "../components/Shopping Cart/InnerContainer";
-import ImageSection from "../components/Shopping Cart/ImageSection";
+import InnerContainer from "../components/shopping-cart/InnerContainer";
+import ImageSection from "../components/shopping-cart/ImageSection";
 import books from "../data/books";
 import { getDiscountedPrice } from "../utils/reviewCalculation";
 import { Link, useNavigate } from "react-router";
-import Button from "../components/Button";
+import Button from "../components/ui/Button";
 import { useDispatch, useSelector } from "react-redux";
-import InfoWButton from "../components/InfoWButton";
+import InfoWButton from "../components/ui/InfoWButton";
 import { userActions } from "../store/userReducer";
 export default function CheckoutPage() {
   const dispatch = useDispatch();

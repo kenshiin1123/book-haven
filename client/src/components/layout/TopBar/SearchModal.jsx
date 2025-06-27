@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { bookActions } from "../../store/bookReducer";
+import { bookActions } from "../../../store/bookReducer";
 
 import BookSearchResult from "./BookSearchResult";
 

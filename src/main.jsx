@@ -6,9 +6,12 @@ import store from "./store/store";
 
 import { createBrowserRouter, RouterProvider } from "react-router";
 
+const { VITE_ADMIN_ROUTE } = import.meta.env;
+
 // Layout
 import Layout from "./Layouts/Layout";
 import AccountLayout from "./Layouts/AccountLayout";
+import AdminLayout from "./Layouts/AdminLayout";
 
 // Pages
 import Homepage from "./pages/Homepage";
@@ -23,6 +26,9 @@ import PurchasesPage from "./pages/Account Page/PurchasesPage";
 import SettingsPage from "./pages/Account Page/SettingsPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import CheckoutPage from "./pages/CheckoutPage";
+
+// ADMIN PAGE
+import Dashboard from "./pages/Admin/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +53,11 @@ const router = createBrowserRouter([
       },
       { path: "checkout", element: <CheckoutPage /> },
       { path: "/cart", element: <ShoppingCart /> },
+      {
+        path: VITE_ADMIN_ROUTE,
+        element: <AdminLayout />,
+        children: [{ index: true, element: <Dashboard /> }],
+      },
     ],
   },
 ]);

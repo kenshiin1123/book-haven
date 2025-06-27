@@ -1,0 +1,135 @@
+import LabelNInput from "../components/LabelNInput";
+import Button, { ButtonOutlined } from "../components/Button";
+import { useNavigate } from "react-router";
+import Map from "../components/Map";
+import { useEffect, useRef, useState } from "react";
+import { IoLocationSharp } from "react-icons/io5";
+
+import Form from "../components/Form";
+import HorizontalRule from "../components/HorizontalRule";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+
+export default function RegisterPage() {
+  const firstname = useRef();
+  const lastname = useRef();
+  const email = useRef();
+  const birthday = useRef();
+  const password = useRef();
+  const confirmPassword = useRef();
+  const phoneNumber = useRef();
+  const homeAddress = useRef();
+
+  const [showMap, setShowMap] = useState();
+
+  const navigate = useNavigate();
+
+  const handleLoginButtonClick = () => {
+    navigate("/login");
+  };
+
+  const handleMapClick = (address, latlng) => {
+    homeAddress.current.value = address;
+  };
+
+  useEffect(() => {
+    document.title = "Register - Book Haven";
+  }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(
+      `First Name: ${firstname.current.value}\n` +
+        `Last Name: ${lastname.current.value}\n` +
+        `Email: ${email.current.value}\n` +
+        `Birthday: ${birthday.current.value}\n` +
+        `Password: ${password.current.value}\n` +
+        `Confirm Password: ${confirmPassword.current.value}\n` +
+        `Phone Number: ${phoneNumber.current.value}\n` +
+        `Home Address: ${homeAddress.current.value}`
+    );
+  };
+
+  const handleShowMap = () => {
+    setShowMap(true);
+  };
+
+  const labelNInputs = [
+    {
+      ref: email,
+      name: "email",
+      type: "email",
+    },
+    {
+      ref: birthday,
+      name: "birthday",
+      type: "date",
+    },
+    {
+      ref: password,
+      name: "password",
+      type: "password",
+    },
+    {
+      ref: confirmPassword,
+      name: "Confirm Password",
+      type: "password",
+      id: "confirm_password",
+    },
+    {
+      ref: phoneNumber,
+      name: "Phone Number",
+      type: "number",
+      id: "phone_number",
+    },
+    {
+      ref: homeAddress,
+      name: "Home Address",
+      type: "text",
+      id: "address",
+    },
+  ];
+
+  return (
+    <main className="p-3 min-sm:p-10 ">
+      <Form handleSubmit={handleSubmit} legend={"Registration"}>
+        <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
+          <ButtonOutlined>
+            <FaGoogle />
+            Google
+          </ButtonOutlined>
+          <ButtonOutlined>
+            <FaFacebook />
+            Facebook
+          </ButtonOutlined>
+        </div>
+        <HorizontalRule>or</HorizontalRule>
+        <fieldset className="flex flex-col gap-5">
+          <div className="flex gap-4 justify-between">
+            <LabelNInput name={"firstname"} ref={firstname} />
+            <LabelNInput name={"lastname"} ref={lastname} />
+          </div>
+          {labelNInputs.map((item, i) => (
+            <LabelNInput {...item} key={i} />
+          ))}
+          <ButtonOutlined
+            classExtension={"flex items-center gap-3 w-fit py-1"}
+            onClick={handleShowMap}
+          >
+            <small className="text-gray-600 dark:text-white/50">
+              (optional)
+            </small>
+            Select address <IoLocationSharp />
+          </ButtonOutlined>
+          {showMap && <Map handleMapClick={handleMapClick} />}
+        </fieldset>
+
+        <div className="mt-5 flex justify-center gap-4 [&>button]:w-30 [&>button]:py-1">
+          <ButtonOutlined type={"button"} onClick={handleLoginButtonClick}>
+            Login
+          </ButtonOutlined>
+          <Button type={"Submit"}>Register</Button>
+        </div>
+      </Form>
+    </main>
+  );
+}

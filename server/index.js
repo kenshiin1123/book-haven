@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import connectDB from "./config/db.js";
 
 const app = express();
 dotenv.config();
@@ -12,4 +13,5 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
   console.log("Listening to port", PORT);
+  connectDB();
 });

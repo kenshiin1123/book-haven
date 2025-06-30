@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import DateTime from "../../components/ui/DateTime";
+
 export default function PurchasesPage() {
   const userData = useSelector((state) => state.user);
-
+  console.log(userData.purchases);
   useEffect(() => {
     document.title = "Purchases - Book Haven";
   });

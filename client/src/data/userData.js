@@ -20,7 +20,6 @@ const userInformation = {
   lastname: "fernandez",
   email: "fernandezlanceivangil@gmail.com",
   birthday: "2004-11-23",
-  accountType: "Buyer",
   phone: "0912 312 3123",
   address: "4827 Maplewood Drive, Brookhaven, IL 60510, USA",
   password: "123",

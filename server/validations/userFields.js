@@ -57,7 +57,7 @@ export const Password = z
   .trim();
 export const PicBuffer = z.string().trim();
 
-export default [
+export const signupValidator = [
   { firstname: Firstname },
   { lastname: Lastname },
   { email: Email },
@@ -67,3 +67,4 @@ export default [
   { address: Address },
   // { picBuffer: PicBuffer }, // This is not required
 ];
+export const loginValidator = [{ email: Email }, { password: Password }];

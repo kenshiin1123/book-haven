@@ -1,13 +1,7 @@
-import fields from "./userFields.js";
+import { signupValidator, loginValidator } from "./userFields.js";
 import User from "../model/user.js";
 
-/**
- * Validates specified fields in the request body using provided validation schemas.
- *
- * @param {Object} body - The request body containing values to validate.
- * @returns {{ data: Object, errors: Object }} An object containing validated data and any validation errors.
- */
-const validateFields = (body) => {
+const validateFields = (body, fields) => {
   const errors = {};
   const data = {};
   fields.forEach((field) => {
@@ -24,15 +18,8 @@ const validateFields = (body) => {
   return { data, errors };
 };
 
-/**
- * Validates the signup request body and checks for existing email.
- *
- * @async
- * @param {Object} body - The request body containing signup fields.
- * @returns {Promise<Object>} An object containing the validation message, success status, and response data (either validated data or errors).
- */
 export const validateSignup = async (body) => {
-  const { data, errors } = validateFields(body);
+  const { data, errors } = validateFields(body, signupValidator);
   const existingError = Object.keys(errors).length > 0;
 
   let message = "Successful Validation";
@@ -53,6 +40,37 @@ export const validateSignup = async (body) => {
     message = `Encountered ${
       Object.keys(data).length > 1 ? "errors" : "an error"
     } in validation`;
+    success = false;
+
+    // if it encountered an error, the response data will be replaced by an error message.
+    responseData = errors;
+  }
+
+  return {
+    message,
+    success,
+    responseData,
+  };
+};
+
+export const validateLogin = async (body) => {
+  const { data, errors } = validateFields(body, loginValidator);
+
+  let message = "Successful Validation";
+  let success = true;
+  let responseData = data;
+
+  if (!body.email || !body.password) {
+    message = "Please input all fields";
+    success = false;
+    responseData = errors;
+  }
+
+  if (Object.keys(errors).length > 0) {
+    message =
+      message === "Please input all fields"
+        ? "Please input all fields"
+        : "Validation Failed";
     success = false;
     responseData = errors;
   }

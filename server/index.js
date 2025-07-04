@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.use(authRoute);
+app.use("/api/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log("Listening to port", PORT);

@@ -5,6 +5,7 @@ import cors from "cors";
 
 // Routes
 import authRoute from "./routes/auth.route.js";
+import userRoute from "./routes/user.route.js";
 
 const app = express();
 dotenv.config();
@@ -22,6 +23,10 @@ app.use(
 );
 
 app.use("/api/auth", authRoute);
+
+//TODO: Add token validation middleware here
+
+app.use("/api/users", userRoute);
 
 app.listen(PORT, () => {
   console.log("Listening to port", PORT);

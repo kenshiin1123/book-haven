@@ -8,6 +8,7 @@ const validateFields = (body, fields) => {
     const key = Object.keys(field)[0];
     const value = Object.values(field)[0];
     const validatedField = value.safeParse(body[key]);
+
     if (!validatedField.success) {
       errors[key] =
         validatedField.error.errors[0]?.message || `${key} is invalid`;

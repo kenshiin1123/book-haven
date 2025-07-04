@@ -68,3 +68,13 @@ export const signupValidator = [
   // { picBuffer: PicBuffer }, // This is not required
 ];
 export const loginValidator = [{ email: Email }, { password: Password }];
+
+export const allFields = {
+  firstname: Firstname,
+  lastname: Lastname,
+  email: Email,
+  password: Password,
+  birthday: Birthday,
+  phone: Phone,
+  address: Address,
+};

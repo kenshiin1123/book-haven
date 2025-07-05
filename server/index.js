@@ -6,9 +6,10 @@ import cors from "cors";
 // Routes
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
+import bookRoute from "./routes/book.route.js";
 
 // Middleware
-import authMiddleware from "./middleware/authMiddleware.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 dotenv.config();
@@ -27,20 +28,11 @@ app.use(
 
 app.use("/api/auth", authRoute);
 
-// This is used to validate the token
-app.use(authMiddleware);
-
+// User Routes
 app.use("/api/users", userRoute);
-
-app.use((err, req, res, next) => {
-  const status = err.status || 500;
-  const message = err.message || "Something went wrong";
-
-  res.status(status).json({
-    success: false,
-    message,
-  });
-});
+app.use("/api/books", bookRoute);
+// Error handler middleware
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log("Listening to port", PORT);

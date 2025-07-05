@@ -3,6 +3,11 @@ import app from "express";
 import { validateUserField } from "../validations/user.js";
 const router = app.Router();
 
+import authMiddleware from "../middleware/authMiddleware.js";
+
+// This is used to validate the token
+router.use(authMiddleware);
+
 // modify user information by field type
 router.patch("/:userId", async (req, res) => {
   const { userId } = req.params;

@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "checkout", element: <CheckoutPage /> },
-      { path: "/cart", element: <ShoppingCartPage /> },
+      { path: "cart", element: <ShoppingCartPage /> },
       {
         path: VITE_ADMIN_ROUTE,
         element: <AdminLayout />,

@@ -26,11 +26,15 @@ app.use(
   })
 );
 
+// Authentication Route
 app.use("/api/auth", authRoute);
 
 // User Routes
 app.use("/api/users", userRoute);
+
+// Book Routes
 app.use("/api/books", bookRoute);
+
 // Error handler middleware
 app.use(errorHandler);
 

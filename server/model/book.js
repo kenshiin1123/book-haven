@@ -9,6 +9,7 @@ const bookSchema = new Schema({
   discount: Number,
   year: Date,
   image: Buffer,
+  purchases: Number,
   reviews: [{ type: Types.ObjectId, ref: "review" }],
 });
 

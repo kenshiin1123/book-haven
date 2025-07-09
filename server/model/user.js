@@ -13,19 +13,7 @@ const userSchema = new Schema(
     picture: Buffer,
     cart: [
       {
-        bookId: {
-          type: Types.ObjectId,
-          ref: "book",
-        },
-        quantity: Number,
-      },
-    ],
-    checkout: [
-      {
-        bookId: {
-          type: Types.ObjectId,
-          ref: "book",
-        },
+        bookId: String,
         quantity: Number,
         checked: Boolean,
       },

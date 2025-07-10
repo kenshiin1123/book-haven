@@ -1,6 +1,6 @@
 import app from "express";
 const router = app.Router();
-import Book from "../model/book.js";
+import Book from "../model/book.model.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
 import validateBook from "../validations/validateBook.js";

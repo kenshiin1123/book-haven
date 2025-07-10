@@ -1,35 +1,11 @@
-import Book from "../model/book.js";
-import User from "../model/user.js";
-import { validateUserField } from "../validations/user.js";
-
-// modify user information by field type
-const patchUserInformation = async (req, res) => {
-  const { userId } = req.params;
-  const { fieldtype, newInfo } = req.body;
-
-  const validatedResult = validateUserField(fieldtype, newInfo);
-
-  if (!validatedResult.success) {
-    res.status(422).json({
-      message: validatedResult.message,
-      success: validatedResult.success,
-      userInfo: newInfo,
-    });
-  }
-
-  const update = { [fieldtype]: validatedResult.validatedField.data };
-  const user = await User.findByIdAndUpdate(userId, update, { new: true });
-  res.json({
-    message: "Successfully updated field!",
-    success: true,
-    [fieldtype]: user[fieldtype],
-  });
-};
+import User from "../model/user.model.js";
+import Book from "../model/book.model.js";
 
 // Add book to cart
 const postBookToCart = async (req, res) => {
   // Check for missing parameters
   if (!req.params || !req.params.userId || !req.params.bookId) {
+    console.log(req.params);
     return res.status(400).json({
       message: "Add to cart failed due to missing fields",
       success: false,
@@ -91,6 +67,7 @@ const postBookToCart = async (req, res) => {
 };
 
 // Remove book from cart
+// Required params: userId and bookId
 const deleteBookFromCart = async (req, res) => {
   // Check for missing parameters
   if (!req.params || !req.params.userId || !req.params.bookId) {
@@ -121,8 +98,60 @@ const deleteBookFromCart = async (req, res) => {
   return res.status(201).json({
     message: "Successfully deleted book from cart.",
     success: true,
-    user,
+    data: user.cart,
   });
 };
 
-export { patchUserInformation, postBookToCart, deleteBookFromCart };
+// Update book cart. This allows the client to modify the quantity of the cart item they have,
+// Whether it is to increment or decrement.
+// Required params: userId and bookId
+// Required body attribute: book quantity as quantity
+const patchBookFromCart = async (req, res) => {
+  // Check for missing parameters
+  if (!req.params || !req.params.userId || !req.params.bookId) {
+    return res.status(400).json({
+      message: "Delete from cart failed due to missing parameters",
+      success: false,
+    });
+  }
+
+  if (!req.body || !req.body.quantity) {
+    return res.status(400).json({
+      message: "Delete from cart failed due to missing input",
+      success: false,
+    });
+  }
+
+  const { quantity } = req.body;
+  const { userId, bookId } = req.params;
+
+  const user = await User.findById(userId);
+
+  // Check if user is available
+  if (!user) {
+    return res.status(404).json({
+      message: "Could not found the user",
+      success: false,
+    });
+  }
+
+  // Map the book by id in user cart and modify the selectedBook
+
+  user.cart = user.cart.map((book) => {
+    if (book._id.toString() !== bookId) {
+      return { ...book, quantity };
+    } else {
+      return book;
+    }
+  });
+
+  await user.save();
+
+  return res.status(201).json({
+    message: "Successfully modified book from cart.",
+    success: true,
+    data: quantity,
+  });
+};
+
+export { postBookToCart, deleteBookFromCart, patchBookFromCart };

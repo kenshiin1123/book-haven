@@ -1,4 +1,4 @@
-import User from "../model/user.js";
+import User from "../model/user.model.js";
 import { validateSignup, validateLogin } from "../validations/auth.js";
 import { hashAString, isValidHash, createJSONToken } from "../util/util.js";
 

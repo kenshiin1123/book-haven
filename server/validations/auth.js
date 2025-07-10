@@ -1,5 +1,5 @@
 import { signupValidator, loginValidator } from "./userFields.js";
-import User from "../model/user.js";
+import User from "../model/user.model.js";
 
 const validateFields = (body, fields) => {
   const errors = {};

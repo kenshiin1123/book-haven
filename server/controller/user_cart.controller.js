@@ -1,6 +1,34 @@
 import User from "../model/user.model.js";
 import Book from "../model/book.model.js";
 
+const getCartItems = async (req, res) => {
+  if (!req.params || !req.params.userId) {
+    return res.status(400).json({
+      message: "Encountered an error while fetching cart, user ID not found.",
+      success: false,
+      data: [],
+    });
+  }
+
+  const { userId } = req.params;
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({
+      message: "Encountered an error while fetching cart, user not found.",
+      success: false,
+      data: [],
+    });
+  }
+
+  res.json({
+    message: "Successfully retrieved cart items",
+    success: true,
+    data: user.cart,
+  });
+};
+
 // Add book to cart
 const postBookToCart = async (req, res) => {
   // Check for missing parameters
@@ -154,4 +182,4 @@ const patchBookFromCart = async (req, res) => {
   });
 };
 
-export { postBookToCart, deleteBookFromCart, patchBookFromCart };
+export { postBookToCart, deleteBookFromCart, patchBookFromCart, getCartItems };

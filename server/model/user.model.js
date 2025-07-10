@@ -20,10 +20,7 @@ const userSchema = new Schema(
     ],
     purchases: [
       {
-        bookId: {
-          type: Types.ObjectId,
-          ref: "book",
-        },
+        bookId: String,
         quantity: Number,
         status: String,
         datetime: Date,

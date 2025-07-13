@@ -1,6 +1,10 @@
-export default function Form({ children, handleSubmit, legend }) {
+import { Form } from "react-router";
+
+export default function FormF({ children, handleSubmit, legend, action, method }) {
   return (
-    <form
+    <Form
+      action={action}
+      method={method}
       className="mx-auto w-full p-6 mt-5 sm:border sm:w-[33rem] color-3"
       onSubmit={handleSubmit}
     >
@@ -10,6 +14,6 @@ export default function Form({ children, handleSubmit, legend }) {
         </legend>
         {children}
       </fieldset>
-    </form>
+    </Form>
   );
 }

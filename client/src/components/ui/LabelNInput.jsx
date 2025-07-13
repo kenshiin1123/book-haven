@@ -24,6 +24,7 @@ export default function LabelNInput({
           ref={ref}
           type={type}
           id={id || name}
+          name={id || name}
           className="border w-full py-1 px-1 disabled:border-0 disabled:border-b color-3"
           disabled={disabled}
         />

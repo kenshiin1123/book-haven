@@ -11,6 +11,7 @@ const PasswordInput = ({ name, id, classNameExtension, ref }) => {
         ref={ref}
         type={showPassword ? "text" : "password"}
         id={id || name}
+        name={id || name}
         className="w-full h-full py-1 px-1"
       />
       <button

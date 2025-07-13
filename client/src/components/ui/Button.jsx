@@ -8,12 +8,16 @@ export default function Button({
   type = "button",
   onClick = () => {},
   classExtension,
+  disabled,
 }) {
   return (
     <button
       onClick={onClick}
       type={type}
-      className={`bg-black text-white dark:bg-white dark:text-black rounded ${initialClass} ${classExtension}`}
+      disabled={disabled}
+      className={`bg-black text-white dark:bg-white dark:text-black rounded ${
+        disabled && "active:scale-100"
+      }  ${disabled && "animate-pulse"} ${initialClass} ${classExtension}`}
     >
       {children}
     </button>
@@ -25,12 +29,15 @@ export const ButtonOutlined = ({
   type = "button",
   onClick = () => {},
   classExtension,
+  disabled,
 }) => {
   return (
     <button
       onClick={onClick}
       type={type}
-      className={`${initialClass} color-3 border ${classExtension} dark:border-white`}
+      className={`${initialClass} color-3 border ${classExtension} dark:border-white disabled && "active:scale-100"
+      }  ${disabled && "animate-pulse"}`}
+      disabled={disabled}
     >
       {children}
     </button>

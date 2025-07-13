@@ -18,8 +18,8 @@ import Homepage from "./pages/Homepage";
 import BooksPage from "./pages/BooksPage";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
-import RegisterPage, {action as registerAction} from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+import RegisterPage, { action as registerAction } from "./pages/RegisterPage";
+import LoginPage, { action as loginAction } from "./pages/LoginPage";
 import AccountPage from "./pages/Account Page/AccountPage";
 import ProfilePage from "./pages/Account Page/ProfilePage";
 import PurchasesPage from "./pages/Account Page/PurchasesPage";
@@ -30,7 +30,6 @@ import CheckoutPage from "./pages/CheckoutPage";
 // ADMIN PAGE
 import Dashboard from "./pages/Admin/Dashboard";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,8 +39,8 @@ const router = createBrowserRouter([
       { index: true, element: <Homepage /> },
       { path: "books", element: <BooksPage /> },
       { path: "books/:bookId", element: <BookDetailsPage /> },
-      { path: "register", element: <RegisterPage />, action: registerAction},
-      { path: "login", element: <LoginPage /> },
+      { path: "register", element: <RegisterPage />, action: registerAction },
+      { path: "login", element: <LoginPage />, action: loginAction },
       {
         path: "account",
         element: <AccountLayout />,

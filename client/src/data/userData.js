@@ -15,14 +15,14 @@ const initDarkTheme = () => {
 };
 
 const userInformation = {
-  profilePic: "/pictures/default-profile.png",
-  firstname: "lance",
-  lastname: "fernandez",
-  email: "fernandezlanceivangil@gmail.com",
-  birthday: "2004-11-23",
-  phone: "0912 312 3123",
-  address: "4827 Maplewood Drive, Brookhaven, IL 60510, USA",
-  password: "123",
+  profilePic: "",
+  firstname: "",
+  lastname: "",
+  email: "",
+  birthday: "",
+  phone: "",
+  address: "",
+  password: "",
   preferences: {
     darkTheme: initDarkTheme(),
     notification: false, //Toaster

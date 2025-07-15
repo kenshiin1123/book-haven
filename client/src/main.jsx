@@ -26,24 +26,32 @@ import PurchasesPage from "./pages/Account Page/PurchasesPage";
 import SettingsPage from "./pages/Account Page/SettingsPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import logoutAction from "./pages/LogoutPage";
 
 // ADMIN PAGE
 import Dashboard from "./pages/Admin/Dashboard";
 
+import { checkAuthLoader, tokenLoader } from "./utils/auth";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
+    id: "root",
+    loader: tokenLoader,
     children: [
       { index: true, element: <Homepage /> },
       { path: "books", element: <BooksPage /> },
       { path: "books/:bookId", element: <BookDetailsPage /> },
       { path: "register", element: <RegisterPage />, action: registerAction },
       { path: "login", element: <LoginPage />, action: loginAction },
+      { path: "logout", action: logoutAction },
       {
         path: "account",
         element: <AccountLayout />,
+        // The user must be authenticated before going in to this page.
+        // The user will get redirected to the "/login" route if they're not authenticated.
+        loader: checkAuthLoader,
         children: [
           { index: true, element: <AccountPage /> },
           { path: "profile", element: <ProfilePage /> },
@@ -51,13 +59,13 @@ const router = createBrowserRouter([
           { path: "settings", element: <SettingsPage /> },
         ],
       },
-      { path: "checkout", element: <CheckoutPage /> },
+      { path: "checkout", element: <CheckoutPage />, loader: checkAuthLoader },
       { path: "cart", element: <ShoppingCartPage /> },
-      {
-        path: VITE_ADMIN_ROUTE,
-        element: <AdminLayout />,
-        children: [{ index: true, element: <Dashboard /> }],
-      },
+      // {
+      //   path: VITE_ADMIN_ROUTE,
+      //   element: <AdminLayout />,
+      //   children: [{ index: true, element: <Dashboard /> loader: checkAuthLoader}],
+      // },
     ],
   },
 ]);

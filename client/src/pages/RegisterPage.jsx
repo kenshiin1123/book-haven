@@ -1,6 +1,6 @@
 import LabelNInput from "../components/ui/LabelNInput";
 import Button, { ButtonOutlined } from "../components/ui/Button";
-import { useNavigate, useNavigation } from "react-router";
+import { redirect, useNavigate, useNavigation } from "react-router";
 import Map from "../components/ui/Map";
 import { useEffect, useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
@@ -182,5 +182,6 @@ export const action = async ({ request, parameter }) => {
     );
   }
 
-  return toast.success("Successfully Registered!");
+  toast.success("Successfully Registered!");
+  return redirect("/login");
 };

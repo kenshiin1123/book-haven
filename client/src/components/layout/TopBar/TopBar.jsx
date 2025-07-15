@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useRouteLoaderData } from "react-router";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useRef } from "react";
@@ -7,16 +7,26 @@ import LinksSection from "./LinksSection";
 import SearchButton from "./SearchButton";
 import SearchModal from "./SearchModal";
 import IconLink from "./IconLink";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
+import { IoSunnyOutline } from "react-icons/io5";
+import { AiFillMoon } from "react-icons/ai";
+import { userActions } from "../../../store/userReducer";
 
 export default function TopBar() {
   const searchRef = useRef();
   const location = useLocation().pathname;
   const cartLength = useSelector((state) => state.user.cart).length;
+  const darkTheme = useSelector((state) => state.user.preferences.darkTheme);
+  const dispatch = useDispatch();
+  const token = useRouteLoaderData("root");
 
   const handleSearchClose = () => {
     searchRef.current.close();
+  };
+
+  const handleDarkThemeClick = () => {
+    dispatch(userActions.toggleTheme());
   };
 
   return (
@@ -37,10 +47,19 @@ export default function TopBar() {
             </span>
             <IconLink icon={<HiOutlineShoppingCart />} to={"cart"} />
           </div>
-          <IconLink icon={<FaRegUserCircle />} to={"account"} />
+          {token ? (
+            <IconLink icon={<FaRegUserCircle />} to={"account"} />
+          ) : (
+            <button
+              className="ml-2 flex justify-center items-center text-3xl my-auto hover:rotate-10 transition active:scale-95"
+              onClick={handleDarkThemeClick}
+            >
+              {darkTheme ? <AiFillMoon /> : <IoSunnyOutline />}
+            </button>
+          )}
         </ul>
       </section>
-      <LinksSection />
+      <LinksSection token={token} />
       <SearchModal ref={searchRef} handleSearchClose={handleSearchClose} />
     </header>
   );

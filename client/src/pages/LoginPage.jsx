@@ -106,6 +106,8 @@ export const action = async ({ request }) => {
   }
 
   toast.success(resData.message);
+
   localStorage.setItem("token", resData.token);
+
   return redirect("/books");
 };

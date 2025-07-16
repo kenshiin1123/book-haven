@@ -12,7 +12,7 @@ const getUserInformation = async (req, res) => {
   }
 
   const user = await User.findById(userId).select(
-    "firstname lastname email phone birthday address picture -_id"
+    "firstname lastname email phone birthday address picture cart purchases -_id"
   );
 
   if (!user) {
@@ -32,23 +32,21 @@ const getUserInformation = async (req, res) => {
 const patchUserInformation = async (req, res) => {
   const userId = getUserId(req);
   const { fieldtype, newInfo } = req.body;
-
   const validatedResult = validateUserField(fieldtype, newInfo);
-
   if (!validatedResult.success) {
-    res.status(422).json({
+    return res.status(422).json({
       message: validatedResult.message,
       success: validatedResult.success,
-      userInfo: newInfo,
+      data: { userInfo: newInfo },
     });
   }
 
   const update = { [fieldtype]: validatedResult.validatedField.data };
   const user = await User.findByIdAndUpdate(userId, update, { new: true });
-  res.json({
+  return res.json({
     message: "Successfully updated field!",
     success: true,
-    [fieldtype]: user[fieldtype],
+    data: { [fieldtype]: user[fieldtype] },
   });
 };
 

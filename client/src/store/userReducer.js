@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import userData from "../data/userData";
 import { toast } from "sonner";
+import { deleteAuthToken, getAuthToken } from "../utils/auth.js";
 
 const initialState = {
   ...userData,
@@ -66,14 +67,6 @@ const preferencesReducers = {
 const profileReducers = {
   replaceInfo(state, action) {
     const updatedState = { ...state, ...action.payload };
-
-    // Format the birthday properly
-    if (updatedState.birthday.indexOf("T")) {
-      updatedState.birthday = updatedState.birthday.slice(
-        0,
-        updatedState.birthday.indexOf("T")
-      );
-    }
     return updatedState;
   },
   updateInfo(state, action) {
@@ -94,7 +87,7 @@ const userSlice = createSlice({
 });
 
 export const fetchProfile = () => {
-  const token = localStorage.getItem("token");
+  const token = getAuthToken();
   return async (dispatch) => {
     const getInfo = async () => {
       const response = await fetch("http://localhost:3000/api/users/profile", {
@@ -118,6 +111,56 @@ export const fetchProfile = () => {
     } catch (error) {
       console.log(error);
       toast("Failed to fetch profile info.");
+    }
+  };
+};
+
+export const modifyProfile = (payload) => {
+  const token = getAuthToken();
+  const { type, newInfo } = payload;
+
+  if (token === "EXPIRED") {
+    toast.error("Token expired");
+    return deleteAuthToken();
+  }
+
+  if (!payload || !payload.type || !payload.newInfo) {
+    return toast.error("Both field type and value are required.");
+  }
+
+  return async (dispatch) => {
+    const patchProfile = async () => {
+      const response = await fetch("http://localhost:3000/api/users/profile", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ fieldtype: type, newInfo }),
+      });
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+      return data;
+    };
+
+    try {
+      const data = await patchProfile();
+
+      if (data.success == false) {
+        return toast.error(data.message);
+      }
+
+      if (data.success) {
+        toast.success(data.message);
+        dispatch(userActions.replaceInfo(data.data));
+      }
+    } catch (error) {
+      console.log(error);
+      return toast.error("Encountered an error while updating " + type);
     }
   };
 };

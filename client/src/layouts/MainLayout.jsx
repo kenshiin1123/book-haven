@@ -3,14 +3,16 @@ import { Outlet, useLoaderData, useSubmit } from "react-router";
 import TopBar from "../components/layout/TopBar/TopBar";
 import MainFooter from "../components/layout/MainFooter";
 import { Toaster } from "sonner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getTokenDuration } from "../utils/auth";
+import { fetchProfile } from "../store/userReducer";
 
 export default function Layout() {
   const token = useLoaderData();
   const darkTheme = useSelector((state) => state.user.preferences.darkTheme);
   const submit = useSubmit();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!token) {
@@ -20,6 +22,9 @@ export default function Layout() {
     if (token === "EXPIRED") {
       return;
     }
+    // if token is available:
+    // get profile info
+    dispatch(fetchProfile());
 
     const tokenExpiration = getTokenDuration();
 

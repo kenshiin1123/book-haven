@@ -5,7 +5,7 @@ import ProfilePic from "../../components/ui/ProfilePic";
 import { ButtonWarning } from "../../components/ui/Button";
 import DeleteAccountConfirmationModal from "../../components/account/DeleteAccountConfirmationModal";
 import ChangePasswordModal from "../../components/account/ChangePasswordModal";
-import { fetchProfile, userActions } from "../../store/userReducer";
+import { modifyProfile } from "../../store/userReducer";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "react-router";
@@ -38,16 +38,18 @@ export default function ProfilePage() {
   const isLoading = navigation.state === "loading";
 
   useEffect(() => {
-    dispatch(fetchProfile());
-  });
+    let birthdayVal = user.birthday;
 
-  useEffect(() => {
+    if (user.birthday.indexOf("T")) {
+      birthdayVal = user.birthday.slice(0, user.birthday.indexOf("T"));
+    }
+
     const fields = [
       { ref: firstname, value: user.firstname },
       { ref: lastname, value: user.lastname },
       { ref: email, value: user.email },
       { ref: phone, value: user.phone },
-      { ref: birthday, value: user.birthday },
+      { ref: birthday, value: birthdayVal },
       { ref: address, value: user.address },
     ];
 
@@ -94,6 +96,11 @@ export default function ProfilePage() {
       case "birthday": {
         const result = Birthday.safeParse(newInfo);
         if (!result.success) return toastError(result);
+        const now = new Date().getFullYear();
+        if (result.data.slice(0, result.data.indexOf("-")) > now) {
+          toast.error("Invalid year: It can't be set beyond the current year.");
+          return false;
+        }
         break;
       }
       case "phone": {
@@ -119,10 +126,7 @@ export default function ProfilePage() {
     }
 
     // This runs if every validation goes well
-    dispatch(userActions.updateInfo({ type, newInfo }));
-    toast.success(
-      `${type.charAt(0).toUpperCase() + type.slice(1)} Updated Successfully.`
-    );
+    dispatch(modifyProfile({ type, newInfo }));
     return true;
   };
 

@@ -13,12 +13,23 @@ const isValidHash = async (string, storedString) => {
   return await compare(string, storedString);
 };
 
-const createJSONToken = (email) => {
-  return sign({ email }, SECRET_TOKEN_KEY, { expiresIn: "7d" });
+const createJSONToken = (userId) => {
+  return sign({ userId }, SECRET_TOKEN_KEY, { expiresIn: "7d" });
 };
 
 const validateJSONToken = (token) => {
   return verify(token, SECRET_TOKEN_KEY);
 };
 
-export { hashAString, isValidHash, createJSONToken, validateJSONToken };
+const getUserId = (req) => {
+  const token = req.headers.authorization.split(" ")[1];
+  return validateJSONToken(token).userId;
+};
+
+export {
+  hashAString,
+  isValidHash,
+  createJSONToken,
+  validateJSONToken,
+  getUserId,
+};

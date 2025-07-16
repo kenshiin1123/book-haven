@@ -60,7 +60,7 @@ const login = async (req, res) => {
   }
 
   // Create a token
-  const token = createJSONToken(email);
+  const token = createJSONToken(existingUser._id.toString());
 
   res.json({
     message: "You have successfully logged in.",

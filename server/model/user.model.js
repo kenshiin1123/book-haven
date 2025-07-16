@@ -4,7 +4,10 @@ const userSchema = new Schema(
   {
     firstname: String,
     lastname: String,
-    email: String,
+    email: {
+      type: String,
+      unique: true,
+    },
     hashedPassword: String,
     birthday: Date,
     phone: String,

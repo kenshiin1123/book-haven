@@ -26,7 +26,7 @@ const ProfilePic = () => {
   return (
     <div className="mx-auto flex flex-col gap-2 items-center">
       <img
-        src={file}
+        src={file || "/pictures/default-profile.png"}
         className="size-50 border border-gray-400 shadow color-3"
       />
       <input

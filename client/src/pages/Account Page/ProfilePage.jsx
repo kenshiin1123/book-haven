@@ -5,10 +5,10 @@ import ProfilePic from "../../components/ui/ProfilePic";
 import { ButtonWarning } from "../../components/ui/Button";
 import DeleteAccountConfirmationModal from "../../components/account/DeleteAccountConfirmationModal";
 import ChangePasswordModal from "../../components/account/ChangePasswordModal";
-import { userActions } from "../../store/userReducer";
+import { fetchProfile, userActions } from "../../store/userReducer";
 
 import { useDispatch, useSelector } from "react-redux";
-
+import { useNavigation } from "react-router";
 import {
   Firstname,
   Lastname,
@@ -22,6 +22,7 @@ import {
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user);
   const firstname = useRef();
   const lastname = useRef();
@@ -32,6 +33,13 @@ export default function ProfilePage() {
 
   const deleteModal = useRef();
   const changePasswordModal = useRef();
+
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  });
 
   useEffect(() => {
     const fields = [
@@ -168,7 +176,9 @@ export default function ProfilePage() {
     },
   ];
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
     <>
       <ProfilePic />
       <div className="border border-b-0 mx-auto flex flex-col gap-2 pt-3 w-[90%] sm:w-[35rem] md:w-[40rem] color-3">

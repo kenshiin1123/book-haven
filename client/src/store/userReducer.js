@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import userData from "../data/userData";
+import { toast } from "sonner";
 
 const initialState = {
   ...userData,
@@ -63,6 +64,18 @@ const preferencesReducers = {
 };
 
 const profileReducers = {
+  replaceInfo(state, action) {
+    const updatedState = { ...state, ...action.payload };
+
+    // Format the birthday properly
+    if (updatedState.birthday.indexOf("T")) {
+      updatedState.birthday = updatedState.birthday.slice(
+        0,
+        updatedState.birthday.indexOf("T")
+      );
+    }
+    return updatedState;
+  },
   updateInfo(state, action) {
     // the payload must have a type
     const { type, newInfo } = action.payload;
@@ -79,6 +92,35 @@ const userSlice = createSlice({
     ...profileReducers,
   },
 });
+
+export const fetchProfile = () => {
+  const token = localStorage.getItem("token");
+  return async (dispatch) => {
+    const getInfo = async () => {
+      const response = await fetch("http://localhost:3000/api/users/profile", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      if (!response.ok) {
+        toast("Failed to fetch profile info.");
+        return;
+      }
+
+      const resData = await response.json();
+      return resData;
+    };
+
+    try {
+      const resData = await getInfo();
+      dispatch(userActions.replaceInfo(resData.data));
+    } catch (error) {
+      console.log(error);
+      toast("Failed to fetch profile info.");
+    }
+  };
+};
 
 export const userActions = userSlice.actions;
 

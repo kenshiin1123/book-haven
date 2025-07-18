@@ -1,6 +1,7 @@
 import User from "../model/user.model.js";
 import { validateUserField } from "../validations/user.js";
 import { getUserId } from "../util/util.js";
+import { isValidHash, hashAString } from "../util/util.js";
 
 const getUserInformation = async (req, res) => {
   const userId = getUserId(req); // get user_id via token
@@ -41,11 +42,16 @@ const patchUserInformation = async (req, res) => {
   const userId = getUserId(req);
   const { fieldtype, newInfo } = req.body;
 
-  const validatedResult = validateUserField(
-    fieldtype,
-    fieldtype === "picture" ? req.file : newInfo
-  );
+  let dataToValidate = newInfo;
 
+  if (fieldtype === "picture") {
+    dataToValidate = req.file;
+  } else if (fieldtype === "password") {
+    // Assuming the newInfo is an object that has two properties, oldPassword and newPassword
+    dataToValidate = newInfo.newPassword;
+  }
+
+  const validatedResult = validateUserField(fieldtype, dataToValidate);
   if (!validatedResult.success) {
     return res.status(422).json({
       message: validatedResult.message,
@@ -54,21 +60,49 @@ const patchUserInformation = async (req, res) => {
     });
   }
 
-  const update = {
-    [fieldtype]:
-      fieldtype === "picture"
-        ? {
-            buffer: req.file.buffer,
-            mimetype: req.file.mimetype,
-          }
-        : validatedResult.validatedField.data,
-  };
+  // This user data will be used to store in the database
+  let userData = validatedResult.validatedField.data;
+  if (fieldtype === "picture") {
+    userData = {
+      buffer: req.file.buffer,
+      mimetype: req.file.mimetype,
+    };
+  }
 
-  const user = await User.findByIdAndUpdate(userId, update, { new: true });
+  const user = await User.findById(userId);
+
+  // If fieldtype === password, compare the inputted oldPassword and stored password
+  if (fieldtype === "password") {
+    const validPass = await isValidHash(
+      newInfo.oldPassword,
+      user.hashedPassword
+    );
+    // if the password is invalid, return a response
+    if (!validPass) {
+      return res.status(401).json({
+        message: "You have entered an invalid password!",
+        success: false,
+      });
+    }
+    // Store the newPassword when the comparison is valid.
+    userData = await hashAString(newInfo.newPassword);
+  }
+
+  // Modify in database
+  if (fieldtype === "password") {
+    user["hashedPassword"] = userData;
+  } else {
+    user[fieldtype] = userData;
+  }
+
   await user.save();
+
   return res.json({
     message: `Successfully updated your ${fieldtype}!`,
     success: true,
+    data: {
+      [fieldtype]: fieldtype === "password" ? newInfo.newPassword : newInfo,
+    },
   });
 };
 

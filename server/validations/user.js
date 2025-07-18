@@ -10,12 +10,6 @@ export const validateUserField = (fieldtype, newInfo) => {
       success = false;
     }
 
-    console.log({
-      success,
-      message,
-      validatedField,
-    });
-
     return {
       success,
       message,

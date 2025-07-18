@@ -143,8 +143,6 @@ export const modifyProfile = (payload) => {
       formData.append("fieldtype", "picture");
       formData.append("newInfo", newInfo);
       config.body = formData;
-
-      // return dispatch({ type: "picture", newInfo });
     }
 
     const patchProfile = async () => {
@@ -152,10 +150,6 @@ export const modifyProfile = (payload) => {
         method: "PATCH",
         ...config,
       });
-
-      if (!response.ok) {
-        return;
-      }
 
       const data = await response.json();
       return data;
@@ -170,7 +164,9 @@ export const modifyProfile = (payload) => {
 
       if (data.success) {
         toast.success(data.message);
-        dispatch(userActions.replaceInfo(data.data));
+        if (type !== "password") {
+          dispatch(userActions.replaceInfo(data.data));
+        }
       }
     } catch (error) {
       console.log(error);

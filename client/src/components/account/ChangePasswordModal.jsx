@@ -2,7 +2,12 @@ import { useEffect, useRef } from "react";
 import PasswordInput from "../ui/PasswordInput";
 import Button, { ButtonOutlined } from "../ui/Button";
 import Dialog from "../ui/Dialog";
+import { useDispatch } from "react-redux";
+import { modifyProfile } from "../../store/userReducer";
+import { toast } from "sonner";
+
 const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
+  const dispatch = useDispatch();
   const handleClose = () => {
     ref.current.close();
   };
@@ -18,9 +23,9 @@ const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
   };
 
   const handleChangePass = () => {
-    console.log("Old Password: " + oldPassword.current.value);
-    console.log("New Password: " + newPassword.current.value);
-    console.log("Confirmed New Password: " + confirmNewPassword.current.value);
+    // console.log("Old Password: " + oldPassword.current.value);
+    // console.log("New Password: " + newPassword.current.value);
+    // console.log("Confirmed New Password: " + confirmNewPassword.current.value);
     onDelete();
 
     if (
@@ -28,7 +33,23 @@ const ChangePasswordModal = ({ ref, onDelete = () => {} }) => {
       newPassword.current.value &&
       confirmNewPassword.current.value
     ) {
-      alert("Successfully changed the password!");
+      const payload = {
+        type: "password",
+        newInfo: {
+          oldPassword: oldPassword.current.value,
+          newPassword: newPassword.current.value,
+        },
+      };
+
+      // Toast an error if the confirm password and new password is not correct
+      if (newPassword.current.value !== confirmNewPassword.current.value) {
+        console.log(newPassword.current.value);
+        console.log(confirmNewPassword.current.value);
+        return toast.error("New password and confirmation do not match.");
+      } else {
+        dispatch(modifyProfile(payload));
+      }
+
       clearInputs();
       handleClose();
     } else {

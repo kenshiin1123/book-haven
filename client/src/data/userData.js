@@ -15,7 +15,7 @@ const initDarkTheme = () => {
 };
 
 const userInformation = {
-  profilePic: "",
+  picture: "",
   firstname: "",
   lastname: "",
   email: "",

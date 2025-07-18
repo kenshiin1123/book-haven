@@ -10,12 +10,21 @@ export const validateUserField = (fieldtype, newInfo) => {
       success = false;
     }
 
+    console.log({
+      success,
+      message,
+      validatedField,
+    });
+
     return {
       success,
       message,
       validatedField,
     };
   } catch (error) {
-    console.log(error);
+    return res.status(422).json({
+      message: `Failed to updated your ${fieldtype} due to validation error!`,
+      success: false,
+    });
   }
 };

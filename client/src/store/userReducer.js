@@ -129,14 +129,28 @@ export const modifyProfile = (payload) => {
   }
 
   return async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({ fieldtype: type, newInfo }),
+    };
+
+    if (type === "picture") {
+      config.headers = { Authorization: "Bearer " + token };
+      const formData = new FormData();
+      formData.append("fieldtype", "picture");
+      formData.append("newInfo", newInfo);
+      config.body = formData;
+
+      // return dispatch({ type: "picture", newInfo });
+    }
+
     const patchProfile = async () => {
       const response = await fetch("http://localhost:3000/api/users/profile", {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({ fieldtype: type, newInfo }),
+        ...config,
       });
 
       if (!response.ok) {

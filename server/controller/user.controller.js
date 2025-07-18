@@ -21,10 +21,18 @@ const getUserInformation = async (req, res) => {
       .json({ message: "User not found.", success: false, data: null });
   }
 
+  // ✅ Convert picture buffer to Base64 (if exists)
+  let userData = user.toObject();
+  if (user.picture && user.picture.buffer) {
+    userData.picture = `data:${
+      user.picture.mimetype
+    };base64,${user.picture.buffer.toString("base64")}`;
+  }
+
   return res.status(200).json({
     message: "Successfully retreived user data",
     success: true,
-    data: user,
+    data: userData,
   });
 };
 
@@ -32,7 +40,12 @@ const getUserInformation = async (req, res) => {
 const patchUserInformation = async (req, res) => {
   const userId = getUserId(req);
   const { fieldtype, newInfo } = req.body;
-  const validatedResult = validateUserField(fieldtype, newInfo);
+
+  const validatedResult = validateUserField(
+    fieldtype,
+    fieldtype === "picture" ? req.file : newInfo
+  );
+
   if (!validatedResult.success) {
     return res.status(422).json({
       message: validatedResult.message,
@@ -41,12 +54,21 @@ const patchUserInformation = async (req, res) => {
     });
   }
 
-  const update = { [fieldtype]: validatedResult.validatedField.data };
+  const update = {
+    [fieldtype]:
+      fieldtype === "picture"
+        ? {
+            buffer: req.file.buffer,
+            mimetype: req.file.mimetype,
+          }
+        : validatedResult.validatedField.data,
+  };
+
   const user = await User.findByIdAndUpdate(userId, update, { new: true });
+  await user.save();
   return res.json({
-    message: "Successfully updated field!",
+    message: `Successfully updated your ${fieldtype}!`,
     success: true,
-    data: { [fieldtype]: user[fieldtype] },
   });
 };
 

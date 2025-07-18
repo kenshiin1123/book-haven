@@ -13,7 +13,10 @@ const userSchema = new Schema(
     phone: String,
     address: String,
     darktheme: Boolean,
-    picture: Buffer,
+    picture: {
+      buffer: Buffer,
+      mimetype: String,
+    },
     cart: [
       {
         bookId: String,

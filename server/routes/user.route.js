@@ -4,7 +4,7 @@ const router = app.Router();
 import authMiddleware from "../middleware/authMiddleware.js";
 import userCartRoute from "./user_cart.route.js";
 import userPurchasesRoute from "./user_purchases.routes.js";
-
+import multerMiddleware from "../middleware/multerMiddleware.js";
 // User Controller
 import {
   patchUserInformation,
@@ -18,7 +18,7 @@ router.use(authMiddleware);
 router.get("/profile", getUserInformation);
 
 // modify user information by field type
-router.patch("/profile", patchUserInformation);
+router.patch("/profile", multerMiddleware, patchUserInformation);
 
 // User cart routes
 router.use("", userCartRoute);

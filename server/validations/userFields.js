@@ -55,7 +55,12 @@ export const Password = z
   .min(8, "Password must be at least 8 characters.")
   .max(64, "Password must not exceed 64 characters.")
   .trim();
-export const PicBuffer = z.string().trim();
+export const PicFile = z.object({
+  mimetype: z.enum(["image/jpeg", "image/png", "image/gif"]),
+  size: z
+    .number()
+    .max(5 * 1024 * 1024, { message: "Image must not exceed 5 MB" }),
+});
 
 export const signupValidator = [
   { firstname: Firstname },
@@ -77,4 +82,5 @@ export const allFields = {
   birthday: Birthday,
   phone: Phone,
   address: Address,
+  picture: PicFile,
 };

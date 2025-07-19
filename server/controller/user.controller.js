@@ -88,20 +88,27 @@ const patchUserInformation = async (req, res) => {
     userData = await hashAString(newInfo.newPassword);
   }
 
-  // Modify in database
   if (fieldtype === "password") {
     user["hashedPassword"] = userData;
   } else {
     user[fieldtype] = userData;
   }
 
+  // Modify in database
   await user.save();
+
+  // Converts image buffer data into a base64 string, suitable for direct use in an <img> tag's src attribute.
+  if (fieldtype === "picture") {
+    userData = `data:${
+      user.picture.mimetype
+    };base64,${user.picture.buffer.toString("base64")}`;
+  }
 
   return res.json({
     message: `Successfully updated your ${fieldtype}!`,
     success: true,
     data: {
-      [fieldtype]: fieldtype === "password" ? newInfo.newPassword : newInfo,
+      [fieldtype]: fieldtype === "password" ? newInfo.newPassword : userData,
     },
   });
 };

@@ -19,7 +19,6 @@ import {
   Password,
   PicPath,
 } from "../../schema/user.schema";
-
 export default function ProfilePage() {
   const dispatch = useDispatch();
 

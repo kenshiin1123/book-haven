@@ -70,9 +70,10 @@ const profileReducers = {
     return updatedState;
   },
   updateInfo(state, action) {
-    // the payload must have a type
-    const { type, newInfo } = action.payload;
-    state[type] = newInfo;
+    const newInfo = action.payload;
+    const key = Object.keys(newInfo)[0];
+    const value = Object.values(newInfo)[0];
+    state[key] = value;
   },
 };
 
@@ -165,7 +166,7 @@ export const modifyProfile = (payload) => {
       if (data.success) {
         toast.success(data.message);
         if (type !== "password") {
-          dispatch(userActions.replaceInfo(data.data));
+          dispatch(userActions.updateInfo(data.data));
         }
       }
     } catch (error) {

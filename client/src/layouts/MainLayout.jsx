@@ -31,7 +31,7 @@ export default function Layout() {
     setTimeout(() => {
       submit(null, { method: "POST", action: "/logout" });
     }, tokenExpiration);
-  }, [token, submit]);
+  }, [token, submit, dispatch]);
 
   useEffect(() => {
     if (darkTheme) {

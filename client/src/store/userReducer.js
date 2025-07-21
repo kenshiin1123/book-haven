@@ -87,11 +87,13 @@ const userSlice = createSlice({
   },
 });
 
+const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export const fetchProfile = () => {
   const token = getAuthToken();
   return async (dispatch) => {
     const getInfo = async () => {
-      const response = await fetch("http://localhost:3000/api/users/profile", {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/users/profile`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -147,7 +149,7 @@ export const modifyProfile = (payload) => {
     }
 
     const patchProfile = async () => {
-      const response = await fetch("http://localhost:3000/api/users/profile", {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/users/profile`, {
         method: "PATCH",
         ...config,
       });

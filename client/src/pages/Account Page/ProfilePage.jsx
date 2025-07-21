@@ -172,11 +172,11 @@ export default function ProfilePage() {
       classExtension: "w-60 py-2 inset-ring-0",
       label: "Change Password",
     },
-    {
-      onClick: handleDeleteConfirmation,
-      classExtension: "w-40 mx-auto mt-5",
-      label: "Delete Account",
-    },
+    // {
+    //   onClick: handleDeleteConfirmation,
+    //   classExtension: "w-40 mx-auto mt-5",
+    //   label: "Delete Account",
+    // },
   ];
 
   return isLoading ? (
@@ -204,7 +204,7 @@ export default function ProfilePage() {
           </ButtonWarning>
         ))}
       </div>
-      <DeleteAccountConfirmationModal ref={deleteModal} />
+      {/* <DeleteAccountConfirmationModal ref={deleteModal} /> */}
       <ChangePasswordModal ref={changePasswordModal} />
     </>
   );

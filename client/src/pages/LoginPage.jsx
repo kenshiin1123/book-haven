@@ -66,6 +66,8 @@ export default function LoginPage() {
   );
 }
 
+const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL || {};
+
 export const action = async ({ request }) => {
   const data = await request.formData();
 
@@ -90,7 +92,7 @@ export const action = async ({ request }) => {
     return toast.error("Password doesn't match!");
   }
 
-  const response = await fetch("http://localhost:3000/api/auth/login", {
+  const response = await fetch(`${VITE_BACKEND_URL}/api/auth/login`, {
     method: request.method,
     headers: {
       "Content-Type": "application/json",

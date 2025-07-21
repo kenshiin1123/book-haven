@@ -118,6 +118,8 @@ export default function RegisterPage() {
   );
 }
 
+const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL || {};
+
 export const action = async ({ request, parameter }) => {
   const data = await request.formData();
   const fields = [
@@ -159,7 +161,7 @@ export const action = async ({ request, parameter }) => {
     address: data.get("address"),
   };
 
-  const response = await fetch("http://localhost:3000/api/auth/signup", {
+  const response = await fetch(`${VITE_BACKEND_URL}/api/auth/signup`, {
     method: request.method,
     headers: {
       "Content-Type": "application/json",

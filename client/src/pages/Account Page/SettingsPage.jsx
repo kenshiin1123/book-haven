@@ -29,13 +29,13 @@ export default function SettingsPage() {
       description:
         "Enable dark mode for more comfortable experience in low light.",
     },
-    {
-      active: notification,
-      handleClick: handleNotificationClick,
-      title: "Notifications",
-      icon: <IoIosNotifications />,
-      description: "Receive updates and alerts for important activity.",
-    },
+    // {
+    //   active: notification,
+    //   handleClick: handleNotificationClick,
+    //   title: "Notifications",
+    //   icon: <IoIosNotifications />,
+    //   description: "Receive updates and alerts for important activity.",
+    // },
   ];
 
   useEffect(() => {

@@ -70,7 +70,7 @@ export default function RegisterPage() {
   return (
     <main className="p-3 min-sm:p-10 ">
       <Form legend={"Registration"} method={"post"}>
-        <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
+        {/* <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
           <ButtonOutlined>
             <FaGoogle />
             Google
@@ -80,7 +80,7 @@ export default function RegisterPage() {
             Facebook
           </ButtonOutlined>
         </div>
-        <HorizontalRule>or</HorizontalRule>
+        <HorizontalRule>or</HorizontalRule> */}
         <fieldset className="flex flex-col gap-5">
           <div className="flex gap-4 justify-between">
             <LabelNInput name={"firstname"} />

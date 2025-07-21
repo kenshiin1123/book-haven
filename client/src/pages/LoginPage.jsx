@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <main className="p-3 min-sm:p-10">
       <Form legend={"Login to your account"} method="POST">
-        <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
+        {/* <div className="[&>button]:py-2 flex justify-center gap-5 [&>button]:w-full [&>button]:flex [&>button]:gap-2 [&>button>svg]:text-2xl [&>button]:font-bold ">
           <ButtonOutlined>
             <FaGoogle />
             Google
@@ -43,7 +43,7 @@ export default function LoginPage() {
             Facebook
           </ButtonOutlined>
         </div>
-        <HorizontalRule>or</HorizontalRule>
+        <HorizontalRule>or</HorizontalRule> */}
         {labelNInputs.map((item, i) => (
           <LabelNInput {...item} key={i} />
         ))}
